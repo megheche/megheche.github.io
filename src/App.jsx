@@ -322,7 +322,7 @@ export default function App() {
           </div>
         </aside>
 
-        <main className="space-y-6">
+        <main className="min-w-0 space-y-6">
           <section id="home" className="scroll-mt-6 overflow-hidden rounded-lg border border-[#C2DBF0] bg-white shadow-sm">
             <div className="border-t-4 border-[#3982D5] p-6 md:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2F7CBC]">Profile</p>
@@ -419,11 +419,11 @@ export default function App() {
           </Section>
 
           <Section eyebrow="Blog" id="blog">
-            <div className="flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 xl:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {blogPosts.map((post) => (
                 <button
                   aria-pressed={selectedBlogPost?.id === post.id}
-                  className={`relative w-[82vw] max-w-[20rem] shrink-0 overflow-hidden rounded-lg border p-5 text-left transition hover:-translate-y-0.5 hover:border-[#2F7CBC] hover:shadow-sm md:w-auto md:max-w-none ${
+                  className={`relative overflow-hidden rounded-lg border p-5 text-left transition hover:-translate-y-0.5 hover:border-[#2F7CBC] hover:shadow-sm ${
                     selectedBlogPost?.id === post.id
                       ? 'border-[#8CBFE8] bg-[#F7FBFF] shadow-sm ring-1 ring-[#D6EAFB]'
                       : 'border-slate-200 bg-slate-50'
