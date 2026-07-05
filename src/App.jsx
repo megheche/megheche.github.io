@@ -28,6 +28,21 @@ const positions = [
   },
 ]
 
+const education = [
+  {
+    period: '2010 - 2014',
+    title: 'PhD in Computer Science',
+    place: 'Université Gustave Eiffel (UGE), Paris',
+    description: 'Optimization methods for image and signal processing, with applications to computer vision and machine learning.',
+  },
+  {
+    period: '2009 - 2010',
+    title: 'Master of Science in Wireless Communications',
+    place: 'CentraleSupélec, Paris',
+    description: 'Advanced communication systems and signal processing.',
+  },
+]
+
 const publications = [
   {
     group: 'Journal Papers',
@@ -348,14 +363,33 @@ export default function App() {
           </section>
 
           <Section eyebrow="CV" id="about">
-            <div className="space-y-4">
-              {positions.map((position) => (
-                <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${position.period}-${position.title}`}>
-                  <p className="text-sm font-medium text-[#245F8F]">{position.period}</p>
-                  <h3 className="mt-1 text-lg font-semibold text-slate-950">{position.title}</h3>
-                  <p className="mt-1 text-sm text-slate-600">{position.place}</p>
-                </article>
-              ))}
+            <div className="grid gap-6 lg:grid-cols-2">
+              <div className="grid h-full grid-rows-[auto_1fr] gap-4">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Experience</h3>
+                <div className="grid gap-4 lg:auto-rows-fr">
+                  {positions.map((position) => (
+                    <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${position.period}-${position.title}`}>
+                      <p className="text-sm font-medium text-[#245F8F]">{position.period}</p>
+                      <h4 className="mt-1 text-lg font-semibold text-slate-950">{position.title}</h4>
+                      <p className="mt-1 text-sm text-slate-600">{position.place}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid h-full grid-rows-[auto_1fr] gap-4">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Education</h3>
+                <div className="grid gap-4 lg:auto-rows-fr">
+                  {education.map((item) => (
+                    <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${item.period}-${item.title}`}>
+                      <p className="text-sm font-medium text-[#245F8F]">{item.period}</p>
+                      <h4 className="mt-1 text-lg font-semibold text-slate-950">{item.title}</h4>
+                      <p className="mt-1 text-sm text-slate-600">{item.place}</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-700">{item.description}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
             </div>
           </Section>
 
