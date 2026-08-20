@@ -534,7 +534,7 @@ export default function App() {
               </div>
 
               {selectedBlogPost ? (
-                <article className="rounded-lg border border-[#C2DBF0] bg-[#FBFDFF] p-5 shadow-sm md:p-6 lg:sticky lg:top-8 lg:h-[42.5rem] lg:overflow-y-auto">
+                <article className="rounded-xl border-[3px] border-[#3982D5] bg-[#FBFDFF] p-5 shadow-[0_0_18px_rgba(57,130,213,0.16)] md:p-6 lg:sticky lg:top-8 lg:h-[42.5rem] lg:overflow-y-auto">
                   <div className="border-b border-[#C2DBF0] pb-4">
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#245F8F]">
                       {selectedBlogPost.category}
