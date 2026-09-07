@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import portrait from './assets/portrait.JPG'
 
 const navItems = [
@@ -261,7 +261,7 @@ const blogPosts = [
   {
     id: 'physical-intelligence',
     category: 'AI & Robotics',
-    date: 'July 2026',
+    date: 'June 2026',
     readingTime: '15 min watch',
     title: 'When intelligence gets physical',
     excerpt:
@@ -274,6 +274,29 @@ const blogPosts = [
       'I also shared some lessons from my work on an autonomous table tennis robot, a project that taught me how hard and exciting it is to build systems that can perceive, decide, and act in real time.',
       'There is a great future ahead, and we all have a role in shaping it.',
     ],
+  },
+  {
+    id: 'kuchisabishii',
+    category: 'Japanese & Culture',
+    readingTime: '1 min read',
+    title: 'Kuchisabishii (口寂しい)',
+    boldTitle: true,
+    action: 'Read note',
+    content: [
+      'Kuchisabishii (口寂しい) literally means “lonely mouth.” It describes the mysterious urge to snack when you are not really hungry, but your mouth is simply bored.',
+      'Kuchi means “mouth,” and sabishii means “lonely.” Together, they capture that moment when your mouth needs a little therapy and your hand starts moving toward the chips on autopilot.',
+      'It is one of my favorite Japanese words because it gives a name to such a relatable little feeling.',
+    ],
+  },
+  {
+    id: 'favorite-ai-joke',
+    category: 'AI & Culture',
+    readingTime: '1 min read',
+    title: 'Building smarter AI is easy. Teaching it sarcasm? Yeah, sure.',
+    imageAlt: 'A comic about an AI trying to understand sarcasm.',
+    imageSrc: '/ai-sarcasm-joke.png',
+    action: 'Read joke',
+    content: [],
   },
   {
     id: 'mireille-meaning',
@@ -289,16 +312,57 @@ const blogPosts = [
       'In that sense, Mireille carries both softness and depth. It suggests beauty as something to notice, appreciate, and express through the way one moves through the world.',
     ],
   },
+]
+
+const courseChapters = [
   {
-    id: 'favorite-ai-joke',
-    category: 'AI & Culture',
-    readingTime: '1 min read',
-    title: 'Building smarter AI is easy. Teaching it sarcasm? Yeah, sure.',
-    excerpt: 'A small joke about one of AI’s surprisingly difficult lessons.',
-    imageAlt: 'A comic about an AI trying to understand sarcasm.',
-    imageSrc: '/ai-sarcasm-joke.png',
-    action: 'Read joke',
-    content: [],
+    id: 1,
+    title: 'Building the central idea behind a language model',
+    summary: [
+      'In this first chapter, we are going to build the central idea behind a language model from the ground up.',
+      'We will begin with a very simple question: given some text, how can a computer predict what is likely to come next?',
+      ],
+  },
+  {
+    id: 2,
+    title: 'The language-model pipeline',
+    summary: [
+      'The central message of this lecture is that next-token prediction is the core computational task of a language model, but many other decisions determine its behavior.',
+      'Real applications usually place the model inside a larger system that may include memory, document retrieval, tools, databases, or web services.',
+    ],
+  },
+  {
+    id: 3,
+    title: 'From text to tokens',
+    summary: [
+      'In this chapter, we focus on the very first part of that pipeline: how text becomes something a language model can process. When we type a sentence into a language model, the model does not directly receive words or characters. The text first has to be converted into numerical representations.',
+      'The first major step in that process is tokenization.',
+    ],
+  },
+
+  {
+    id: 4,
+    title: 'The decoder-only Transformer',
+    summary: [
+      'In this chapter, we move to the next part of the pipeline and ask: what does the model actually do with those tokens?',
+      'We will focus on the architecture used by most modern generative language models: the decoder-only Transformer.',
+    ],
+  },
+  {
+    id: 5,
+    title: 'How a model learns',
+    summary: [
+      'We move to the next question: how does a model actually learn?',
+      'This chapter focuses on pretraining, the stage where a language model develops its broad language capabilities.',
+    ],
+  },
+  {
+    id: 6,
+    title: 'Post-training',
+    summary: [
+      'In this chapter, we move to the second major training stage: post-training.',
+      'The basic question is: once we have a capable pretrained model, how do we make it behave the way we actually want?',
+    ],
   },
 ]
 
@@ -327,6 +391,9 @@ function ExternalLink({ href, children }) {
 
 export default function App() {
   const [selectedBlogPostId, setSelectedBlogPostId] = useState(blogPosts[0].id)
+  const [selectedCourseChapterId, setSelectedCourseChapterId] = useState(courseChapters[0].id)
+  const [blogListHeight, setBlogListHeight] = useState(null)
+  const blogListRef = useRef(null)
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window === 'undefined') {
       return false
@@ -344,7 +411,21 @@ export default function App() {
     window.localStorage.setItem('theme', isDarkMode ? 'dark' : 'light')
   }, [isDarkMode])
 
+  useEffect(() => {
+    const blogList = blogListRef.current
+    if (!blogList) return undefined
+
+    const updateHeight = () => setBlogListHeight(blogList.getBoundingClientRect().height)
+    const resizeObserver = new ResizeObserver(updateHeight)
+
+    updateHeight()
+    resizeObserver.observe(blogList)
+
+    return () => resizeObserver.disconnect()
+  }, [])
+
   const selectedBlogPost = blogPosts.find((post) => post.id === selectedBlogPostId)
+  const selectedCourseChapter = courseChapters.find((chapter) => chapter.id === selectedCourseChapterId)
 
   return (
     <div className={`min-h-screen text-slate-800 transition-colors duration-300 ${isDarkMode ? 'theme-dark bg-[#0C1524]' : 'bg-[#F3F8FD]'}`}>
@@ -482,33 +563,78 @@ export default function App() {
                 AI, and optimization projects. My teaching and mentoring work has focused on helping students and research teams connect theoretical
                 methods to practical problems.
               </p>
-              <div className="border-t border-[#C2DBF0] pt-5">
-                <div className="grid gap-4 md:grid-cols-3">
-                  {[
-                    'Machine Learning',
-                    'AI',
-                    'Optimization',
-                  ].map((item) => (
-                    <div className="border-l-2 border-[#3982D5] pl-3 text-sm font-medium leading-6 text-slate-700" key={item}>
-                      {item}
-                    </div>
-                  ))}
+              <article className="rounded-lg border border-[#C2DBF0] bg-[#F7FBFF] p-5 md:p-6">
+                <div className="flex flex-col gap-3 border-b border-[#C2DBF0] pb-4 md:flex-row md:items-start md:justify-between">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2F7CBC]">Course in preparation</p>
+                    <h3 className="mt-2 text-xl font-semibold leading-tight text-slate-950 md:text-2xl">Language Models</h3>
+                  </div>
+                  <p className="text-sm text-slate-600 md:text-right">
+                    In collaboration with{' '}
+                    <a
+                      className="font-medium text-[#245F8F] hover:underline"
+                      href="https://perso.esiee.fr/~chierchg/"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      Giovanni Chierchia
+                    </a>
+                  </p>
                 </div>
-              </div>
+                <p className="mt-4 text-sm leading-7 text-slate-700">
+                  This course is organized as a set of six chapters, building the central ideas behind language models from first principles.
+                </p>
+                <div className="mt-5 grid gap-4 lg:h-[16rem] lg:grid-cols-[minmax(150px,0.24fr)_minmax(0,0.76fr)] lg:items-start">
+                  <div className="grid min-h-0 gap-2 lg:h-full lg:grid-rows-6" role="list">
+                    {courseChapters.map((chapter) => {
+                      const isSelected = selectedCourseChapter?.id === chapter.id
+
+                      return (
+                        <button
+                          aria-pressed={isSelected}
+                          className={`relative block w-full overflow-hidden rounded-lg border border-slate-200 py-2 pr-3 pl-4 text-left transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF] ${
+                            isSelected ? 'bg-[#F7FBFF]' : ''
+                          }`}
+                          key={chapter.id}
+                          onClick={() => setSelectedCourseChapterId(chapter.id)}
+                          role="listitem"
+                          type="button"
+                        >
+                          {isSelected ? <span className="absolute inset-y-0 left-0 w-1 bg-[#3982D5]" aria-hidden="true" /> : null}
+                          <span className="block text-sm font-semibold leading-snug text-slate-950">
+                            Chapter {chapter.id}
+                          </span>
+                        </button>
+                      )
+                    })}
+                  </div>
+
+                  {selectedCourseChapter ? (
+                    <article className="h-full min-h-0 overflow-y-auto rounded-xl border-[3px] border-[#3982D5] bg-[#FBFDFF] p-4 shadow-[0_0_18px_rgba(57,130,213,0.16)] md:p-5">
+                      <div className="space-y-3 text-sm leading-7 text-slate-700">
+                        {selectedCourseChapter.summary.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                      <p className="mt-5 border-t border-[#C2DBF0] pt-3 text-xs font-medium text-slate-500">Coming soon</p>
+                    </article>
+                  ) : null}
+                </div>
+              </article>
             </div>
           </Section>
 
           <Section eyebrow="Blog" id="blog">
-            <div className="grid gap-5 lg:grid-cols-[minmax(220px,0.38fr)_minmax(0,0.62fr)] lg:items-start">
-              <div className="grid gap-3" role="list">
+            <div className="grid gap-5 lg:grid-cols-[minmax(220px,0.32fr)_minmax(0,0.68fr)] lg:items-start">
+              <div className="grid gap-2" ref={blogListRef} role="list">
                 {blogPosts.map((post) => {
                   const isSelected = selectedBlogPost?.id === post.id
 
                   return (
                     <button
                       aria-pressed={isSelected}
-                      className={`relative block w-full overflow-hidden rounded-lg border border-slate-200 p-4 text-left transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF] ${
-                        isSelected ? 'bg-[#F7FBFF] pl-5' : ''
+                      className={`relative block w-full overflow-hidden rounded-lg border border-slate-200 py-3 pr-3 pl-4 text-left transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF] ${
+                        isSelected ? 'bg-[#F7FBFF]' : ''
                       }`}
                       key={post.id}
                       onClick={() => setSelectedBlogPostId(post.id)}
@@ -516,31 +642,32 @@ export default function App() {
                       type="button"
                     >
                       {isSelected ? <span className="absolute inset-y-0 left-0 w-1 bg-[#3982D5]" aria-hidden="true" /> : null}
-                      <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#245F8F]">
-                        <span>{post.category}</span>
+                      <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[#245F8F]">
+                        {post.category}
                         {post.date ? (
                           <>
-                            <span aria-hidden="true" className="text-slate-500">·</span>
-                            <span className="text-slate-500">{post.date}</span>
+                            <span aria-hidden="true" className="mx-1.5 text-slate-400">·</span>
+                            <span className="font-medium normal-case tracking-normal text-slate-500">{post.date}</span>
                           </>
                         ) : null}
                       </span>
-                      <span className="mt-2 block text-base font-semibold leading-snug text-slate-950">{post.title}</span>
-                      <span className="mt-2 block text-sm leading-5 text-slate-600">{post.excerpt}</span>
-                      <span className="mt-3 block text-xs font-medium text-slate-500">{post.readingTime}</span>
+                      <span className={`mt-1 block text-sm leading-snug text-slate-950 ${post.boldTitle ? 'font-bold' : 'font-semibold'}`}>{post.title}</span>
                     </button>
                   )
                 })}
               </div>
 
               {selectedBlogPost ? (
-                <article className="rounded-xl border-[3px] border-[#3982D5] bg-[#FBFDFF] p-5 shadow-[0_0_18px_rgba(57,130,213,0.16)] md:p-6 lg:sticky lg:top-8 lg:h-[42.5rem] lg:overflow-y-auto">
+                <article
+                  className="rounded-xl border-[3px] border-[#3982D5] bg-[#FBFDFF] p-5 shadow-[0_0_18px_rgba(57,130,213,0.16)] md:p-6 lg:sticky lg:top-8 lg:h-[var(--blog-list-height)] lg:overflow-y-auto"
+                  style={{ '--blog-list-height': blogListHeight ? `${blogListHeight}px` : '42.5rem' }}
+                >
                   <div className="border-b border-[#C2DBF0] pb-4">
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#245F8F]">
                       {selectedBlogPost.category}
                       {selectedBlogPost.date ? ` · ${selectedBlogPost.date}` : ''}
                     </p>
-                    <h3 className="mt-2 text-xl font-semibold leading-tight text-slate-950 md:text-2xl">{selectedBlogPost.title}</h3>
+                    <h3 className={`mt-2 text-xl leading-tight text-slate-950 md:text-2xl ${selectedBlogPost.boldTitle ? 'font-bold' : 'font-semibold'}`}>{selectedBlogPost.title}</h3>
                     <p className="mt-2 text-xs font-medium text-slate-500">{selectedBlogPost.readingTime}</p>
                   </div>
                   {selectedBlogPost.content.length > 0 ? (
@@ -548,6 +675,24 @@ export default function App() {
                       {selectedBlogPost.content.map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
                       ))}
+                    </div>
+                  ) : null}
+                  {selectedBlogPost.translationHref ? (
+                    <div className="mt-5 border-t border-[#C2DBF0] pt-4">
+                      {selectedBlogPost.journalHref ? (
+                        <a
+                          className="mr-2 inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
+                          href={selectedBlogPost.journalHref}
+                        >
+                          Journal article · link coming soon
+                        </a>
+                      ) : null}
+                      <a
+                        className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
+                        href={selectedBlogPost.translationHref}
+                      >
+                        اقرأ المقال بالعربية · العربية
+                      </a>
                     </div>
                   ) : null}
                   {selectedBlogPost.imageSrc ? (
