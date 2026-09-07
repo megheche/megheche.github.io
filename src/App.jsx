@@ -466,15 +466,15 @@ export default function App() {
 
         <main className="min-w-0 space-y-6">
           <section id="home" className="scroll-mt-6 overflow-hidden rounded-lg border border-[#C2DBF0] bg-white shadow-sm">
-            <div className="border-t-4 border-[#3982D5] p-6 md:p-10">
+            <div className="border-t-4 border-[#3982D5] px-6 py-4 md:px-8 md:py-5">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2F7CBC]">Profile</p>
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-700">
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700">
                 I am a staff research scientist in AI and robotics based in Zurich. My work focuses on taking
                 reinforcement learning, computer vision, sensing, and control from research ideas to integrated
                 physical AI systems that can be tested, demonstrated, and deployed in real environments.
               </p>
-              <div className="mt-8 border-t border-[#C2DBF0] pt-5">
-                <div className="grid gap-4 md:grid-cols-3">
+              <div className="mt-4 border-t border-[#C2DBF0] pt-3">
+                <div className="grid gap-3 md:grid-cols-3">
                   {[
                     'AI & Robotics',
                     'Real-World ML Systems',
@@ -766,22 +766,22 @@ export default function App() {
           </Section>
 
           <Section eyebrow="Contact" id="contact">
-            <div className="grid gap-4 md:grid-cols-2">
-              <a className="rounded-lg border border-slate-200 bg-slate-50 p-4 transition hover:border-[#2F7CBC]" href="mailto:mireille.elgheche@gmail.com">
+            <div className="grid gap-3 md:grid-cols-2">
+              <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="mailto:mireille.elgheche@gmail.com">
                 <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Email</span>
-                <span className="mt-2 block text-sm leading-7 text-slate-700">mireille.elgheche@gmail.com</span>
+                <span className="mt-1 block text-sm leading-7 text-slate-700">mireille.elgheche@gmail.com</span>
               </a>
-              <a className="rounded-lg border border-slate-200 bg-slate-50 p-4 transition hover:border-[#2F7CBC]" href="https://scholar.google.com/citations?user=yi46_McAAAAJ&hl=fr" rel="noreferrer" target="_blank">
+              <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="https://scholar.google.com/citations?user=yi46_McAAAAJ&hl=fr" rel="noreferrer" target="_blank">
                 <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Google Scholar</span>
-                <span className="mt-2 block text-sm leading-7 text-slate-700">scholar.google.com/profile</span>
+                <span className="mt-1 block text-sm leading-7 text-slate-700">scholar.google.com/profile</span>
               </a>
-              <a className="rounded-lg border border-slate-200 bg-slate-50 p-4 transition hover:border-[#2F7CBC]" href="https://www.linkedin.com/in/mireille-el-gheche-a98aa140/" rel="noreferrer" target="_blank">
+              <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="https://www.linkedin.com/in/mireille-el-gheche-a98aa140/" rel="noreferrer" target="_blank">
                 <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">LinkedIn</span>
-                <span className="mt-2 block text-sm leading-7 text-slate-700">linkedin.com/profile</span>
+                <span className="mt-1 block text-sm leading-7 text-slate-700">linkedin.com/profile</span>
               </a>
-              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+              <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
                 <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Location</span>
-                <span className="mt-2 block text-sm leading-7 text-slate-700">Zurich, Switzerland</span>
+                <span className="mt-1 block text-sm leading-7 text-slate-700">Zurich, Switzerland</span>
               </div>
             </div>
           </Section>
