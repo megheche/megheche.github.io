@@ -493,7 +493,7 @@ export default function App() {
             <div className="grid gap-6 lg:grid-cols-2">
               <div className="grid h-full grid-rows-[auto_1fr] gap-4">
                 <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Experience</h3>
-                <div className="grid gap-4 lg:auto-rows-fr">
+                <div className="flex flex-col gap-4 lg:justify-between">
                   {positions.map((position) => (
                     <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${position.period}-${position.title}`}>
                       <p className="text-sm font-medium text-[#245F8F]">{position.period}</p>
@@ -506,7 +506,7 @@ export default function App() {
 
               <div className="grid h-full grid-rows-[auto_1fr] gap-4">
                 <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Education</h3>
-                <div className="grid gap-4 lg:auto-rows-fr">
+                <div className="flex flex-col gap-4 lg:justify-between">
                   {education.map((item) => (
                     <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${item.period}-${item.title}`}>
                       <p className="text-sm font-medium text-[#245F8F]">{item.period}</p>
