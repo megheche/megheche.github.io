@@ -497,7 +497,7 @@ export default function App() {
                   {positions.map((position) => (
                     <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${position.period}-${position.title}`}>
                       <p className="text-sm font-medium text-[#245F8F]">{position.period}</p>
-                      <h4 className="mt-1 text-lg font-semibold text-slate-950">{position.title}</h4>
+                      <h4 className="mt-1 text-sm font-semibold leading-snug text-slate-950">{position.title}</h4>
                       <p className="mt-1 text-sm text-slate-600">{position.place}</p>
                     </article>
                   ))}
@@ -510,9 +510,9 @@ export default function App() {
                   {education.map((item) => (
                     <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${item.period}-${item.title}`}>
                       <p className="text-sm font-medium text-[#245F8F]">{item.period}</p>
-                      <h4 className="mt-1 text-lg font-semibold text-slate-950">{item.title}</h4>
+                      <h4 className="mt-1 text-sm font-semibold leading-snug text-slate-950">{item.title}</h4>
                       <p className="mt-1 text-sm text-slate-600">{item.place}</p>
-                      <p className="mt-2 text-sm leading-6 text-slate-700">{item.description}</p>
+                      <p className="mt-2 text-sm leading-7 text-slate-700">{item.description}</p>
                     </article>
                   ))}
                 </div>
