@@ -268,6 +268,7 @@ const blogPosts = [
       'How AI learns to perceive, move, and act in the real world.',
     href: 'https://youtu.be/F86Vx3eQgBg?si=BPSbkg0z8MDGxxqA',
     videoId: 'F86Vx3eQgBg',
+    slidesHref: '/slides/when-intelligence-gets-physical.pdf',
     action: 'Watch video',
     content: [
       'What happens when AI leaves the screen and enters the physical world? In my talk, I explored why robotics is where intelligence has to deal with reality: physics, timing, sensors, movement, safety, and of course, unpredictable humans.',
@@ -669,6 +670,18 @@ export default function App() {
                     </p>
                     <h3 className={`mt-2 text-xl leading-tight text-slate-950 md:text-2xl ${selectedBlogPost.boldTitle ? 'font-bold' : 'font-semibold'}`}>{selectedBlogPost.title}</h3>
                     <p className="mt-2 text-xs font-medium text-slate-500">{selectedBlogPost.readingTime}</p>
+                    {selectedBlogPost.slidesHref ? (
+                      <div className="mt-4">
+                        <a
+                          className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
+                          href={selectedBlogPost.slidesHref}
+                          rel="noreferrer"
+                          target="_blank"
+                        >
+                          View slides · PDF (no videos)
+                        </a>
+                      </div>
+                    ) : null}
                   </div>
                   {selectedBlogPost.content.length > 0 ? (
                     <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
