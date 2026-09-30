@@ -900,10 +900,10 @@ export default function App() {
                 <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">LinkedIn</span>
                 <span className="mt-1 block text-sm leading-7 text-slate-700">linkedin.com/profile</span>
               </a>
-              <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
-                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Location</span>
-                <span className="mt-1 block text-sm leading-7 text-slate-700">Zurich, Switzerland</span>
-              </div>
+              <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="https://www.youtube.com/@mireilleghe" rel="noreferrer" target="_blank">
+                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">YouTube</span>
+                <span className="mt-1 block text-sm leading-7 text-slate-700">youtube.com/@mireilleghe</span>
+              </a>
             </div>
           </Section>
         </main>
