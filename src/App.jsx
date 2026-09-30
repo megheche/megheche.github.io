@@ -619,49 +619,53 @@ export default function App() {
                 methods to practical problems.
               </p>
               <article className="rounded-lg border border-[#C2DBF0] bg-[#F7FBFF] p-5 md:p-6">
-                <div className="flex flex-col gap-3 border-b border-[#C2DBF0] pb-4 md:flex-row md:items-start md:justify-between">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2F7CBC]">Course in preparation</p>
-                    <h3 className="mt-2 text-xl font-semibold leading-tight text-slate-950 md:text-2xl">Language Models</h3>
+                <section className="grid items-stretch gap-5 md:grid-cols-2 md:gap-6">
+                  <div className="flex flex-col gap-3">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2F7CBC]">Course in preparation</p>
+                      <h3 className="mt-6 text-xl font-semibold leading-tight text-slate-950 md:text-2xl">Language Models</h3>
+                    </div>
+                    <p className="text-sm text-slate-600">
+                      In collaboration with{' '}
+                      <a
+                        className="font-medium text-[#245F8F] hover:underline"
+                        href="https://perso.esiee.fr/~chierchg/"
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        Giovanni Chierchia
+                      </a>
+                    </p>
+                    <div className="mt-auto space-y-3 pt-6">
+                      <p className="text-sm leading-7 text-slate-700">
+                        A course introducing language models from first principles.
+                      </p>
+                      <h4 className="text-sm font-semibold leading-6 text-slate-950">
+                        How Do Language Models Predict What Comes Next? | Course Introduction
+                      </h4>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-600 md:text-right">
-                    In collaboration with{' '}
-                    <a
-                      className="font-medium text-[#245F8F] hover:underline"
-                      href="https://perso.esiee.fr/~chierchg/"
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      Giovanni Chierchia
-                    </a>
-                  </p>
-                </div>
-                <p className="mt-4 text-sm leading-7 text-slate-700">
-                  A course introducing language models from first principles.
-                </p>
-                <section className="mt-5">
-                  <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                    <h4 className="text-sm font-semibold leading-6 text-slate-950">
-                      How Do Language Models Predict What Comes Next? | Course Introduction
-                    </h4>
-                    <a
-                      className="shrink-0 text-xs font-medium text-[#245F8F] hover:underline"
-                      href="https://www.youtube.com/watch?v=dMBSh6zHt4w"
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      Open on YouTube
-                    </a>
-                  </div>
-                  <div className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
-                    <iframe
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="aspect-video w-full"
-                      loading="lazy"
-                      src="https://www.youtube.com/embed/dMBSh6zHt4w"
-                      title="How Do Language Models Predict What Comes Next? | Course Introduction"
-                    />
+                  <div className="mx-auto w-full max-w-lg self-end">
+                    <div className="mb-2 flex justify-end">
+                      <a
+                        className="inline-block text-xs font-medium text-[#245F8F] hover:underline"
+                        href="https://www.youtube.com/watch?v=dMBSh6zHt4w"
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        Open on YouTube
+                      </a>
+                    </div>
+                    <div className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+                      <iframe
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        className="aspect-video w-full"
+                        loading="lazy"
+                        src="https://www.youtube.com/embed/dMBSh6zHt4w"
+                        title="How Do Language Models Predict What Comes Next? | Course Introduction"
+                      />
+                    </div>
                   </div>
                 </section>
                 <ol className="mt-5 border-t border-[#C2DBF0]">
