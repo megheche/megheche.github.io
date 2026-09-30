@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="النسخة العربية من مقال اختيار Mireille El Gheche ضمن 100 امرأة وأكثر في مجال الذكاء الاصطناعي والروبوتات في سويسرا."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>اختياري ضمن قائمة 100 امرأة وأكثر في مجال الذكاء الاصطناعي والروبوتات في سويسرا</title>
+    <style>
+      :root {
+        color: #1e293b;
+        background: #f3f8fd;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 2rem 1rem;
+      }
+
+      .theme-toggle {
+        position: fixed;
+        z-index: 1;
+        right: 1rem;
+        top: 1rem;
+        display: flex;
+        width: 2.75rem;
+        height: 2.75rem;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #c2dbf0;
+        border-radius: 999px;
+        background: #fff;
+        color: #245f8f;
+        box-shadow: 0 8px 24px rgb(15 23 42 / 0.15);
+        cursor: pointer;
+        font-size: 1.1rem;
+      }
+
+      .theme-toggle:hover {
+        border-color: #2f7cbc;
+        background: #edf6ff;
+      }
+
+      body.theme-dark {
+        color: #cbd5e1;
+        background: #0c1524;
+      }
+
+      body.theme-dark main {
+        border-color: #315173;
+        background: #111c2f;
+        box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
+      }
+
+      body.theme-dark h1 {
+        color: #f8fafc;
+      }
+
+      body.theme-dark .meta {
+        color: #94a3b8;
+      }
+
+      body.theme-dark .content {
+        border-color: #315173;
+      }
+
+      body.theme-dark .content h2 {
+        border-color: #315173;
+        color: #93c5fd;
+      }
+
+      body.theme-dark .content .article-title {
+        color: #f8fafc;
+      }
+
+      body.theme-dark .content .article-intro {
+        color: #cbd5e1;
+      }
+
+      body.theme-dark .theme-toggle {
+        border-color: #bae6fd;
+        background: #e0f2fe;
+        color: #0f172a;
+      }
+
+      body.theme-dark .theme-toggle:hover {
+        border-color: #fff;
+        background: #fff;
+      }
+
+      main {
+        width: min(100%, 48rem);
+        margin: 0 auto;
+        padding: clamp(1.5rem, 5vw, 3rem);
+        border: 1px solid #c2dbf0;
+        border-top: 4px solid #3982d5;
+        border-radius: 0.75rem;
+        background: #fff;
+        box-shadow: 0 1px 2px rgb(15 23 42 / 0.06);
+      }
+
+      .page-layout {
+        display: grid;
+        gap: 2rem;
+        width: min(100%, 76rem);
+        margin: 0 auto;
+        align-items: start;
+      }
+
+      .page-previews {
+        display: grid;
+        gap: 1.5rem;
+        min-width: 0;
+      }
+
+      .cover {
+        width: min(100%, 22rem);
+        margin: 0 auto;
+      }
+
+      .cover a {
+        display: block;
+        overflow: hidden;
+        border-radius: 0.75rem;
+        box-shadow: 0 12px 32px rgb(15 23 42 / 0.15);
+      }
+
+      .cover a:focus-visible {
+        outline: 3px solid #3982d5;
+        outline-offset: 5px;
+      }
+
+      .cover img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .cover figcaption {
+        margin-top: 0.75rem;
+        color: #64748b;
+        font-size: 0.875rem;
+        text-align: center;
+      }
+
+      body.theme-dark .cover figcaption {
+        color: #94a3b8;
+      }
+
+      @media (min-width: 64rem) {
+        .page-layout {
+          grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+          grid-template-areas: "article cover";
+        }
+
+        main {
+          grid-area: article;
+          align-self: stretch;
+          display: flex;
+          flex-direction: column;
+        }
+
+        main .content {
+          margin-bottom: 1rem;
+        }
+
+        main .content + .article-navigation {
+          margin-top: auto;
+        }
+
+        .page-previews {
+          grid-area: cover;
+          align-self: stretch;
+          align-content: space-between;
+        }
+
+        .cover {
+          width: 100%;
+        }
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #2f7cbc;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      h1 {
+        margin: 0.5rem 0 0;
+        color: #0f172a;
+        font-size: clamp(1.65rem, 4vw, 2.35rem);
+        line-height: 1.35;
+      }
+
+      .meta {
+        margin: 0.75rem 0 0;
+        color: #64748b;
+        font-size: 0.875rem;
+      }
+
+      .content {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #c2dbf0;
+      }
+
+      .content p {
+        margin: 0 0 1rem;
+        font-size: 1.05rem;
+      }
+
+      .content h2 {
+        margin: 2rem 0 0.75rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #c2dbf0;
+        color: #245f8f;
+        font-size: 1.35rem;
+      }
+
+      .content .article-title {
+        margin-bottom: 0.35rem;
+        color: #0f172a;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+
+      .content .article-intro {
+        color: #475569;
+        font-style: italic;
+        font-weight: 600;
+      }
+
+      .article-navigation {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .article-navigation .back-link {
+        margin-top: 0;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.45rem 1rem;
+        border: 1px solid #c2dbf0;
+        border-radius: 999px;
+        color: #245f8f;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        border-color: #2f7cbc;
+        background: #edf6ff;
+      }
+
+      body.theme-dark .back-link {
+        border-color: #5b91bd;
+        color: #93c5fd;
+      }
+
+      body.theme-dark .back-link:hover {
+        background: #1e3a5f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-layout">
+    <main>
+      <p class="eyebrow">الذكاء الاصطناعي والروبوتات</p>
+      <h1>اختياري ضمن قائمة 100 امرأة وأكثر في مجال الذكاء الاصطناعي والروبوتات في سويسرا</h1>
+      <p class="meta">سبتمبر 2026 · دقيقة واحدة للقراءة</p>
+      <nav class="article-navigation" aria-label="روابط المقال">
+        <a class="back-link" href="/en/100-women-ai-robotics-switzerland.html" lang="en" dir="ltr">Read the article in English</a>
+        <a class="back-link" href="/#blog">العودة إلى المدونة</a>
+      </nav>
+
+      <div class="content">
+        <p>
+          يسعدني ويشرّفني أن أكون قد اختيرت ضمن قائمة 100 امرأة وأكثر في مجال الذكاء الاصطناعي والروبوتات في سويسرا، وهو تقدير للنساء اللواتي يساهم عملهن وإنجازاتهن في تشكيل هذا المجال.
+        </p>
+        <p>
+          كما وقع اختياري ضمن عشر نساء لإجراء مقابلة نُشرت في نشرة إخبارية من صفحتين. وكانت فرصة جميلة للحديث عن مسيرتي، وعملي في الذكاء الاصطناعي والروبوتات، والتجارب التي أسهمت في تشكيل مساري.
+        </p>
+        <p>
+          أشعر بالامتنان لهذا التكريم، وأعتز بكوني جزءًا من مجتمع النساء اللواتي يساهمن في دفع الذكاء الاصطناعي والروبوتات قدمًا في سويسرا.
+        </p>
+
+        <h2>النص الكامل للمقال</h2>
+        <p class="article-title">الروح الحرة</p>
+        <p class="article-intro">
+          كيف أمضت امرأة لم تكن تطيق تنس الطاولة خمس سنوات في تعليم روبوت يحمل اسم ساموراي التغلب على لاعبين من النخبة — لتثبت أن الاختلاف كان بالضبط ما احتاجته هذه المهمة.
+        </p>
+        <p>
+          في Arterpark في زيورخ، تربط Mireille El Gheche شعرها إلى الخلف، وتتخذ مكانها أمام طاولة تنس الطاولة، وتُري المصور كيف تبدو خمس سنوات من البحث بين يديها. دوران علوي، ثم دوران سفلي، بدقة ودون استعجال. «تحسنتُ»، تقول وهي تضحك.
+        </p>
+        <p>
+          المفارقة تثير تسليتها أكثر من أي شخص آخر. «أنا رياضية جدًا. أحب رياضات المضرب: التنس، والاسكواش، والبادل، والريشة الطائرة، كلها. لكن الرياضة الوحيدة التي لم أستطع فعلًا أن أحبها، ويا للمفارقة، كانت تنس الطاولة». وكانت تلك بالضبط اللعبة التي حاولت، طوال خمس سنوات، أن تجعل روبوتًا يتقنها.
+        </p>
+        <p>
+          نشأت El Gheche، البالغة من العمر 39 عامًا، في جبال لبنان الشمالية، وكانت واحدة من خمسة أبناء، قبل أن تستقر العائلة في طرابلس، حيث درست الهندسة الكهربائية في صف كان منقسمًا تقريبًا بالتساوي بين النساء والرجال. وكانت ثاني أكبر إخوتها سنًا، لكنها كانت أول من غادر المنزل، إذ انتقلت مباشرة إلى باريس لنيل ماجستير في أنظمة الاتصالات الراديوية.
+        </p>
+        <p>
+          «كان والداي فخورين — كانت لحظة كبيرة لنا جميعًا»، تقول. وكانت تلك المرة الأولى التي تعيش فيها خارج البلاد. وتقول: «ساعدني أنني كنت أتحدث اللغة، لكن كل شيء كان مختلفًا تمامًا عما تخيلته. كل شيء منظم إلى هذا الحد — فالحافلات تتوقف بالضبط حيث ينبغي لها. في لبنان، تتفاوض مع السائق».
+        </p>
+        <p>
+          تلت ذلك دكتوراه في خوارزمية التحسين (optimization)، ثم أبحاث ما بعد الدكتوراه في بوردو وفي المعهد الفدرالي السويسري للتكنولوجيا في لوزان (EPFL)، في مسار بدا وكأنه يبتعد ببطء عن أي شيء يشبه طاولة تنس الطاولة. وعندما عثرت عليها الروبوتات، جاءت، على حد تعبيرها، «بشكل شبه مفاجئ». أثناء مقابلاتها مع Sony AI عام 2021، أُرسلت إليها ورقتان بحثيتان لقراءتهما، إحداهما عن الرؤية الحاسوبية والأخرى عن تنس الطاولة. لم يخبرها أحد ما هو المشروع فعلًا؛ فاكتشفت ذلك بنفسها، وخمنت بشكل صحيح، وانضمت بوصفها أول عالمة أبحاث رئيسية فيه، لتقود فريقًا نما في النهاية إلى عشرة أشخاص. ولم يمض وقت طويل قبل أن يتجاوز تأثيرها حدود الفريق: إذ بدأت تعيد تشكيل طريقة إدارة المشروع بأكمله، متجاوزة بكثير نطاق عملها الخاص. وتقول: «مُنحت منذ البداية قدرًا غير مألوف من الحرية والثقة، ليس فقط لقيادة مجالي، بل أيضًا للتأثير في طريقة تنظيم المشروع الأوسع».
+        </p>
+        <p>
+          انضمت إلى المشروع في بدايته بصفتها المرأة الوحيدة في الفريق — وفي مجال لا يزال يهيمن عليه الرجال، لم يكن ذلك مفاجئًا تقريبًا. لكنها لم تحاول قط أن تقلل من شأن نفسها كي تلائم المكان. تقول: «لا أخشى أن أكون في غرفة أختلف فيها عن الآخرين». وتتبع نصيحتها للنساء الأخريات المنطق نفسه: «إذا سنحت فرص، فاغتنمنها». لا تدعي نفسك تظنين أنك لست مستعدة تمامًا لها.
+        </p>
+        <p>
+          تبين أن ما كانت مستعدة له هو نصف عقد داخل مشكلة ضيقة وقاسية. فقد قالت إن كل جزء منفرد من النظام كان يعمل؛ أما الصعوبة فكانت في جعل هذه الأجزاء تعمل معًا في الوقت الفعلي، في مواجهة كرة تدور بسرعة تفوق قدرة العين البشرية على تتبعها. وتقول: «الروبوتات هي المكان الذي يتعين فيه على الذكاء أن يتعامل مع الواقع». يمتلك هذا الروبوت -الذي يتألف من ذراع ذات ستة مفاصل مثبتة على قاعدة متحركة، بدلاً من كونه روبوتًا شبيهًا بالبشر يتوازن على ساقين- أجزاءً من الثانية فقط لقراءة حركة الكرة، وتقدير مسارها، وتحديد كيفية الرد عليها، والتحرك بسرعة كافية لصدها؛ وهي مهارة صُقِلت عبر آلاف الساعات من المباريات المحاكاتية (simulation).
+        </p>
+        <p>
+          أطلق الفريق على الروبوت لقب Musashi، تيمّنًا بالساموراي الأسطوري الذي يُقال إنه نجا من كل مبارزة خاضها. وكانت موهبته، بحسب ما هو معروف عنه، التكيف الفوري مع أي خصم يقف أمامه، من دون أن يستقر على أسلوب واحد. أما Musashi الروبوت فكان، في المقابل، أقل فتكًا بكثير. تقول: «شعرتُ أنه فرد من الفريق». وقد اختُبر هذا الشعور بالرفقة في الأسابيع الأخيرة من المشروع، حين تكثف العمل في طوكيو، حيث أمضت هي وزملاؤها أسابيع في حلقة متواصلة من الاختبار والإصلاح والتكرار. وتقول: «كان هناك الكثير من الأدرينالين، لكنه كان مجزيًا للغاية أيضًا».
+        </p>
+        <p>
+          بحلول وصول الورقة البحثية إلى غلاف مجلة Nature في ربيع هذا العام، كان Musashi قد تغلب على ثلاثة من أصل خمسة لاعبين من النخبة الذين واجههم، رغم خسارته المباراتين أمام محترفين حقيقيين — وهي حصيلة أكثر واقعية من تلك التي أوحت بها بعض العناوين. وقد استغل اللاعب النخبوي Rui Takenaka لاحقًا نقطة ضعف: أرسل إليه إرسالًا عاديًا بلا دوران، فتعود ضربته سهلة العقاب — وقال إن ذلك كان «السبب الرئيسي» الذي مكّنه من الفوز.
+        </p>
+        <p>
+          تصر El Gheche على أن أيًا من هذا العمل لم يكن إنجازًا فرديًا. فقد كان جزء كبير منه، في نهاية المطاف، يتمثل في جمع الناس حول مشكلات مشتركة — وتحويل «مشكلة بحثية صعبة»، على حد تعبيرها، إلى «نظام حقيقي». لكنها تعود، أكثر من النتيجة، إلى مدى عدم انفصال العمل التقني عن جانبه الإنساني في أي وقت. وتقول: «عندما يثق بعضنا ببعض، يصبح من الأسهل بكثير أن نتحدى الأفكار، ونطلب المساعدة، ونحل المشكلات معًا».
+        </p>
+        <p>
+          ويظهر ذلك الرفض نفسه، رفض قبول الأساليب المفروضة ببساطة، في سيرتها الذاتية على Instagram أيضًا: «الروح الحرة، للأسف بالنسبة إلى البعض». وقد استعارت العبارة من سيرة للأميرة ديانا، التي تعجب بها لأنها حققت الكثير، ولأنها ظلت بلا لبس على طبيعتها.
+        </p>
+        <p>
+          في هذه الأثناء، يجعلها المصور ترفع الكرة بالمضرب مرة بعد أخرى، من دون أن تنظر إلى الأسفل — وهي مهارة تعلمها الروبوت في وقت مبكر أيضًا.
+        </p>
+        <p>
+          أما بشأن مستقبل الروبوتات والذكاء الاصطناعي، فهي «متفائلة، لكنني أشعر بالخوف قليلًا أيضًا». وتتخيل روبوتات في المستشفيات ودور الرعاية، مندمجة بوصفها عونًا حقيقيًا في تفاصيل الحياة اليومية الصغيرة. وتقول عن المجال الذي كرست له للتو خمس سنوات: «آمل أن نتمكن من جعل الروبوتات تساعدنا». أما زيورخ، فقد حازت إعجابها الكامل: تقول إنها «مدينة الروبوتات»، وإنها «وجدت مدينة أحلامي» — حيث تتنزه في عطلات نهاية الأسبوع، وتخسر بمرح أمام أصدقائها في ألعاب الطاولة. وتقول: «أستطيع الخسارة. أحاول فقط ألا أفعل».
+        </p>
+        <p>
+          ترسل كرة أخرى منخفضة فوق الشبكة، فيجعلها الدوران السفلي تلتف بعيدًا عن المتناول، وتعترف، وهي تبتسم، بأن الرياضة أصبحت محببة إليها في نهاية المطاف.
+        </p>
+      </div>
+
+      <nav class="article-navigation" aria-label="روابط المقال">
+        <a class="back-link" href="/#blog">العودة إلى المدونة</a>
+        <a class="back-link" href="/en/100-women-ai-robotics-switzerland.html" lang="en" dir="ltr">Read the article in English</a>
+      </nav>
+    </main>
+    <aside class="page-previews" aria-label="الغلاف وصفحات المقابلة باللغة الإنجليزية">
+    <figure class="cover">
+      <a href="/articles/100-women-ai-robotics-first-page.pdf" target="_blank" rel="noreferrer" aria-label="عرض الغلاف بصيغة PDF في علامة تبويب جديدة">
+        <img
+          src="/articles/100-women-ai-robotics-first-page.jpg"
+          alt="غلاف قائمة أبرز 100 امرأة وأكثر في الذكاء الاصطناعي والبيانات والروبوتات في سويسرا لعام 2026، وتظهر فيه ميراي الغشي بجانب روبوت تنس الطاولة"
+          width="1600"
+          height="2262"
+        />
+      </a>
+      <figcaption>اضغط على الغلاف لعرضه بحجمه الكامل</figcaption>
+    </figure>
+    <figure class="cover">
+      <a href="/articles/mireille-el-gheche-the-free-spirit.pdf#page=1" target="_blank" rel="noreferrer" aria-label="عرض الصفحة الأولى من المقابلة الإنجليزية بصيغة PDF في علامة تبويب جديدة">
+        <img
+          src="/articles/mireille-el-gheche-the-free-spirit-page-1.jpg"
+          alt="الصفحة الأولى من المقابلة الإنجليزية: The Free Spirit — Mireille El Gheche"
+          width="1600"
+          height="2262"
+          loading="lazy"
+        />
+      </a>
+      <figcaption>المقابلة باللغة الإنجليزية · الصفحة 1 من 4</figcaption>
+    </figure>
+    <figure class="cover">
+      <a href="/articles/mireille-el-gheche-the-free-spirit.pdf#page=2" target="_blank" rel="noreferrer" aria-label="عرض الصفحة الثانية من المقابلة الإنجليزية بصيغة PDF في علامة تبويب جديدة">
+        <img
+          src="/articles/mireille-el-gheche-the-free-spirit-page-2.jpg"
+          alt="الصفحة الثانية من المقابلة الإنجليزية مع Mireille El Gheche"
+          width="1600"
+          height="2262"
+          loading="lazy"
+        />
+      </a>
+      <figcaption>المقابلة باللغة الإنجليزية · الصفحة 2 من 4</figcaption>
+    </figure>
+    <figure class="cover">
+      <a href="/articles/mireille-el-gheche-the-free-spirit.pdf#page=3" target="_blank" rel="noreferrer" aria-label="عرض الصفحة الثالثة من المقابلة الإنجليزية بصيغة PDF في علامة تبويب جديدة">
+        <img
+          src="/articles/mireille-el-gheche-the-free-spirit-page-3.jpg"
+          alt="الصفحة الثالثة من المقابلة الإنجليزية مع Mireille El Gheche"
+          width="1600"
+          height="2262"
+          loading="lazy"
+        />
+      </a>
+      <figcaption>المقابلة باللغة الإنجليزية · الصفحة 3 من 4</figcaption>
+    </figure>
+    <figure class="cover">
+      <a href="/articles/mireille-el-gheche-the-free-spirit.pdf#page=4" target="_blank" rel="noreferrer" aria-label="عرض الصفحة الرابعة من الملف الإنجليزي بصيغة PDF في علامة تبويب جديدة">
+        <img
+          src="/articles/mireille-el-gheche-the-free-spirit-page-4.jpg"
+          alt="الصفحة الرابعة من الملف الإنجليزي: نبذة عن المؤسسات المشاركة"
+          width="1600"
+          height="2262"
+          loading="lazy"
+        />
+      </a>
+      <figcaption>نبذة عن المؤسسات · الصفحة 4 من 4</figcaption>
+    </figure>
+    </aside>
+    </div>
+
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="التبديل إلى الوضع الداكن" title="الوضع الداكن">
+      <span aria-hidden="true">☾</span>
+    </button>
+
+    <script>
+      const themeToggle = document.getElementById('theme-toggle')
+      const savedTheme = window.localStorage.getItem('theme')
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const isDarkMode = savedTheme ? savedTheme === 'dark' : prefersDark
+
+      const updateTheme = (darkMode) => {
+        document.body.classList.toggle('theme-dark', darkMode)
+        themeToggle.querySelector('span').textContent = darkMode ? '☀' : '☾'
+        themeToggle.setAttribute('aria-label', darkMode ? 'التبديل إلى الوضع الفاتح' : 'التبديل إلى الوضع الداكن')
+        themeToggle.setAttribute('title', darkMode ? 'الوضع الفاتح' : 'الوضع الداكن')
+      }
+
+      updateTheme(isDarkMode)
+
+      themeToggle.addEventListener('click', () => {
+        const darkMode = !document.body.classList.contains('theme-dark')
+        window.localStorage.setItem('theme', darkMode ? 'dark' : 'light')
+        updateTheme(darkMode)
+      })
+    </script>
+  </body>
+</html>
