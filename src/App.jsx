@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import portrait from './assets/portrait.JPG'
 
 const navItems = [
@@ -6,8 +6,8 @@ const navItems = [
   ['CV', 'about'],
   ['Publications', 'publications'],
   ['Teaching', 'teaching'],
-  ['Blog', 'blog'],
   ['Contact', 'contact'],
+  ['Blog', 'blog'],
 ]
 
 const positions = [
@@ -426,8 +426,6 @@ function ExternalLink({ href, children }) {
 
 export default function App() {
   const [selectedBlogPostId, setSelectedBlogPostId] = useState(blogPosts[0].id)
-  const [blogListHeight, setBlogListHeight] = useState(null)
-  const blogListRef = useRef(null)
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window === 'undefined') {
       return false
@@ -467,19 +465,6 @@ export default function App() {
     }
   }, [])
 
-  useEffect(() => {
-    const blogList = blogListRef.current
-    if (!blogList) return undefined
-
-    const updateHeight = () => setBlogListHeight(blogList.getBoundingClientRect().height)
-    const resizeObserver = new ResizeObserver(updateHeight)
-
-    updateHeight()
-    resizeObserver.observe(blogList)
-
-    return () => resizeObserver.disconnect()
-  }, [])
-
   const selectedBlogPost = blogPosts.find((post) => post.id === selectedBlogPostId)
 
   return (
@@ -493,349 +478,164 @@ export default function App() {
       >
         <span aria-hidden="true">{isDarkMode ? '☀' : '☾'}</span>
       </button>
-      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-5 md:px-6 lg:grid-cols-[300px_1fr] lg:py-8">
-        <aside className="lg:sticky lg:top-8 lg:h-fit">
-          <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-            <img
-              alt="Mireille El Gheche"
-              className="aspect-[4/5] w-full rounded-md object-cover object-top"
-              src={portrait}
-            />
-            <h1 className="mt-5 text-3xl font-semibold leading-tight text-slate-950">Mireille El Gheche</h1>
-            <p className="mt-2 text-sm text-slate-600">美礼 (みれい, Mi-rei)</p>
-            <p className="mt-2 text-sm font-medium text-[#245F8F]">Lead Research Scientist</p>
-            <p className="mt-2 text-sm text-slate-600">Zurich, Switzerland</p>
-            <nav className="mt-6 grid gap-2 border-t border-slate-200 pt-5">
-              {navItems.map(([label, id]) => (
-                <a
-                  className="rounded-md px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
-                  href={`#${id}`}
-                  key={id}
-                >
-                  {label}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </aside>
-
-        <main className="min-w-0 space-y-6">
-          <section id="home" className="scroll-mt-6 overflow-hidden rounded-lg border border-[#C2DBF0] bg-white shadow-sm">
-            <div className="border-t-4 border-[#3982D5] px-6 py-4 md:px-8 md:py-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2F7CBC]">Profile</p>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700">
-                I am a lead research scientist in AI and robotics based in Zurich. My work focuses on taking
-                reinforcement learning, computer vision, sensing, and control from research ideas to integrated
-                physical AI systems that can be tested, demonstrated, and deployed in real environments.
-              </p>
-              <div className="mt-4 border-t border-[#C2DBF0] pt-3">
-                <div className="grid gap-3 md:grid-cols-3">
-                  {[
-                    'AI & Robotics',
-                    'Real-World ML Systems',
-                    'PhD',
-                  ].map((item) => (
-                    <div className="border-l-2 border-[#3982D5] pl-3 text-sm font-medium leading-6 text-slate-700" key={item}>
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
+      <main className="mx-auto max-w-7xl space-y-6 px-4 py-5 md:px-6 lg:py-8">
+        <div className="grid gap-6 lg:grid-cols-[300px_1fr]">
+          <aside className="lg:sticky lg:top-8 lg:h-fit">
+            <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+              <img
+                alt="Mireille El Gheche"
+                className="aspect-[4/5] w-full rounded-md object-cover object-top"
+                src={portrait}
+              />
+              <h1 className="mt-5 text-3xl font-semibold leading-tight text-slate-950">Mireille El Gheche</h1>
+              <p className="mt-2 text-sm text-slate-600">美礼 (みれい, Mi-rei)</p>
+              <p className="mt-2 text-sm font-medium text-[#245F8F]">Lead Research Scientist</p>
+              <p className="mt-2 text-sm text-slate-600">Zurich, Switzerland</p>
+              <nav className="mt-6 grid gap-2 border-t border-slate-200 pt-5">
+                {navItems.map(([label, id]) => (
+                  <a
+                    className="rounded-md px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
+                    href={`#${id}`}
+                    key={id}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </nav>
             </div>
-          </section>
+          </aside>
 
-          <Section eyebrow="CV" id="about">
-            <div className="grid gap-6 lg:grid-cols-2">
-              <div className="grid h-full grid-rows-[auto_1fr] gap-4">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Experience</h3>
-                <div className="flex flex-col gap-4 lg:justify-between">
-                  {positions.map((position) => (
-                    <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${position.period}-${position.title}`}>
-                      <p className="text-sm font-medium text-[#245F8F]">{position.period}</p>
-                      <h4 className="mt-1 text-sm font-semibold leading-snug text-slate-950">{position.title}</h4>
-                      <p className="mt-1 text-sm text-slate-600">{position.place}</p>
-                    </article>
-                  ))}
+          <div className="min-w-0 space-y-6">
+            <section id="home" className="scroll-mt-6 overflow-hidden rounded-lg border border-[#C2DBF0] bg-white shadow-sm">
+              <div className="border-t-4 border-[#3982D5] px-6 py-4 md:px-8 md:py-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2F7CBC]">Profile</p>
+                <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700">
+                  I am a lead research scientist in AI and robotics based in Zurich. My work focuses on taking
+                  reinforcement learning, computer vision, sensing, and control from research ideas to integrated
+                  physical AI systems that can be tested, demonstrated, and deployed in real environments.
+                </p>
+                <div className="mt-4 border-t border-[#C2DBF0] pt-3">
+                  <div className="grid gap-3 md:grid-cols-3">
+                    {[
+                      'AI & Robotics',
+                      'Real-World ML Systems',
+                      'PhD',
+                    ].map((item) => (
+                      <div className="border-l-2 border-[#3982D5] pl-3 text-sm font-medium leading-6 text-slate-700" key={item}>
+                        {item}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
+            </section>
 
-              <div className="grid h-full grid-rows-[auto_1fr] gap-4">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Education</h3>
-                <div className="flex flex-col gap-4 lg:justify-between">
-                  {education.map((item) => (
-                    <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${item.period}-${item.title}`}>
-                      <p className="text-sm font-medium text-[#245F8F]">{item.period}</p>
-                      <h4 className="mt-1 text-sm font-semibold leading-snug text-slate-950">{item.title}</h4>
-                      <p className="mt-1 text-sm text-slate-600">{item.place}</p>
-                      <p className="mt-2 text-sm leading-7 text-slate-700">{item.description}</p>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Section>
-
-          <Section eyebrow="Publications" id="publications">
-            <div className="space-y-4">
-              {publications.map((section) => (
-                <details className="group rounded-md border border-slate-200 bg-white" key={section.group} name="publication-group">
-                  <summary className="flex cursor-pointer list-none items-center gap-3 rounded-md bg-white px-4 py-3 text-sm font-medium text-[#245F8F] transition hover:bg-[#EDF6FF] [&::-webkit-details-marker]:hidden">
-                    <span className="h-0 w-0 border-y-[7px] border-l-[11px] border-y-transparent border-l-[#2F7CBC] transition group-open:rotate-90" />
-                    <span>{section.group === 'Journal Papers' ? 'Journal Articles' : section.group}</span>
-                  </summary>
-                  <div className="space-y-2 p-3">
-                    {section.items.length === 0 ? (
-                      <p className="text-sm leading-5 text-slate-500">To be added.</p>
-                    ) : null}
-                    {section.items.map((paper) => (
-                      <article className="rounded-md border border-slate-200 bg-white p-3" key={paper.id}>
-                        <div className="flex flex-col gap-3 md:flex-row md:items-start">
-                          <div className="min-w-0 flex-1">
-                            <p className="text-sm leading-5 text-slate-700">{paper.text}</p>
-                            {paper.links ? (
-                              <div className="mt-2 flex flex-wrap gap-2">
-                                {paper.links.map((link) => (
-                                  <ExternalLink href={link.href} key={`${paper.id}-${link.label}`}>
-                                    {link.label}
-                                  </ExternalLink>
-                                ))}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
+            <Section eyebrow="CV" id="about">
+              <div className="grid gap-6 lg:grid-cols-2">
+                <div className="grid h-full grid-rows-[auto_1fr] gap-4">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Experience</h3>
+                  <div className="flex flex-col gap-4 lg:justify-between">
+                    {positions.map((position) => (
+                      <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${position.period}-${position.title}`}>
+                        <p className="text-sm font-medium text-[#245F8F]">{position.period}</p>
+                        <h4 className="mt-1 text-sm font-semibold leading-snug text-slate-950">{position.title}</h4>
+                        <p className="mt-1 text-sm text-slate-600">{position.place}</p>
                       </article>
                     ))}
                   </div>
-                </details>
-              ))}
-            </div>
-          </Section>
+                </div>
 
-          <Section eyebrow="Teaching" id="teaching">
-            <div className="space-y-6 text-base leading-8 text-slate-700">
-              <p>
-                I have taught university-level courses, supervised PhD students, and mentored engineers and researchers across applied machine learning,
-                AI, and optimization projects. My teaching and mentoring work has focused on helping students and research teams connect theoretical
-                methods to practical problems.
-              </p>
-              <article className="rounded-lg border border-[#C2DBF0] bg-[#F7FBFF] p-5 md:p-6">
-                <section className="grid items-stretch gap-5 md:grid-cols-2 md:gap-6">
-                  <div className="flex flex-col gap-3">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2F7CBC]">Course in preparation</p>
-                      <h3 className="mt-6 text-xl font-semibold leading-tight text-slate-950 md:text-2xl">Language Models</h3>
-                    </div>
-                    <p className="text-sm text-slate-600">
-                      In collaboration with{' '}
-                      <a
-                        className="font-medium text-[#245F8F] hover:underline"
-                        href="https://perso.esiee.fr/~chierchg/"
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        Giovanni Chierchia
-                      </a>
-                    </p>
-                    <div className="mt-auto space-y-3 pt-6">
-                      <p className="text-sm leading-7 text-slate-700">
-                        A course introducing language models from first principles.
-                      </p>
-                      <h4 className="text-sm font-semibold leading-6 text-slate-950">
-                        How Do Language Models Predict What Comes Next? | Course Introduction
-                      </h4>
-                    </div>
+                <div className="grid h-full grid-rows-[auto_1fr] gap-4">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Education</h3>
+                  <div className="flex flex-col gap-4 lg:justify-between">
+                    {education.map((item) => (
+                      <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={`${item.period}-${item.title}`}>
+                        <p className="text-sm font-medium text-[#245F8F]">{item.period}</p>
+                        <h4 className="mt-1 text-sm font-semibold leading-snug text-slate-950">{item.title}</h4>
+                        <p className="mt-1 text-sm text-slate-600">{item.place}</p>
+                        <p className="mt-2 text-sm leading-7 text-slate-700">{item.description}</p>
+                      </article>
+                    ))}
                   </div>
-                  <div className="mx-auto w-full max-w-lg self-end">
-                    <div className="mb-2 flex justify-end">
-                      <a
-                        className="inline-block text-xs font-medium text-[#245F8F] hover:underline"
-                        href="https://www.youtube.com/watch?v=dMBSh6zHt4w"
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        Open on YouTube
-                      </a>
-                    </div>
-                    <div className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
-                      <iframe
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        className="aspect-video w-full"
-                        loading="lazy"
-                        src="https://www.youtube.com/embed/dMBSh6zHt4w"
-                        title="How Do Language Models Predict What Comes Next? | Course Introduction"
-                      />
-                    </div>
-                  </div>
-                </section>
-                <ol className="mt-5 border-t border-[#C2DBF0]">
-                  {courseChapters.map((chapter) => (
-                    <li className="border-b border-[#C2DBF0] last:border-b-0" key={chapter.id}>
-                      <details className="group">
-                        <summary
-                          className="flex cursor-pointer list-none items-center gap-3 rounded py-3 text-sm transition hover:text-[#245F8F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2F7CBC] [&::-webkit-details-marker]:hidden"
-                        >
-                          <span className="shrink-0 text-xs font-medium tabular-nums text-[#2F7CBC]">
-                            {String(chapter.id).padStart(2, '0')}
-                          </span>
-                          <span className="flex-1 font-medium leading-snug text-slate-950">{chapter.title}</span>
-                          <svg
-                            aria-hidden="true"
-                            className="h-4 w-4 shrink-0 text-slate-500 transition-transform group-open:rotate-180"
-                            viewBox="0 0 20 20"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                          >
-                            <path d="m5 7.5 5 5 5-5" />
-                          </svg>
-                        </summary>
-                        <div className="space-y-2 pb-4 pl-7 text-sm leading-7 text-slate-700">
-                          {chapter.summary.map((paragraph) => (
-                            <p key={paragraph}>{paragraph}</p>
-                          ))}
-                          <p className="pt-2 text-xs font-medium text-slate-500">Coming soon</p>
-                        </div>
-                      </details>
-                    </li>
-                  ))}
-                </ol>
-              </article>
-            </div>
-          </Section>
-
-          <Section eyebrow="Blog" id="blog">
-            <div className="grid gap-5 lg:grid-cols-[minmax(220px,0.32fr)_minmax(0,0.68fr)] lg:items-start">
-              <div className="grid gap-2" ref={blogListRef} role="list">
-                {blogPosts.map((post) => {
-                  const isSelected = selectedBlogPost?.id === post.id
-
-                  return (
-                    <button
-                      aria-pressed={isSelected}
-                      className={`relative block w-full overflow-hidden rounded-lg border border-slate-200 py-3 pr-3 pl-4 text-left transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF] ${
-                        isSelected ? 'bg-[#F7FBFF]' : ''
-                      }`}
-                      key={post.id}
-                      onClick={() => setSelectedBlogPostId(post.id)}
-                      role="listitem"
-                      type="button"
-                    >
-                      {isSelected ? <span className="absolute inset-y-0 left-0 w-1 bg-[#3982D5]" aria-hidden="true" /> : null}
-                      <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[#245F8F]">
-                        {post.category}
-                        {post.date ? (
-                          <>
-                            <span aria-hidden="true" className="mx-1.5 text-slate-400">·</span>
-                            <span className="font-medium normal-case tracking-normal text-slate-500">{post.date}</span>
-                          </>
-                        ) : null}
-                      </span>
-                      <span className={`mt-1 block text-sm leading-snug text-slate-950 ${post.boldTitle ? 'font-bold' : 'font-semibold'}`}>{post.title}</span>
-                    </button>
-                  )
-                })}
+                </div>
               </div>
+            </Section>
 
-              {selectedBlogPost ? (
-                <article
-                  className="rounded-xl border-[3px] border-[#3982D5] bg-[#FBFDFF] p-5 shadow-[0_0_18px_rgba(57,130,213,0.16)] md:p-6 lg:sticky lg:top-8 lg:h-[var(--blog-list-height)] lg:overflow-y-auto"
-                  style={{ '--blog-list-height': blogListHeight ? `${blogListHeight}px` : '42.5rem' }}
-                >
-                  <div className="border-b border-[#C2DBF0] pb-4">
-                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#245F8F]">
-                      {selectedBlogPost.category}
-                      {selectedBlogPost.date ? ` · ${selectedBlogPost.date}` : ''}
-                    </p>
-                    <h3 className={`mt-2 text-xl leading-tight text-slate-950 md:text-2xl ${selectedBlogPost.boldTitle ? 'font-bold' : 'font-semibold'}`}>{selectedBlogPost.title}</h3>
-                    {selectedBlogPost.imageAfterTitle && selectedBlogPost.imageSrc ? (
-                      <div className="mt-5 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
-                        <img
-                          alt={selectedBlogPost.imageAlt}
-                          className="w-full object-cover"
-                          src={selectedBlogPost.imageSrc}
-                        />
-                      </div>
-                    ) : null}
-                    <p className="mt-2 text-xs font-medium text-slate-500">{selectedBlogPost.readingTime}</p>
-                    {selectedBlogPost.slidesHref ? (
-                      <div className="mt-4">
-                        <a
-                          className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
-                          href={selectedBlogPost.slidesHref}
-                          rel="noreferrer"
-                          target="_blank"
-                        >
-                          View slides · PDF (no videos)
-                        </a>
-                      </div>
-                    ) : selectedBlogPost.slidesPending ? (
-                      <p className="mt-4 text-xs font-medium text-slate-500">Slide to be added soon.</p>
-                    ) : null}
-                  </div>
-                  {selectedBlogPost.content.length > 0 ? (
-                    <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
-                      {selectedBlogPost.content.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
+            <Section eyebrow="Publications" id="publications">
+              <div className="space-y-4">
+                {publications.map((section) => (
+                  <details className="group rounded-md border border-slate-200 bg-white" key={section.group} name="publication-group">
+                    <summary className="flex cursor-pointer list-none items-center gap-3 rounded-md bg-white px-4 py-3 text-sm font-medium text-[#245F8F] transition hover:bg-[#EDF6FF] [&::-webkit-details-marker]:hidden">
+                      <span className="h-0 w-0 border-y-[7px] border-l-[11px] border-y-transparent border-l-[#2F7CBC] transition group-open:rotate-90" />
+                      <span>{section.group === 'Journal Papers' ? 'Journal Articles' : section.group}</span>
+                    </summary>
+                    <div className="space-y-2 p-3">
+                      {section.items.length === 0 ? (
+                        <p className="text-sm leading-5 text-slate-500">To be added.</p>
+                      ) : null}
+                      {section.items.map((paper) => (
+                        <article className="rounded-md border border-slate-200 bg-white p-3" key={paper.id}>
+                          <div className="flex flex-col gap-3 md:flex-row md:items-start">
+                            <div className="min-w-0 flex-1">
+                              <p className="text-sm leading-5 text-slate-700">{paper.text}</p>
+                              {paper.links ? (
+                                <div className="mt-2 flex flex-wrap gap-2">
+                                  {paper.links.map((link) => (
+                                    <ExternalLink href={link.href} key={`${paper.id}-${link.label}`}>
+                                      {link.label}
+                                    </ExternalLink>
+                                  ))}
+                                </div>
+                              ) : null}
+                            </div>
+                          </div>
+                        </article>
                       ))}
                     </div>
-                  ) : null}
-                  {selectedBlogPost.eventHref ? (
-                    <div className="mt-4">
-                      <a
-                        className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
-                        href={selectedBlogPost.eventHref}
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        Event details & registration
-                      </a>
-                    </div>
-                  ) : null}
-                  {selectedBlogPost.imageSrc && !selectedBlogPost.imageAfterTitle ? (
-                    <div className="mt-5 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
-                      <img
-                        alt={selectedBlogPost.imageAlt}
-                        className="w-full object-cover"
-                        src={selectedBlogPost.imageSrc}
-                      />
-                    </div>
-                  ) : null}
-                  {selectedBlogPost.translationHref ? (
-                    <div className="mt-5 flex flex-wrap gap-2 border-t border-[#C2DBF0] pt-4">
-                      {selectedBlogPost.journalHref ? (
+                  </details>
+                ))}
+              </div>
+            </Section>
+
+            <Section eyebrow="Teaching" id="teaching">
+              <div className="space-y-6 text-base leading-8 text-slate-700">
+                <p>
+                  I have taught university-level courses, supervised PhD students, and mentored engineers and researchers across applied machine learning,
+                  AI, and optimization projects. My teaching and mentoring work has focused on helping students and research teams connect theoretical
+                  methods to practical problems.
+                </p>
+                <article className="rounded-lg border border-[#C2DBF0] bg-[#F7FBFF] p-5 md:p-6">
+                  <section className="grid items-stretch gap-5 md:grid-cols-2 md:gap-6">
+                    <div className="flex flex-col gap-3">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2F7CBC]">Course in preparation</p>
+                        <h3 className="mt-6 text-xl font-semibold leading-tight text-slate-950 md:text-2xl">Language Models</h3>
+                      </div>
+                      <p className="text-sm text-slate-600">
+                        In collaboration with{' '}
                         <a
-                          className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
-                          href={selectedBlogPost.journalHref}
-                        >
-                          Read the article in English
-                        </a>
-                      ) : null}
-                      <a
-                        className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
-                        href={selectedBlogPost.translationHref}
-                      >
-                        اقرأ المقال بالعربية · العربية
-                      </a>
-                      {selectedBlogPost.fullReportHref ? (
-                        <a
-                          className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
-                          href={selectedBlogPost.fullReportHref}
-                          target="_blank"
+                          className="font-medium text-[#245F8F] hover:underline"
+                          href="https://perso.esiee.fr/~chierchg/"
                           rel="noreferrer"
+                          target="_blank"
                         >
-                          Full report
+                          Giovanni Chierchia
                         </a>
-                      ) : null}
+                      </p>
+                      <div className="mt-auto space-y-3 pt-6">
+                        <p className="text-sm leading-7 text-slate-700">
+                          A course introducing language models from first principles.
+                        </p>
+                        <h4 className="text-sm font-semibold leading-6 text-slate-950">
+                          How Do Language Models Predict What Comes Next? | Course Introduction
+                        </h4>
+                      </div>
                     </div>
-                  ) : null}
-                  {selectedBlogPost.videoId ? (
-                    <section className="mt-6">
-                      <div className="mb-2 flex items-center justify-between gap-3">
-                        <h4 className="text-sm font-semibold text-slate-950">Full talk · {selectedBlogPost.readingTime}</h4>
+                    <div className="mx-auto w-full max-w-lg self-end">
+                      <div className="mb-2 flex justify-end">
                         <a
-                          className="text-xs font-medium text-[#245F8F] hover:underline"
-                          href={selectedBlogPost.href}
+                          className="inline-block text-xs font-medium text-[#245F8F] hover:underline"
+                          href="https://www.youtube.com/watch?v=dMBSh6zHt4w"
                           rel="noreferrer"
                           target="_blank"
                         >
@@ -847,71 +647,257 @@ export default function App() {
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
                           className="aspect-video w-full"
-                          src={`https://www.youtube.com/embed/${selectedBlogPost.videoId}`}
-                          title={selectedBlogPost.title}
+                          loading="lazy"
+                          src="https://www.youtube.com/embed/dMBSh6zHt4w"
+                          title="How Do Language Models Predict What Comes Next? | Course Introduction"
                         />
                       </div>
-                    </section>
-                  ) : null}
-                  {selectedBlogPost.videos ? (
-                    <div className="mt-6 space-y-6">
-                      {selectedBlogPost.videos.map((video) => (
-                        <section key={video.id}>
-                          <div className="mb-2 flex items-center justify-between gap-3">
-                            <h4 className="text-sm font-semibold text-slate-950">{video.label}</h4>
-                            <a
-                              className="text-xs font-medium text-[#245F8F] hover:underline"
-                              href={video.href}
-                              rel="noreferrer"
-                              target="_blank"
-                            >
-                              Open on YouTube
-                            </a>
-                          </div>
-                          <div
-                            className={`overflow-hidden rounded-lg border border-slate-200 bg-slate-950 ${
-                              video.orientation === 'portrait' ? 'mx-auto max-w-[16rem]' : ''
-                            }`}
+                    </div>
+                  </section>
+                  <ol className="mt-5 border-t border-[#C2DBF0]">
+                    {courseChapters.map((chapter) => (
+                      <li className="border-b border-[#C2DBF0] last:border-b-0" key={chapter.id}>
+                        <details className="group">
+                          <summary
+                            className="flex cursor-pointer list-none items-center gap-3 rounded py-3 text-sm transition hover:text-[#245F8F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2F7CBC] [&::-webkit-details-marker]:hidden"
                           >
-                            <iframe
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                              allowFullScreen
-                              className={video.orientation === 'portrait' ? 'aspect-[9/16] w-full' : 'aspect-video w-full'}
-                              src={`https://www.youtube.com/embed/${video.id}`}
-                              title={`${selectedBlogPost.title} — ${video.label}`}
-                            />
+                            <span className="shrink-0 text-xs font-medium tabular-nums text-[#2F7CBC]">
+                              {String(chapter.id).padStart(2, '0')}
+                            </span>
+                            <span className="flex-1 font-medium leading-snug text-slate-950">{chapter.title}</span>
+                            <svg
+                              aria-hidden="true"
+                              className="h-4 w-4 shrink-0 text-slate-500 transition-transform group-open:rotate-180"
+                              viewBox="0 0 20 20"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                            >
+                              <path d="m5 7.5 5 5 5-5" />
+                            </svg>
+                          </summary>
+                          <div className="space-y-2 pb-4 pl-7 text-sm leading-7 text-slate-700">
+                            {chapter.summary.map((paragraph) => (
+                              <p key={paragraph}>{paragraph}</p>
+                            ))}
+                            <p className="pt-2 text-xs font-medium text-slate-500">Coming soon</p>
                           </div>
-                        </section>
-                      ))}
+                        </details>
+                      </li>
+                    ))}
+                  </ol>
+                </article>
+              </div>
+            </Section>
+
+            <Section eyebrow="Contact" id="contact">
+              <div className="grid gap-3 md:grid-cols-2">
+                <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="mailto:mireille.elgheche@gmail.com">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Email</span>
+                  <span className="mt-1 block text-sm leading-7 text-slate-700">mireille.elgheche@gmail.com</span>
+                </a>
+                <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="https://scholar.google.com/citations?user=yi46_McAAAAJ&hl=fr" rel="noreferrer" target="_blank">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Google Scholar</span>
+                  <span className="mt-1 block text-sm leading-7 text-slate-700">scholar.google.com/profile</span>
+                </a>
+                <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="https://www.linkedin.com/in/mireille-el-gheche-a98aa140/" rel="noreferrer" target="_blank">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">LinkedIn</span>
+                  <span className="mt-1 block text-sm leading-7 text-slate-700">linkedin.com/profile</span>
+                </a>
+                <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="https://www.youtube.com/@mireilleghe" rel="noreferrer" target="_blank">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">YouTube</span>
+                  <span className="mt-1 block text-sm leading-7 text-slate-700">youtube.com/@mireilleghe</span>
+                </a>
+              </div>
+            </Section>
+          </div>
+        </div>
+
+        <Section eyebrow="Blog" id="blog">
+          <div className="grid gap-5 lg:grid-cols-[minmax(220px,0.32fr)_minmax(0,0.68fr)] lg:items-stretch">
+            <div className="grid gap-2" role="list">
+              {blogPosts.map((post) => {
+                const isSelected = selectedBlogPost?.id === post.id
+
+                return (
+                  <button
+                    aria-pressed={isSelected}
+                    className={`relative block w-full overflow-hidden rounded-lg border border-slate-200 py-3 pr-3 pl-4 text-left transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF] ${
+                      isSelected ? 'bg-[#F7FBFF]' : ''
+                    }`}
+                    key={post.id}
+                    onClick={() => setSelectedBlogPostId(post.id)}
+                    role="listitem"
+                    type="button"
+                  >
+                    {isSelected ? <span className="absolute inset-y-0 left-0 w-1 bg-[#3982D5]" aria-hidden="true" /> : null}
+                    <span className="block text-[0.9rem] font-semibold uppercase tracking-[0.12em] text-[#245F8F]">
+                      {post.category}
+                      {post.date ? (
+                        <>
+                          <span aria-hidden="true" className="mx-1.5 text-slate-400">·</span>
+                          <span className="font-medium normal-case tracking-normal text-slate-500">{post.date}</span>
+                        </>
+                      ) : null}
+                    </span>
+                    <span className={`mt-1 block text-lg leading-snug text-slate-950 ${post.boldTitle ? 'font-bold' : 'font-semibold'}`}>{post.title}</span>
+                  </button>
+                )
+              })}
+            </div>
+
+            {selectedBlogPost ? (
+              <article
+                className="rounded-xl border-[3px] border-[#3982D5] bg-[#FBFDFF] p-5 shadow-[0_0_18px_rgba(57,130,213,0.16)] md:p-6 lg:min-h-0 lg:overflow-y-auto lg:[contain:size]"
+              >
+                <div className="border-b border-[#C2DBF0] pb-4">
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#245F8F]">
+                    {selectedBlogPost.category}
+                    {selectedBlogPost.date ? ` · ${selectedBlogPost.date}` : ''}
+                  </p>
+                  <h3 className={`mt-2 text-xl leading-tight text-slate-950 md:text-2xl ${selectedBlogPost.boldTitle ? 'font-bold' : 'font-semibold'}`}>{selectedBlogPost.title}</h3>
+                  {selectedBlogPost.imageAfterTitle && selectedBlogPost.imageSrc ? (
+                    <div className="mt-5 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+                      <img
+                        alt={selectedBlogPost.imageAlt}
+                        className="w-full object-cover"
+                        src={selectedBlogPost.imageSrc}
+                      />
                     </div>
                   ) : null}
-                </article>
-              ) : null}
-            </div>
-          </Section>
-
-          <Section eyebrow="Contact" id="contact">
-            <div className="grid gap-3 md:grid-cols-2">
-              <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="mailto:mireille.elgheche@gmail.com">
-                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Email</span>
-                <span className="mt-1 block text-sm leading-7 text-slate-700">mireille.elgheche@gmail.com</span>
-              </a>
-              <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="https://scholar.google.com/citations?user=yi46_McAAAAJ&hl=fr" rel="noreferrer" target="_blank">
-                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Google Scholar</span>
-                <span className="mt-1 block text-sm leading-7 text-slate-700">scholar.google.com/profile</span>
-              </a>
-              <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="https://www.linkedin.com/in/mireille-el-gheche-a98aa140/" rel="noreferrer" target="_blank">
-                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">LinkedIn</span>
-                <span className="mt-1 block text-sm leading-7 text-slate-700">linkedin.com/profile</span>
-              </a>
-              <a className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-[#2F7CBC]" href="https://www.youtube.com/@mireilleghe" rel="noreferrer" target="_blank">
-                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">YouTube</span>
-                <span className="mt-1 block text-sm leading-7 text-slate-700">youtube.com/@mireilleghe</span>
-              </a>
-            </div>
-          </Section>
-        </main>
-      </div>
+                  <p className="mt-2 text-xs font-medium text-slate-500">{selectedBlogPost.readingTime}</p>
+                  {selectedBlogPost.slidesHref ? (
+                    <div className="mt-4">
+                      <a
+                        className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
+                        href={selectedBlogPost.slidesHref}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        View slides · PDF (no videos)
+                      </a>
+                    </div>
+                  ) : selectedBlogPost.slidesPending ? (
+                    <p className="mt-4 text-xs font-medium text-slate-500">Slide to be added soon.</p>
+                  ) : null}
+                </div>
+                {selectedBlogPost.content.length > 0 ? (
+                  <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
+                    {selectedBlogPost.content.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                ) : null}
+                {selectedBlogPost.eventHref ? (
+                  <div className="mt-4">
+                    <a
+                      className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
+                      href={selectedBlogPost.eventHref}
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      Event details & registration
+                    </a>
+                  </div>
+                ) : null}
+                {selectedBlogPost.imageSrc && !selectedBlogPost.imageAfterTitle ? (
+                  <div className="mt-5 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+                    <img
+                      alt={selectedBlogPost.imageAlt}
+                      className="w-full object-cover"
+                      src={selectedBlogPost.imageSrc}
+                    />
+                  </div>
+                ) : null}
+                {selectedBlogPost.translationHref ? (
+                  <div className="mt-5 flex flex-wrap gap-2 border-t border-[#C2DBF0] pt-4">
+                    {selectedBlogPost.journalHref ? (
+                      <a
+                        className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
+                        href={selectedBlogPost.journalHref}
+                      >
+                        Read the article in English
+                      </a>
+                    ) : null}
+                    <a
+                      className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
+                      href={selectedBlogPost.translationHref}
+                    >
+                      اقرأ المقال بالعربية · العربية
+                    </a>
+                    {selectedBlogPost.fullReportHref ? (
+                      <a
+                        className="inline-flex rounded-full border border-[#C2DBF0] px-3 py-1.5 text-xs font-medium text-[#245F8F] transition hover:border-[#2F7CBC] hover:bg-[#EDF6FF]"
+                        href={selectedBlogPost.fullReportHref}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Full report
+                      </a>
+                    ) : null}
+                  </div>
+                ) : null}
+                {selectedBlogPost.videoId ? (
+                  <section className="mt-6">
+                    <div className="mb-2 flex items-center justify-between gap-3">
+                      <h4 className="text-sm font-semibold text-slate-950">Full talk · {selectedBlogPost.readingTime}</h4>
+                      <a
+                        className="text-xs font-medium text-[#245F8F] hover:underline"
+                        href={selectedBlogPost.href}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        Open on YouTube
+                      </a>
+                    </div>
+                    <div className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+                      <iframe
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        className="aspect-video w-full"
+                        src={`https://www.youtube.com/embed/${selectedBlogPost.videoId}`}
+                        title={selectedBlogPost.title}
+                      />
+                    </div>
+                  </section>
+                ) : null}
+                {selectedBlogPost.videos ? (
+                  <div className="mt-6 space-y-6">
+                    {selectedBlogPost.videos.map((video) => (
+                      <section key={video.id}>
+                        <div className="mb-2 flex items-center justify-between gap-3">
+                          <h4 className="text-sm font-semibold text-slate-950">{video.label}</h4>
+                          <a
+                            className="text-xs font-medium text-[#245F8F] hover:underline"
+                            href={video.href}
+                            rel="noreferrer"
+                            target="_blank"
+                          >
+                            Open on YouTube
+                          </a>
+                        </div>
+                        <div
+                          className={`overflow-hidden rounded-lg border border-slate-200 bg-slate-950 ${
+                            video.orientation === 'portrait' ? 'mx-auto max-w-[16rem]' : ''
+                          }`}
+                        >
+                          <iframe
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            className={video.orientation === 'portrait' ? 'aspect-[9/16] w-full' : 'aspect-video w-full'}
+                            src={`https://www.youtube.com/embed/${video.id}`}
+                            title={`${selectedBlogPost.title} — ${video.label}`}
+                          />
+                        </div>
+                      </section>
+                    ))}
+                  </div>
+                ) : null}
+              </article>
+            ) : null}
+          </div>
+        </Section>
+      </main>
     </div>
   )
 }
