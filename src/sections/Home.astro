@@ -49,7 +49,7 @@ const { id } = Astro.props;
   #home > .section-inner { flex: 0 0 auto;  }
   .home-hero { padding-block: 24px; display: flex; align-items: center; justify-content: space-evenly; }
   .hero-intro { flex: 0 1 auto; max-width: 600px; min-width: 0; text-align: center; }
-  .hero-portrait { flex: 0 0 200px; min-width: 0; }
+  .hero-portrait { flex: 0 0 260px; min-width: 0; }
   .hero-title { color: var(--text); text-align: center; font-family: "Oregano", cursive; font-size: clamp(60px, 5.5vw, 70px); font-weight: 400; line-height: 1; }
   .hero-subtitle { margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 14px; color: var(--muted); text-align: center; font-size: clamp(12px, 1.4vw, 14px); font-weight: 500; line-height: 1.6; letter-spacing: .14em; text-transform: uppercase; }
   .hero-subtitle::before, .hero-subtitle::after { content: ""; flex: 0 1 40px; height: 2px; background: linear-gradient(to right, transparent, var(--accent)); opacity: .65; }
@@ -57,7 +57,7 @@ const { id } = Astro.props;
 
   @media (max-width: 740px) {
     .home-hero { flex-direction: column; justify-content: center; gap: 32px; }
-    .hero-portrait { order: -1; flex: 0 0 auto; width: min(100%, clamp(150px, 42vw, 220px)); }
+    .hero-portrait { order: -1; flex: 0 0 auto; width: min(100%, clamp(190px, 66vw, 260px)); }
     .hero-title { text-align: center; }
   }
 

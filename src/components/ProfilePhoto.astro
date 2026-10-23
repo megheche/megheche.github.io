@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import wreath from "../assets/portrait-wreath.png";
+
 interface Props {
   /** Portrait image URL and accessible description. */
   photo: string;
@@ -6,26 +9,46 @@ interface Props {
 }
 
 const { photo, alt = "Portrait" } = Astro.props;
+// Follow the wreath's inner ring, including its narrower upper-right curve.
+const contour = [
+  [610, 121], [818, 151], [880, 181], [924, 211], [960, 241],
+  [989, 271], [1015, 301], [1050, 351], [1090, 410], [1124, 451],
+  [1158, 501], [1183, 551], [1191, 601], [1188, 651], [1178, 701],
+  [1161, 751], [1136, 801], [1103, 851], [1061, 901], [1004, 951],
+  [945, 1001], [865, 1045], [760, 1068], [650, 1054], [525, 1010],
+  [400, 920], [280, 800], [210, 650], [200, 500], [250, 350],
+  [350, 220], [470, 145],
+].map(([x, y]) => [x / 1282, y / 1227]);
+const coordinates = (point: number[]) => point.map(value => value.toFixed(5)).join(' ');
+const openingPath = `M ${coordinates(contour[0])} ${contour.map((point, index) => {
+  const previous = contour[(index + contour.length - 1) % contour.length];
+  const next = contour[(index + 1) % contour.length];
+  const following = contour[(index + 2) % contour.length];
+  const firstControl = point.map((value, axis) => value + (next[axis] - previous[axis]) / 6);
+  const secondControl = next.map((value, axis) => value - (following[axis] - point[axis]) / 6);
+  return `C ${coordinates(firstControl)} ${coordinates(secondControl)} ${coordinates(next)}`;
+}).join(' ')} Z`;
 ---
 
 <div class="hero-photo-column">
     <div class="hero-photo-wrap">
-      <img class="hero-photo" src={photo} alt={alt} fetchpriority="high" />
+      <svg class="portrait-clip-definition" width="0" height="0" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="portrait-wreath-opening" clipPathUnits="objectBoundingBox">
+            <path d={openingPath} />
+          </clipPath>
+        </defs>
+      </svg>
+      <div class="hero-photo-window"><img class="hero-photo" src={photo} alt={alt} fetchpriority="high" /></div>
+      <Image class="portrait-wreath" src={wreath} alt="" aria-hidden="true" width={260} widths={[260, 520]} sizes="260px" format="webp" loading="eager" />
     </div>
 </div>
 
 <style>
   .hero-photo-column { display: flex; min-width: 0; flex-direction: column; align-items: center; }
-  .hero-photo-wrap { position: relative; isolation: isolate; width: min(100%, clamp(100px, 26vw, 200px)); aspect-ratio: 1; }
-  .hero-photo-wrap::before { position: absolute; z-index: -1; inset: -6%; border-radius: 50%; content: ""; }
-  .hero-photo { width: 100%; height: 100%; border: 4px solid var(--line); border-radius: 50%; object-fit: cover; object-position: center; }
-
-
-  @media (max-width: 740px) {
-    .hero-photo-wrap { width: min(100%, clamp(150px, 42vw, 220px)); }
-  }
-
-  @media (max-width: 480px) {
-    .photo-socials { margin-top: 16px; }
-  }
+  .hero-photo-wrap { position: relative; isolation: isolate; width: 100%; max-width: 260px; aspect-ratio: 1282 / 1227; }
+  .portrait-clip-definition { position: absolute; }
+  .hero-photo-window { position: absolute; inset: 0; clip-path: url(#portrait-wreath-opening); }
+  .hero-photo { position: absolute; left: 13.5%; top: 9%; width: 88%; height: auto; }
+  .hero-photo-wrap :global(.portrait-wreath) { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 </style>
