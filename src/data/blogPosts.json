@@ -1,0 +1,140 @@
+[
+  {
+    "id": "robotics-documentary",
+    "category": "Coming soon",
+    "readingTime": "Coming soon",
+    "title": "Zurich Robot Documentary",
+    "excerpt": "A glimpse behind the scenes of the Zurich Robot Documentary. More details coming soon.",
+    "imageSrc": "/articles/robotics-documentary-coming-soon.png",
+    "imageAlt": "Behind the scenes of a robotics documentary shoot, with Mireille El Gheche standing in front of a camera and studio lighting.",
+    "content": [
+      "A glimpse behind the scenes of filming for the Zurich Robot Documentary.",
+      "More details coming soon."
+    ]
+  },
+  {
+    "id": "epfl-ai-center-sony-ai-impact-talk",
+    "category": "AI & Robotics",
+    "date": "October 15, 2026",
+    "readingTime": "40 min watch",
+    "title": "Learning to Play at Human Speed: From Simulation to Expert-Level Robot Table Tennis",
+    "excerpt": "An EPFL AI Center x Sony AI Impact Talk on Project ACE and bringing robot learning into the real world.",
+    "eventHref": "https://memento.epfl.ch/event/ai-center-x-sony-ai-impact-talk-mireille-el-ghec-2/",
+    "href": "https://youtu.be/1Rahq6AllPU",
+    "videoId": "1Rahq6AllPU",
+    "videoLabel": "Full talk · 40 min watch",
+    "slidesHref": "/slides/epfl-project-ace-october-15-2026.pdf",
+    "action": "Watch video",
+    "content": [
+      "I shared the story of Project ACE at the EPFL AI Center x Sony AI Impact Talk: how a robot learns in simulation and takes on expert table tennis players in the real world."
+    ],
+    "imageSrc": "/articles/epfl-ai-center-impact-talk.png",
+    "imageAlt": "EPFL AI Center x Sony AI Impact Talk announcement featuring Mireille El Gheche and her talk, Learning to Play at Human Speed."
+  },
+  {
+    "id": "100-women-ai-robotics-switzerland",
+    "category": "AI & Robotics",
+    "date": "September 2026",
+    "readingTime": "20 min read",
+    "title": "Selected among 100+ women in AI and robotics in Switzerland",
+    "excerpt": "An honor made even more special by being one of ten women selected for a two-page newsletter interview.",
+    "journalHref": "/en/100-women-ai-robotics-switzerland.html",
+    "fullReportHref": "https://www.greaterzuricharea.com/en/news/top-100-women-ai-robotics-switzerland-2026",
+    "imageSrc": "/articles/100-women-ai-robotics-first-page.jpg",
+    "imageAlt": "Cover of Top 100+ Women in AI + Data + Robotics in Switzerland 2026, featuring Mireille El Gheche beside a table tennis robot.",
+    "translationHref": "/ar/100-women-ai-robotics-switzerland.html",
+    "content": [
+      "I’m honored to be recognized among 100+ women in AI and robotics in Switzerland whose work is helping shape the field.",
+      "I was also selected as one of ten women featured in a two-page interview, where I had the opportunity to share more about my journey and the experiences that shaped it.",
+      "Grateful for this recognition and proud to be part of a community advancing AI and robotics in Switzerland."
+    ]
+  },
+  {
+    "id": "techdrive-zurich-interview",
+    "category": "Interview",
+    "date": "August 2026",
+    "readingTime": "25 min watch",
+    "title": "In conversation with TechDrive Zurich",
+    "imageSrc": "/articles/techdrive-zurich-interview.png",
+    "imageAlt": "TechDrive Zurich interview image featuring Mireille El Gheche inside a car, with her name and the caption 5 years to teach a robot table tennis.",
+    "excerpt": "A conversation about building AI and teaching a robot to play table tennis.",
+    "content": [
+      "I joined TechDrive Zurich for a conversation about my journey in AI and robotics, and the years of research behind teaching an autonomous robot to compete in table tennis.",
+      "Watch the short highlight or settle in for the full 25-minute conversation."
+    ],
+    "videos": [
+      {
+        "id": "26HN3gHppXM",
+        "label": "Short highlight",
+        "orientation": "portrait",
+        "href": "https://youtube.com/shorts/26HN3gHppXM"
+      },
+      {
+        "id": "pxH66TFgfu8",
+        "label": "Full interview · 25 min",
+        "orientation": "landscape",
+        "href": "https://youtu.be/pxH66TFgfu8"
+      }
+    ]
+  },
+  {
+    "id": "physical-intelligence",
+    "category": "AI & Robotics",
+    "date": "June 2026",
+    "readingTime": "15 min watch",
+    "title": "When intelligence gets physical",
+    "imageSrc": "/articles/when-intelligence-gets-physical.jpg",
+    "imageAlt": "Mireille El Gheche speaking into a microphone during her talk, When intelligence gets physical.",
+    "excerpt": "How AI learns to perceive, move, and act in the real world.",
+    "href": "https://youtu.be/F86Vx3eQgBg?si=BPSbkg0z8MDGxxqA",
+    "videoId": "F86Vx3eQgBg",
+    "slidesHref": "/slides/when-intelligence-gets-physical.pdf",
+    "action": "Watch video",
+    "content": [
+      "What happens when AI leaves the screen and enters the physical world? In my talk, I explored why robotics is where intelligence has to deal with reality: physics, timing, sensors, movement, safety, and of course, unpredictable humans.",
+      "I also shared some lessons from my work on an autonomous table tennis robot, a project that taught me how hard and exciting it is to build systems that can perceive, decide, and act in real time.",
+      "There is a great future ahead, and we all have a role in shaping it."
+    ]
+  },
+  {
+    "id": "kuchisabishii",
+    "category": "Japanese & Culture",
+    "readingTime": "1 min read",
+    "title": "Kuchisabishii (口寂しい)",
+    "boldTitle": true,
+    "action": "Read note",
+    "content": [
+      "Kuchisabishii (口寂しい) literally means “lonely mouth.” It describes the mysterious urge to snack when you are not really hungry, but your mouth is simply bored.",
+      "Kuchi means “mouth,” and sabishii means “lonely.” Together, they capture that moment when your mouth needs a little therapy and your hand starts moving toward the chips on autopilot.",
+      "It is one of my favorite Japanese words because it gives a name to such a relatable little feeling."
+    ],
+    "imageSrc": "/articles/kuchisabishii.png",
+    "imageAlt": "Blue calligraphy with a steaming noodle bowl and chopsticks, framed by blue flowers and leaves, above the words when your mouth is bored?"
+  },
+  {
+    "id": "favorite-ai-joke",
+    "category": "AI & Culture",
+    "readingTime": "1 min read",
+    "title": "Building smarter AI is easy. Teaching it sarcasm? Yeah, sure.",
+    "imageAlt": "A comic about an AI trying to understand sarcasm.",
+    "imageSrc": "/ai-sarcasm-joke.png",
+    "action": "Read joke",
+    "content": []
+  },
+  {
+    "id": "mireille-meaning",
+    "category": "Personal",
+    "readingTime": "2 min read",
+    "title": "What does Mireille mean?",
+    "excerpt": "The meaning behind the name Mireille.",
+    "action": "Read note",
+    "content": [
+      "Mireille is a French name with Provençal roots, often associated with ideas of admiration, wonder, and a sense of looking at the world with attentive curiosity.",
+      "In Japanese, the similar-sounding name Mirei can be written in several ways depending on the kanji chosen. One possible form is 美礼 (みれい). The character 美 means “beauty,” while 礼 conveys “courtesy,” “respect,” “manners,” or “etiquette.” Together, they can suggest a kind of beauty expressed not only through appearance, but also through conduct, consideration, and graceful attention to others.",
+      "Seen alongside the French and Provençal associations of Mireille, the name brings together a number of complementary ideas: beauty, refinement, respect, curiosity, and wonder. It can evoke a gentle and dignified presence, someone attentive to detail and sensitive to the beauty found in people, gestures, and everyday surroundings.",
+      "In that sense, Mireille carries both softness and depth. It suggests beauty as something to notice, appreciate, and express through the way one moves through the world."
+    ],
+    "imageSrc": "/articles/mireille-meaning.png",
+    "imageAlt": "Mireille in blue calligraphy above the words What does it mean?, framed by a circular wreath of blue flowers and leaves."
+  }
+]

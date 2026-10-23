@@ -1,0 +1,36 @@
+---
+import about from "../data/about.json";
+import contact from "../data/contact.json";
+import PageHeader from "../components/PageHeader.astro";
+import Icon from "../components/Icon.astro";
+const { id } = Astro.props;
+---
+<section class="page-section" id={id}>
+  <div class="section-inner">
+    <PageHeader kicker={about.name} title="Get in" highlight="Touch" />
+    <div class="contact-content">
+      <p class="contact-intro">Based in {contact.location}. You can reach me by email or find my work below.</p>
+      <div class="contact-grid">
+        {contact.links.map(link => (
+          <a class="contact-card" href={link.href} target={link.href.startsWith('https') ? '_blank' : undefined} rel="noopener noreferrer">
+            <Icon name={link.icon} />
+            <div><h3>{link.label}</h3><p>{link.label === 'Email' ? contact.email : link.href.replace('https://', '')}</p></div>
+            <span class="contact-arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.contact-content { width: fit-content; max-width: 100%; }
+.contact-intro { margin-bottom: 32px; color: var(--muted); line-height: 1.8; }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.contact-card { display: flex; align-items: center; gap: 20px; padding: 12px 0; }
+.contact-card:hover h3 { color: var(--accent); }
+.contact-card :global(.icon) { flex-shrink: 0; color: var(--accent); }
+.contact-card div { min-width: 0; flex: 1; }
+.contact-card h3 { font-size: 18px; font-weight: 500; }
+.contact-card p { margin-top: 8px; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; line-height: 1.6; }
+.contact-arrow { flex-shrink: 0; margin-right: 1em; color: var(--accent); }
+</style>

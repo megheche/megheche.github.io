@@ -1,0 +1,85 @@
+[
+  {
+    "title": "Outplaying elite table tennis players with an autonomous robot",
+    "authors": [
+      "P. Durr",
+      "Mireille El Gheche",
+      "et al."
+    ],
+    "venue": "Nature 652, 886–891",
+    "year": 2026,
+    "image": "/assets/featured/nature-ace-cover.png",
+    "imageAspectRatio": "1.08",
+    "imageAlt": "Nature cover, 23 April 2026: Match Point, featuring the ACE table tennis robot competing against a human player.",
+    "description": "Project ACE brings learning, sensing, and control together at human speed: an autonomous robot taking on elite table tennis players.",
+    "links": [
+      {
+        "label": "Paper",
+        "href": "https://www.nature.com/articles/s41586-026-10338-5"
+      },
+      {
+        "label": "Talk & slides",
+        "href": "/#blog/epfl-ai-center-sony-ai-impact-talk"
+      }
+    ],
+    "tags": [
+      "Robotics",
+      "Reinforcement learning",
+      "Physical AI"
+    ]
+  },
+  {
+    "title": "OrthoNet: Multilayer Network Data Clustering",
+    "authors": [
+      "Mireille El Gheche",
+      "Giovanni Chierchia",
+      "Pascal Frossard"
+    ],
+    "venue": "IEEE Transactions on Signal and Information Processing over Networks",
+    "year": 2020,
+    "description": "OrthoNet is a neural network that learns a graph embedding using an unsupervised objective inspired by spectral clustering. By shaping the embedding around the graph’s cluster structure, it produces vertex representations that can be directly partitioned with K-means.",
+    "tags": [
+      "Graph Embedding",
+      "Neural Networks",
+      "Unsupervised Learning",
+      "Spectral Clustering"
+    ],
+    "links": [
+      {
+        "label": "Paper",
+        "href": "https://arxiv.org/pdf/1811.00821"
+      },
+      {
+        "label": "Code",
+        "href": "https://github.com/LTS4/OrthoNet"
+      }
+    ],
+    "image": "/assets/featured/orthonet.png"
+  },
+  {
+    "title": "GOT: An Optimal Transport framework for Graph comparison",
+    "authors": [
+      "Hermina Petric Materic",
+      "Mireille El Gheche",
+      "Giovanni Chierchia",
+      "Pascal Frossard"
+    ],
+    "venue": "33rd Conference on Neural Information Processing Systems (NeurIPS), Canada",
+    "year": 2019,
+    "description": "GOT is a framework that leverages optimal transport theory to compare graphs. It provides a principled way to measure the similarity between graphs by considering the cost of transforming one graph into another.",
+    "tags": [
+      "Optimal Transport",
+      "Wasserstein Distance",
+      "Graph Comparison",
+      "Stochastic Optimization"
+    ],
+    "links": [
+      {
+        "label": "Paper",
+        "href": "https://arxiv.org/pdf/1906.02085"
+      }
+    ],
+    "image": "/assets/featured/got.png",
+    "imageAlt": "Illustration accompanying GOT: An Optimal Transport framework for Graph comparison."
+  }
+]

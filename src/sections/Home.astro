@@ -1,0 +1,67 @@
+---
+import about from "../data/about.json";
+import BlogIndex from "../components/BlogIndex.astro";
+import ProfilePhoto from "../components/ProfilePhoto.astro";
+import VerticalSpacer from "../components/VerticalSpacer.astro";
+import SocialLinks from "../components/SocialLinks.astro";
+
+interface Props { id: string; }
+const { id } = Astro.props;
+---
+
+<section class="page-section is-active" id={id}>
+  <div class="section-inner">
+
+    <div class="home-hero">
+
+      <div class="hero-intro">
+        <h1 class="hero-title">{about.name}</h1>
+        <p class="hero-subtitle">{about.subtitle}</p>
+        <p class="home-description">AI & robotics in the physical world.<br />Zurich, Switzerland.</p>
+        <VerticalSpacer size="small"/>
+        <SocialLinks links={about.links} />
+      </div>
+
+      <div class="hero-portrait">
+        <ProfilePhoto photo={about.photo} alt={about.name}/><p class="portrait-caption">美礼 <span>みれい · Mi-rei</span></p>
+      </div>
+
+    </div>
+
+    <BlogIndex />
+
+  </div>
+</section>
+
+<style>
+  @font-face {
+    font-family: "Oregano";
+    src: url("/assets/fonts/oregano-regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+  }
+
+  .home-description { margin-top: 22px; color: var(--muted); font-size: 16px; line-height: 1.7; }
+  .portrait-caption { margin-top: 18px; text-align: center; color: var(--accent); letter-spacing: .12em; font-size: 18px; }
+  .portrait-caption span { display: block; margin-top: 6px; color: var(--muted); font-size: 11px; letter-spacing: .05em; }
+  #home { display: flex; flex-direction: column; }
+  #home > .section-inner { flex: 0 0 auto;  }
+  .home-hero { padding-block: 24px; display: flex; align-items: center; justify-content: space-evenly; }
+  .hero-intro { flex: 0 1 auto; max-width: 600px; min-width: 0; text-align: center; }
+  .hero-portrait { flex: 0 0 200px; min-width: 0; }
+  .hero-title { color: var(--text); text-align: center; font-family: "Oregano", cursive; font-size: clamp(60px, 5.5vw, 70px); font-weight: 400; line-height: 1; }
+  .hero-subtitle { margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 14px; color: var(--muted); text-align: center; font-size: clamp(12px, 1.4vw, 14px); font-weight: 500; line-height: 1.6; letter-spacing: .14em; text-transform: uppercase; }
+  .hero-subtitle::before, .hero-subtitle::after { content: ""; flex: 0 1 40px; height: 2px; background: linear-gradient(to right, transparent, var(--accent)); opacity: .65; }
+  .hero-subtitle::after { transform: rotate(180deg); }
+
+  @media (max-width: 740px) {
+    .home-hero { flex-direction: column; justify-content: center; gap: 32px; }
+    .hero-portrait { order: -1; flex: 0 0 auto; width: min(100%, clamp(150px, 42vw, 220px)); }
+    .hero-title { text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title { font-size: clamp(24px, 8vw, 38px); }
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import Icon from "./Icon.astro";
+interface Props {
+  /** Labeled destinations and SVG sprite icon identifiers. */
+  links: { label: string; href: string; icon: string }[];
+}
+
+const { links } = Astro.props;
+---
+
+<nav class="social-links" aria-label="Social links">
+      {links.map((link) => (
+        <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+          <Icon name={link.icon} />
+        </a>
+      ))}
+    </nav>
+
+<style>
+  .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 100%; }
+  .social-links a { position: relative; display: grid; width: 34px; height: 34px; flex: 0 0 auto; place-items: center; color: var(--muted); border: 1px solid var(--line); border-radius: 50%; transition: color .2s ease, border-color .2s ease, transform .2s ease; }
+  .social-links a:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .social-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .social-links a::after { position: absolute; z-index: 2; bottom: calc(100% + 8px); left: 50%; padding: 6px 9px; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 5px; content: attr(aria-label); font-size: 11px; line-height: 1; white-space: nowrap; opacity: 0; visibility: hidden; transform: translate(-50%, 4px); transition: opacity .16s ease, transform .16s ease, visibility .16s ease; pointer-events: none; }
+  .social-links a:hover::after, .social-links a:focus-visible::after { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+  .social-links :global(.icon) { width: 16px; height: 16px; }
+
+  @media (max-width: 480px) {
+    .social-links { gap: 6px; }
+    .social-links a { width: 30px; height: 30px; }
+  }
+</style>

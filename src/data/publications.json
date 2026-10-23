@@ -1,0 +1,326 @@
+[
+  {
+    "group": "Journal Papers",
+    "items": [
+      {
+        "id": "J9",
+        "text": "P. Durr, M. El Gheche, et al., Outplaying elite table tennis players with an autonomous robot, Nature 652 (8111), Pages 886-891, Apr. 2026.",
+        "links": [
+          {
+            "label": "Nature",
+            "href": "https://www.nature.com/articles/s41586-026-10338-5"
+          }
+        ]
+      },
+      {
+        "id": "J8",
+        "text": "H. Petric Maretic, M. El Gheche, M. Minder, G. Chierchia, P. Frossard, Wasserstein-based Graph Alignment, IEEE Transactions on Signal and Information Processing over Networks, Vol. 8, Pages 353-363, Apr. 2022.",
+        "links": [
+          {
+            "label": "arXiv",
+            "href": "https://arxiv.org/abs/2003.06048"
+          }
+        ]
+      },
+      {
+        "id": "J7",
+        "text": "M. El Gheche, G. Chierchia, P. Frossard, Orthonet: Multilayer network data clustering, IEEE Transactions on Signal and Information Processing over Networks, Vol. 6, Pages 13-23, Dec. 2020.",
+        "links": [
+          {
+            "label": "PDF",
+            "href": "https://arxiv.org/pdf/1811.00821.pdf"
+          },
+          {
+            "label": "Code",
+            "href": "https://github.com/LTS4/OrthoNet"
+          }
+        ]
+      },
+      {
+        "id": "J6",
+        "text": "M. Mounirou, M. El Gheche, M. Donias, S. Guillon, Y. Berthoumieu, Robust and Adaptive Approaches for Relative Geologic Time Estimation, Journal of Applied Geophysics, Vol. 159, Pages 157-172, Dec. 2018.",
+        "links": [
+          {
+            "label": "DOI",
+            "href": "https://doi.org/10.1016/j.jappgeo.2018.07.013"
+          }
+        ]
+      },
+      {
+        "id": "J5",
+        "text": "M. El Gheche, G. Chierchia, J.-C. Pesquet, Proximity Operators of Discrete Information Divergences, IEEE Transactions on Information Theory, Vol. 64, No. 2, Pages 1092-1104, Feb. 2018.",
+        "links": [
+          {
+            "label": "arXiv",
+            "href": "https://arxiv.org/abs/1606.09552"
+          }
+        ]
+      },
+      {
+        "id": "J4",
+        "text": "G. Chierchia, M. El Gheche, G. Scarpa and L. Verdoliva, Multitemporal SAR Image Despeckling based on Block-Matching and Collaborative Filtering, IEEE Transactions on Geoscience and Remote Sensing, Vol. 55, No. 10, Pages 1-14, Jun. 2017.",
+        "links": [
+          {
+            "label": "PDF",
+            "href": "https://perso.esiee.fr/~chierchg/articles/2017_tgrs.pdf"
+          },
+          {
+            "label": "DOI",
+            "href": "https://doi.org/10.1109/TGRS.2017.2707806"
+          }
+        ]
+      },
+      {
+        "id": "J3",
+        "text": "M. El Gheche, J.-F. Aujol, Y. Berthoumieu, C.-A. Deledalle, Texture Reconstruction Guided by the Histogram of a High-Resolution Patch, IEEE Transactions on Image Processing, Vol. 26, No. 2, Pages 549-560, Feb. 2017.",
+        "links": [
+          {
+            "label": "HAL",
+            "href": "https://hal.archives-ouvertes.fr/hal-01276582"
+          }
+        ]
+      },
+      {
+        "id": "J2",
+        "text": "M. Hidane, M. El Gheche, J.-F. Aujol, Y. Berthoumieu, C.-A. Deledalle, Image Zoom Completion, IEEE Transactions on Image Processing, Vol. 25, No. 8, Pages 3505-3517, Aug. 2016.",
+        "links": [
+          {
+            "label": "HAL",
+            "href": "https://hal.archives-ouvertes.fr/hal-01253124"
+          }
+        ]
+      },
+      {
+        "id": "J1",
+        "text": "C. Chaux, M. El Gheche, J. Farah, J.-C. Pesquet, and B. Pesquet-Popescu, A Parallel Proximal Splitting Method for Disparity Estimation from Multicomponent Images under Illumination Variation, Journal of Mathematical Imaging and Vision, Vol. 47, No. 3, Pages 167-178, Nov. 2013.",
+        "links": [
+          {
+            "label": "Springer",
+            "href": "https://link.springer.com/article/10.1007/s10851-012-0361-z"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "group": "Conference Papers",
+    "items": [
+      {
+        "id": "C17",
+        "text": "H. Petric Maretic, M. El Gheche, G. Chierchia, P. Frossard, fGOT: filter Graph distances using Optimal Transport, AAAI, Virtual Event, 22 Feb. - 1 Mar. 2022.",
+        "links": [
+          {
+            "label": "AAAI",
+            "href": "https://ojs.aaai.org/index.php/AAAI/article/view/20738"
+          }
+        ]
+      },
+      {
+        "id": "C16",
+        "text": "M. Minder, Z. Farsijani, D. Shah, M. El Gheche, P. Frossard, FiGLearn: Filter and Graph Learning using Optimal Transport, ICASSP, Toronto, Ontario, Canada, 6-11 Jun. 2021.",
+        "links": [
+          {
+            "label": "arXiv",
+            "href": "http://arxiv.org/abs/2010.15457"
+          }
+        ]
+      },
+      {
+        "id": "C15",
+        "text": "G. Chierchia and M. El Gheche, YAPA: Accelerated Proximal Algorithm for Convex Composite Problems, ICASSP, Toronto, Ontario, Canada, 6-11 Jun. 2021.",
+        "links": [
+          {
+            "label": "DOI",
+            "href": "https://doi.org/10.1109/ICASSP39728.2021.9414656"
+          }
+        ]
+      },
+      {
+        "id": "C14",
+        "text": "M. Rossi, M. El Gheche, A. Kuhn, P. Frossard, Joint Graph-based Depth Refinement and Normal Estimation, CVPR, Seattle, Washington, United States, 13-19 Jun. 2020.",
+        "links": [
+          {
+            "label": "arXiv",
+            "href": "https://arxiv.org/abs/1912.01306"
+          },
+          {
+            "label": "Code",
+            "href": "https://github.com/rossimattia/depth-refinement-and-normal-estimation"
+          }
+        ]
+      },
+      {
+        "id": "C13",
+        "text": "G. Ortiz Jimenez, M. El Gheche, E. Simou, H. Petric Maretic, P. Frossard, Forward-Backward Splitting for Optimal Transport based Problems, ICASSP, Barcelona, Spain, 4-8 May 2020.",
+        "links": [
+          {
+            "label": "arXiv",
+            "href": "https://arxiv.org/abs/1909.11448"
+          }
+        ]
+      },
+      {
+        "id": "C12",
+        "text": "M. El Gheche and P. Frossard, Multilayer Clustered Graph Learning, preprint, 2020.",
+        "links": [
+          {
+            "label": "arXiv",
+            "href": "http://arxiv.org/abs/2010.15456"
+          }
+        ]
+      },
+      {
+        "id": "C11",
+        "text": "H. Petric Maretic, M. El Gheche, G. Chierchia, P. Frossard, GOT: An Optimal Transport framework for Graph comparison, NeurIPS, Vancouver, Canada, 8-14 Dec. 2019.",
+        "links": [
+          {
+            "label": "arXiv",
+            "href": "https://arxiv.org/abs/1906.02085"
+          },
+          {
+            "label": "Code",
+            "href": "https://github.com/Hermina/GOT"
+          }
+        ]
+      },
+      {
+        "id": "C10",
+        "text": "H. Petric Maretic, M. El Gheche, P. Frossard, Graph Heat Mixture Model Learning, Asilomar, Pacific Grove, CA, USA, 3-6 Nov. 2019.",
+        "links": [
+          {
+            "label": "arXiv",
+            "href": "https://arxiv.org/abs/1901.08585"
+          }
+        ]
+      },
+      {
+        "id": "C9",
+        "text": "B. Pasdeloup, H. Petric Maretic, M. El Gheche, P. Frossard, Une approche basee incertitude pour transporter un signal d un graphe a un autre, Gretsi, Lille, France, 26-29 Aug. 2019.",
+        "links": [
+          {
+            "label": "PDF",
+            "href": "https://www.gretsi.fr/data/colloque/pdf/2019_pasdeloup370.pdf"
+          }
+        ]
+      },
+      {
+        "id": "C8",
+        "text": "M. El Gheche, G. Chierchia, P. Frossard, Stochastic Gradient Descent for Spectral Embedding with Implicit Orthogonality Constraint, ICASSP, Pages 3567-3571, Brighton, UK, 12-17 May 2019.",
+        "links": [
+          {
+            "label": "arXiv",
+            "href": "https://arxiv.org/abs/1812.05721"
+          }
+        ]
+      },
+      {
+        "id": "C7",
+        "text": "M. Rossi, M. El Gheche, P. Frossard, A Non-smooth Graph-Based Approach to Light Field Super-resolution, ICIP, Pages 2590-2594, Athens, Greece, 7-10 Oct. 2018.",
+        "links": [
+          {
+            "label": "IEEE",
+            "href": "https://ieeexplore.ieee.org/document/8451127"
+          }
+        ]
+      },
+      {
+        "id": "C6",
+        "text": "M. Mounirou, M. El Gheche, M. Donias, S. Guillon, Y. Berthoumieu, Calcul automatique rapide de pseudo-age geologique sur des images sismiques, Gretsi, Juan-Les-Pins, France, 5-8 Sep. 2017.",
+        "links": [
+          {
+            "label": "PDF",
+            "href": "https://www.gretsi.fr/data/colloque/pdf/2017_mounirouarouna211.pdf"
+          }
+        ]
+      },
+      {
+        "id": "C5",
+        "text": "M. El Gheche, A. Jezierska, J.-C. Pesquet and J. Farah, A Proximal Approach for Signal Recovery Based on Information Measures, EUSIPCO, Pages 1-5, Marrakech, Morocco, 9-13 Sep. 2013.",
+        "links": [
+          {
+            "label": "PDF",
+            "href": "https://www-syscom.univ-eiffel.fr/~elgheche/images/EUSIPCO_ELGHECHE.pdf"
+          }
+        ]
+      },
+      {
+        "id": "C4",
+        "text": "M. El Gheche, J.-C. Pesquet and J. Farah, A Proximal Approach for Optimization Problems involving Kullback Divergences, ICASSP, Pages 5984-5988, Vancouver, Canada, 26-31 May 2013.",
+        "links": [
+          {
+            "label": "PDF",
+            "href": "https://citeseerx.ist.psu.edu/document?doi=2a09fcce80f5f0319503e6c9563c61f8a6ac7987&repid=rep1&type=pdf"
+          }
+        ]
+      },
+      {
+        "id": "C3",
+        "text": "M. El Gheche, C. Chaux, J.-C. Pesquet, J. Farah and B. Pesquet-Popescu, Disparity Map Estimation under Convex Constraints using Proximal Algorithms, SIPS, Pages 293-298, Beirut, Lebanon, 4-7 Oct. 2011.",
+        "links": [
+          {
+            "label": "PDF",
+            "href": "https://www-syscom.univ-mlv.fr/~elgheche/images/ELGHECHE_SIPS_2011.pdf"
+          }
+        ]
+      },
+      {
+        "id": "C2",
+        "text": "M. El Gheche, J.-C. Pesquet, C. Chaux, J. Farah et B. Pesquet-Popescu, Methodes Proximales pour l estimation du champ de disparite a partir d une paire d images stereoscopiques en presence de variations d illumination, GRETSI, Bordeaux, France, 5-8 Sep. 2011.",
+        "links": [
+          {
+            "label": "PDF",
+            "href": "https://www.gretsi.fr/data/colloque/pdf/2011_chaux454.pdf"
+          }
+        ]
+      },
+      {
+        "id": "C1",
+        "text": "M. El Gheche, J.-C. Pesquet, J. Farah, M. Kaaniche and B. Pesquet-Popescu, Proximal Splitting Methods for Depth Estimation, ICASSP, Pages 853-856, Prague, Czech Republic, 22-27 May 2011.",
+        "links": [
+          {
+            "label": "DOI",
+            "href": "https://doi.org/10.1109/ICASSP.2011.5946538"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "group": "Workshops",
+    "items": [
+      {
+        "id": "W3",
+        "text": "M. El Gheche and P. Frossard, Multilayer Graph Clustering with Optimized Node Embedding, DSLW workshop, Toronto, Canada, 5-6 Jun. 2021."
+      },
+      {
+        "id": "W2",
+        "text": "G. Ortiz Jimenez, M. El Gheche, E. Simou, H. Petric Maretic, P. Frossard, CDOT: Continuous Domain Adaptation using Optimal Transport, NeurIPS OTML workshop, Vancouver, Canada, 8-14 Dec. 2019.",
+        "links": [
+          {
+            "label": "PDF",
+            "href": "https://arxiv.org/pdf/1909.11448.pdf"
+          }
+        ]
+      },
+      {
+        "id": "W1",
+        "text": "M. El Gheche, J.-F. Aujol, Y. Berthoumieu, C.-A. Deledalle, R. Fablet, Texture Synthesis Guided by a Low-Resolution Image, IVMSP Workshop, Bordeaux, France, 11-12 Jul. 2016."
+      }
+    ]
+  },
+  {
+    "group": "PhD",
+    "items": [
+      {
+        "id": "PhD",
+        "text": "M. El Gheche, Optimization methods for image and signal processing, with applications to computer vision and machine learning, May 2014.",
+        "links": [
+          {
+            "label": "PDF",
+            "href": "https://pastel.hal.science/tel-01124306/document"
+          }
+        ]
+      }
+    ]
+  }
+]

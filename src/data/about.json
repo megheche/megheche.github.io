@@ -1,0 +1,51 @@
+{
+  "name": "Mireille El Gheche",
+  "subtitle": "Lead Research Scientist",
+  "photo": "/assets/photo/mireille.JPG",
+  "scholarId": "yi46_McAAAAJ",
+  "bio": "I am a lead research scientist in AI and robotics based in Zurich. My work focuses on taking reinforcement learning, computer vision, sensing, and control from research ideas to integrated physical AI systems that can be tested, demonstrated, and deployed in real environments.",
+  "research": "My work connects optimization, machine learning, and robotics—from the mathematical foundations to physical AI systems that operate in the real world.",
+  "links": [
+    {
+      "label": "Google Scholar",
+      "href": "https://scholar.google.com/citations?user=yi46_McAAAAJ&hl=fr",
+      "icon": "scholar"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/mireille-el-gheche-a98aa140/",
+      "icon": "brand-linkedin"
+    },
+    {
+      "label": "YouTube",
+      "href": "https://www.youtube.com/@mireilleghe",
+      "icon": "brand-youtube"
+    },
+    {
+      "label": "Email",
+      "href": "mailto:mireille.elgheche@gmail.com",
+      "icon": "mail"
+    }
+  ],
+  "languages": [
+    { "label": "Arabic", "level": "Native", "value": 100 },
+    { "label": "English", "level": "Fluent", "value": 90 },
+    { "label": "French", "level": "Fluent", "value": 90 },
+    { "label": "German", "level": "A2", "value": 30 },
+    { "label": "Italian", "level": "A1", "value": 15 }
+  ],
+  "personalDetails": [
+    {
+      "label": "Focus",
+      "value": "AI & Robotics"
+    },
+    {
+      "label": "Research",
+      "value": "Learning, vision & control"
+    },
+    {
+      "label": "City",
+      "value": "Zurich, Switzerland"
+    }
+  ]
+}

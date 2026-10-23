@@ -1,0 +1,56 @@
+---
+import about from "../data/about.json";
+import publicationGroups from "../data/publications.json";
+import featured from "../data/featured.json";
+import FeaturedPublication from "../components/FeaturedPublication.astro";
+import PublicationList from "../components/PublicationList.astro";
+import Carousel from "../components/Carousel.astro";
+import ContentHeading from "../components/ContentHeading.astro";
+import PageHeader from "../components/PageHeader.astro";
+import TwoColumn from "../components/TwoColumn.astro";
+import Icon from "../components/Icon.astro";
+
+const publications = publicationGroups.flatMap(group => group.items.map(paper => {
+  const years = paper.text.match(/\b(?:19|20)\d{2}\b/g);
+  return { title: paper.text, year: years ? Number(years.at(-1)) : null, venue: group.group, links: paper.links || [] };
+}));
+const profileUrl = `https://scholar.google.com/citations?user=${encodeURIComponent(about.scholarId)}`;
+
+
+interface Props { id: string; }
+const { id } = Astro.props;
+---
+
+<section class="page-section" id={id}>
+  <div class="section-inner">
+    <PageHeader kicker={about.name} title="Research" />
+
+    <TwoColumn>
+      <p slot="left" class="research-intro">{about.research}</p>
+      <div slot="right" class="info-list">
+        {about.personalDetails.map((detail) => <div><span>{detail.label}</span><strong>{detail.value}</strong></div>)}
+      </div>
+    </TwoColumn>
+
+    <p class="scholar-note"><a href={profileUrl} target="_blank" rel="noopener noreferrer">Google Scholar <Icon name="external-link" class="icon-small" /></a></p>
+
+    <ContentHeading title="Featured Publications" eyebrow="Research highlights" />
+    <Carousel label="Featured publications" controls="dots" controlsAlign="center">
+      {featured.map((publication) => (<FeaturedPublication publication={publication} highlightAuthor={about.name}/>))}
+    </Carousel>
+
+    <ContentHeading title="Publications" eyebrow="Research output" />
+    <PublicationList publications={publications} pageSize={8} defaultSort="year-desc" />
+
+  </div>
+</section>
+
+<style>
+  .research-intro { color: var(--muted); font-size: 16px; line-height: 1.8; text-align: justify; }
+  .info-list { --personal-details-value-align: left; border-top: 1px solid var(--line); }
+  .info-list > div { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr); align-items: center; gap: 0px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+  .info-list span { color: var(--muted); }
+  .info-list strong { color: var(--text); font-weight: 500; text-align: var(--personal-details-value-align); white-space: pre-line; }
+  .scholar-note a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; transition: color .2s ease; }
+  .scholar-note { margin-top: 16px; color: var(--muted); }
+</style>

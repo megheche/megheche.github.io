@@ -1,0 +1,50 @@
+---
+import about from "../data/about.json";
+import posts from "../data/blogPosts.json";
+import PageHeader from "../components/PageHeader.astro";
+import VideoEmbed from "../components/VideoEmbed.astro";
+import InlineReport from "../components/InlineReport.astro";
+import FloralTitle from "../components/FloralTitle.astro";
+const { id } = Astro.props;
+---
+<section class="page-section" id={id}>
+  <div class="section-inner">
+    <PageHeader kicker={about.name} title="Blog" />
+    {posts.map(post => <article class="blog-entry" data-post={post.id} hidden>
+      <a class="back-link" href="#home/blog">← All blog posts</a>
+      {post.imageSrc && <figure class="entry-image"><img src={post.imageSrc} alt={post.imageAlt} loading="lazy" /></figure>}
+      <header class="entry-header">
+        <p class="entry-meta">{post.category}{post.date && ` · ${post.date}`}</p>
+        <h3><FloralTitle title={post.title} /></h3>
+        <p class="entry-reading-time">{post.readingTime}</p>
+        {post.slidesHref && <a class="resource-button" href={post.slidesHref} target="_blank" rel="noopener noreferrer">View slides · PDF (no videos)</a>}
+      </header>
+      <div class="entry-copy">{post.content.map(paragraph => <p>{paragraph}</p>)}</div>
+      {post.eventHref && <a class="resource-button" href={post.eventHref} target="_blank" rel="noopener noreferrer">Event details ↗</a>}
+      <div class="entry-resources">
+        {post.journalHref && !post.translationHref && <a class="resource-button" href={post.journalHref}>Read the article in English</a>}
+        {post.translationHref && !post.journalHref && <a class="resource-button" href={post.translationHref} lang="ar" dir="rtl">اقرأ المقال بالعربية · العربية</a>}
+        {post.fullReportHref && <a class="resource-button" href={post.fullReportHref} target="_blank" rel="noopener noreferrer">Full report ↗</a>}
+      </div>
+      {post.journalHref && post.translationHref && <InlineReport id={post.id} englishHref={post.journalHref} arabicHref={post.translationHref} />}
+      {post.videoId && <VideoEmbed id={post.videoId} title={post.title} label={post.videoLabel || `Full talk · ${post.readingTime}`} href={post.href} />}
+      {post.videos?.map(video => <VideoEmbed id={video.id} title={`${post.title} — ${video.label}`} label={video.label} href={video.href} portrait={video.orientation === 'portrait'} />)}
+    </article>)}
+  </div>
+</section>
+<style>
+.blog-entry { max-width: 800px; margin-inline: auto; padding-bottom: 20px; }
+.back-link { display: inline-block; color: var(--accent); margin-bottom: 30px; padding-block: 8px; font-size: 13px; }
+.entry-header { padding-bottom: 24px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+.entry-meta { color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; line-height: 1.8; }
+.entry-header h3 { margin-top: 16px; font-size: clamp(26px, 3vw, 36px); line-height: 1.3; font-weight: 600; letter-spacing: -.025em; }
+.entry-reading-time { margin-top: 12px; font-size: 12px; color: var(--muted); }
+.entry-copy p { margin-bottom: 16px; color: var(--muted); font-size: 16px; line-height: 1.9; }
+.entry-image { margin: 26px 0; }
+.entry-image img { width: 100%; border: 1px solid var(--line); border-radius: 10px; }
+[data-post="robotics-documentary"] .entry-image { aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; }
+[data-post="robotics-documentary"] .entry-image img { width: 100%; height: 100%; object-fit: cover; border: 0; border-radius: 0; transform: scale(1.32); transform-origin: 50% 40%; }
+.entry-resources { display: flex; gap: 10px; flex-wrap: wrap; }
+.resource-button { display: inline-flex; align-items: center; margin-top: 16px; padding: 9px 14px; border: 1px solid var(--line); border-radius: 24px; color: var(--accent); font-size: 12px; line-height: 1.6; }
+.resource-button:hover { background: var(--accent-soft); border-color: var(--accent); }
+</style>

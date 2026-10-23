@@ -1,0 +1,126 @@
+---
+import "../global.css";
+import { Image } from "astro:assets";
+import logo from "../assets/mg-logo-blue.png";
+
+import Icon from "./Icon.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import about from "../data/about.json";
+interface Props {
+  navigation: { id: string; label: string; icon: string }[];
+}
+const { navigation } = Astro.props;
+const description = "Mireille El Gheche — AI and robotics researcher. Publications, teaching, talks, and writing.";
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{about.name}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      try {
+        const saved = localStorage.getItem('theme');
+        document.documentElement.dataset.theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch { /* Use the default light theme if storage is unavailable. */ }
+    </script>
+    <link rel="preload" href="/assets/fonts/oregano-regular.ttf" as="font" type="font/ttf" crossorigin />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="header-name" href="#home" data-section="home" aria-label="Mireille El Gheche — Home"><Image src={logo} alt="" width={52} height={52} widths={[52, 104]} sizes="52px" format="webp" loading="eager" /></a>
+        <nav class="menu-rail" aria-label="Primary navigation">
+          {navigation.map(({ id, label, icon }) => (
+            <a class:list={["rail-link", { "is-active": id === "home" }]} href={`#${id}`} data-section={id} aria-current={id === "home" ? "page" : undefined}>
+              <Icon name={icon} />
+              <span>{label}</span>
+            </a>
+          ))}
+        </nav>
+        <ThemeToggle variant="header" />
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNavPanel">
+          <span></span><span></span><span></span>
+        </button>
+      </header>
+
+      <aside class="mobile-nav-panel" id="mobileNavPanel" aria-label="Mobile navigation">
+        <span class="mobile-nav-kicker">Navigate</span>
+        <nav class="mobile-nav-links" aria-label="Mobile navigation links">
+          {navigation.map(({ id, label, icon }) => (
+            <a class:list={["mobile-nav-link", { "is-active": id === "home" }]} href={`#${id}`} data-section={id} aria-current={id === "home" ? "page" : undefined}>
+              <Icon name={icon} />
+              <span>{label}</span>
+            </a>
+          ))}
+        </nav>
+        <div class="mobile-nav-footer">
+          <ThemeToggle variant="menu" />
+        </div>
+      </aside>
+
+      <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+      <main class="content-shell" id="main-content" tabindex="-1">
+        <div class="sections" id="sections">
+          <slot />
+        </div>
+      </main>
+    </div>
+
+    <script>
+      import "../scripts/site.js";
+    </script>
+  </body>
+</html>
+
+<style>
+  .site-shell { --header-height: 68px; min-height: 100dvh; }
+  .site-header { position: fixed; inset: 0 0 auto; z-index: 50; height: var(--header-height); display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 28px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .header-name { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 52px; height: 52px; }
+  .header-name :global(img) { display: block; width: 52px; height: 52px; object-fit: contain; }
+  .menu-rail { display: flex; align-self: stretch; align-items: stretch; justify-content: center; gap: 2px; }
+  .menu-rail :global(.rail-link) { position: relative; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 10px; color: var(--muted); transition: color .2s ease, background .2s ease; }
+  .menu-rail :global(.rail-link:hover), .menu-rail :global(.rail-link.is-active) { color: var(--accent); background: var(--accent-soft); }
+  .menu-rail :global(.rail-link.is-active::before) { content: ""; position: absolute; inset: auto 0 0; height: 3px; background: var(--accent); }
+  .menu-rail :global(.rail-link .icon) { width: 19px; height: 19px; }
+  .menu-rail :global(.rail-link span) { font-size: 12px; letter-spacing: .025em; }
+  .mobile-nav-panel { display: none; }
+  .content-shell { position: relative; height: calc(100dvh - var(--header-height)); margin-top: var(--header-height); overflow: clip; }
+  .sections { position: relative; height: 100%; overflow: clip; }
+  .menu-toggle, .sidebar-scrim { display: none; }
+
+  @media (max-width: 1200px) {
+    .site-header { gap: 16px; padding-inline: 20px; }
+    .menu-rail :global(.rail-link) { padding-inline: 8px; }
+  }
+  @media (max-width: 1024px) {
+    .site-shell { --header-height: 72px; }
+    .site-header { padding-inline: 25px; }
+    .menu-rail { display: none; }
+    .mobile-nav-panel { position: fixed; inset: var(--header-height) 0 auto; z-index: 40; display: flex; flex-direction: column; max-height: calc(100dvh - var(--header-height)); padding: 24px 25px; overflow-y: auto; background: var(--panel); border-bottom: 1px solid var(--line); visibility: hidden; transform: translateY(-110%); transition: transform .25s ease, visibility .25s ease; }
+    .mobile-nav-panel.is-open { visibility: visible; transform: translateY(0); }
+    .mobile-nav-kicker { display: block; margin-bottom: 18px; color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .mobile-nav-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .mobile-nav-kicker, .mobile-nav-links, .mobile-nav-footer { flex-shrink: 0; }
+    .mobile-nav-links :global(.mobile-nav-link) { display: flex; align-items: center; gap: 12px; padding: 14px; color: var(--muted); background: var(--bg); border-radius: 7px; transition: color .2s ease, background .2s ease; }
+    .mobile-nav-links :global(.mobile-nav-link:hover), .mobile-nav-links :global(.mobile-nav-link.is-active) { color: var(--accent); background: var(--accent-soft); }
+    .mobile-nav-links :global(.mobile-nav-link.is-active) { box-shadow: inset 0 -2px 0 var(--accent); }
+    .mobile-nav-links :global(.mobile-nav-link .icon) { width: 19px; height: 19px; color: var(--accent); flex-shrink: 0; }
+    .mobile-nav-links :global(.mobile-nav-link span) { font-size: 14px; }
+    .menu-toggle { display: flex; flex-shrink: 0; width: 44px; height: 44px; padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; background: var(--accent); border: 0; border-radius: 50%; cursor: pointer; }
+    .menu-toggle span { width: 19px; height: 2px; border-radius: 2px; background: var(--bg); transition: transform .2s ease, opacity .2s ease; }
+    .menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .sidebar-scrim { position: fixed; inset: var(--header-height) 0 0; z-index: 20; }
+    .sidebar-scrim.is-visible { display: block; background: rgb(0 0 0 / .3); }
+  }
+  @media (max-width: 480px) {
+    .mobile-nav-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>

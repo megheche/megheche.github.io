@@ -1,0 +1,27 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  emphasis?: string;
+  compact?: boolean;
+  withActions?: boolean;
+}
+
+const { eyebrow, title, emphasis, compact = false, withActions = false } = Astro.props;
+---
+
+<div class:list={["content-heading", compact && "compact", withActions && "with-actions"]}>
+  {eyebrow && <span>{eyebrow}</span>}
+  <h3>{title}{emphasis && <em> {emphasis}</em>}</h3>
+  <slot name="actions" />
+</div>
+
+<style>
+  .content-heading { margin: 48px 0 22px; }
+  .content-heading:first-child { margin-top: 0; }
+  .content-heading > span { display: block; margin-bottom: 10px; color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
+  .content-heading h3 { font-size: 28px; font-weight: 500; letter-spacing: -.03em; }
+  .content-heading em { color: var(--accent); font-style: normal; }
+  .content-heading.compact { margin-top: 0; }
+  .content-heading.with-actions { position: relative; }
+</style>

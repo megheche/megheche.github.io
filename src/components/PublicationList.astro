@@ -1,0 +1,110 @@
+---
+import { comparePublications } from "../scripts/publication-sort.js";
+
+interface Publication {
+  title: string;
+  authors?: string;
+  venue?: string;
+  year?: number | null;
+  citations?: number;
+  links?: { label: string; href: string }[];
+  url?: string;
+}
+
+interface Props {
+  publications: Publication[];
+  /** Number of results per page after JavaScript initializes. Defaults to 10. */
+  pageSize?: number;
+  /** Initial ordering for both static HTML and the interactive list. */
+  defaultSort?: "year-desc" | "year-asc" | "citations-desc" | "citations-asc";
+}
+
+const { publications, pageSize = 5, defaultSort = "year-desc" } = Astro.props;
+if (!Number.isInteger(pageSize) || pageSize < 1) throw new Error("PublicationList pageSize must be a positive integer.");
+const ordered = [...publications].sort((a, b) => comparePublications(a, b, defaultSort));
+---
+
+<div class="publication-browser" data-publication-list data-page-size={pageSize} data-default-sort={defaultSort}>
+  {ordered.length > 0 ? (
+    <>
+      <div class="publication-browser__toolbar" data-publication-controls hidden>
+        <label class="publication-browser__search">
+          <span class="sr-only">Search publications</span>
+          <input type="search" data-publication-search placeholder="Search by title, author, venue, or year" />
+        </label>
+        <label>
+          <span>Sort by</span>
+          <select data-publication-sort>
+            <option value="year-desc" selected={defaultSort === "year-desc"}>Newest first</option>
+            <option value="year-asc" selected={defaultSort === "year-asc"}>Oldest first</option>
+          </select>
+        </label>
+      </div>
+      <p class="publication-browser__results" data-publication-results role="status" aria-live="polite" aria-atomic="true" hidden></p>
+      <p class="publication-browser__empty" data-publication-no-results hidden>No publications match your search.</p>
+      <ul class="publication-list">
+        {ordered.map((publication) => (
+          <li data-title={publication.title} data-authors={publication.authors ?? ""} data-venue={publication.venue ?? ""} data-year={publication.year ?? ""} data-citations={publication.citations}>
+            {publication.year != null && <span class="publication-list__year">{publication.year}</span>}
+            <div class="publication-list__content">
+              <p class="publication-citation">{publication.title}</p>
+              {publication.authors && <p class="publication-list__authors">{publication.authors}</p>}
+              {publication.venue && <p class="publication-list__venue">{publication.venue}</p>}
+              <div class="publication-links">{publication.links?.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}</div>
+            </div>
+
+          </li>
+        ))}
+      </ul>
+      <nav class="publication-browser__pagination" data-publication-pagination aria-label="Publication pages" hidden>
+        <button type="button" data-publication-previous aria-disabled="true">Previous</button>
+        <span data-publication-page></span>
+        <button type="button" data-publication-next>Next</button>
+      </nav>
+    </>
+  ) : <p class="publication-browser__unavailable">No publications available.</p>}
+</div>
+
+<script>
+  import "../scripts/publication-list.js";
+</script>
+
+<style>
+  .publication-browser { min-width: 0; }
+  .publication-browser [hidden] { display: none; }
+  .publication-browser__toolbar { display: flex; align-items: end; flex-wrap: wrap; gap: 14px; margin-bottom: 16px; }
+  .publication-browser label { display: grid; gap: 8px; min-width: 0; color: var(--muted); font-size: 13px; }
+  .publication-browser__search { flex: 1 1 260px; }
+  .publication-browser input, .publication-browser select { width: 100%; min-width: 0; min-height: 44px; padding: 10px 12px; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+  .publication-browser button { min-height: 44px; padding: 10px 14px; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
+  .publication-browser button:hover:not([aria-disabled="true"]) { color: var(--accent); border-color: var(--accent); }
+  .publication-browser button[aria-disabled="true"] { color: var(--muted); cursor: default; }
+  .publication-browser :is(button, input, select):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .publication-browser__results, .publication-browser__empty { color: var(--muted); font-size: 14px; line-height: 1.6; }
+  .publication-browser__unavailable { color: var(--muted); font-size: 16px; line-height: 1.8; text-align: justify; }
+  .publication-list { list-style: none; margin-top: 0px; padding: 0; }
+  .publication-list li { display: grid; grid-template-columns: 60px minmax(0, 1fr); align-items: start; gap: 24px; padding: 10px 12px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+  .publication-list__year { grid-column: 1; padding: 5px 8px; color: var(--accent); background: var(--accent-soft); border-radius: 5px; text-align: center; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .publication-list__content { grid-column: 2; min-width: 0; }
+  .publication-citation { font-size: 16px; line-height: 1.8; }
+  .publication-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .publication-links a { padding: 5px 10px; border: 1px solid var(--line); border-radius: 5px; color: var(--accent); font-size: 12px; }
+  .publication-list h3 { margin-bottom: 5px; font-size: 19px; font-weight: 500; line-height: 1.45; text-wrap: pretty; }
+  .publication-list a { color: var(--text); }
+  .publication-list a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
+  .publication-list a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .publication-list__authors { color: var(--muted); font-size: 15px; line-height: 1.65; }
+  .publication-list__venue { margin-top: 5px; color: var(--muted); font-size: 13px; font-style: italic; line-height: 1.6; }
+  .publication-list__citations { grid-column: 3; display: grid; gap: 3px; text-align: right; font-variant-numeric: tabular-nums; }
+  .publication-list__citations strong { color: var(--text); font-size: 22px; font-weight: 500; line-height: 1.2; }
+  .publication-list__citations span { color: var(--muted); font-size: 12px; }
+  @media (max-width: 600px) {
+    .publication-list li { grid-template-columns: 1fr auto; gap: 14px; padding: 22px 0; }
+    .publication-list__year { grid-row: 1; justify-self: start; }
+    .publication-list__citations { grid-column: 2; grid-row: 1; display: flex; align-items: baseline; gap: 5px; }
+    .publication-list__citations strong { font-size: 16px; }
+    .publication-list__content { grid-column: 1 / -1; grid-row: 2; }
+  }
+  .publication-browser__pagination { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
+  .publication-browser__pagination span { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+</style>

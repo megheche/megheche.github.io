@@ -1,0 +1,24 @@
+---
+import posts from "../data/blogPosts.json";
+import PortfolioGrid from "./PortfolioGrid.astro";
+import PageHeader from "./PageHeader.astro";
+const items = posts.map(post => ({
+  title: post.title,
+  image: post.imageSrc,
+  alt: post.imageAlt,
+  label: [post.category, post.date].filter(Boolean).join(' · '),
+  category: post.videoId ? 'talk' : post.videos ? 'interview' : post.journalHref ? 'article' : 'note',
+  excerpt: post.excerpt || post.content[0],
+  href: `#blog/${post.id}`,
+}));
+const filters = [{ id: 'all', label: 'All' }, { id: 'talk', label: 'Talks' }, { id: 'interview', label: 'Interviews' }, { id: 'article', label: 'Articles' }, { id: 'note', label: 'Notes' }];
+---
+<section class="home-blog" data-blog-index aria-labelledby="home-blog-title">
+  <PageHeader id="home-blog-title" title="Blog" />
+  <p class="blog-intro">Talks, interviews, research updates, and a few personal notes.</p>
+  <PortfolioGrid items={items} filters={filters} />
+</section>
+<style>
+  .home-blog { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line); }
+  .blog-intro { margin-bottom: 42px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+</style>

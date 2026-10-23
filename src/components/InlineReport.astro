@@ -1,0 +1,92 @@
+---
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+
+interface Props {
+  id: string;
+  englishHref: string;
+  arabicHref: string;
+}
+
+const { id, englishHref, arabicHref } = Astro.props;
+const englishPage = readFileSync(resolve("public", englishHref.replace(/^\//, "")), "utf8");
+const arabicPage = readFileSync(resolve("public", arabicHref.replace(/^\//, "")), "utf8");
+const englishMatch = englishPage.match(/<div class="pages"[^>]*>([\s\S]*?)<\/div>/);
+const arabicMatch = arabicPage.match(/<div class="content">([\s\S]*?)<\/div>/);
+if (!englishMatch || !arabicMatch) throw new Error(`Missing bilingual report content for ${id}`);
+
+// Reuse the existing reports without their separate-page navigation or PDF links.
+const englishContent = englishMatch[1].replace(/<\/?a\b[^>]*>/g, "");
+const arabicContent = arabicMatch[1].replace(/<(\/?)(h2)\b/g, "<$1h4");
+---
+
+<section class="inline-report" data-inline-report aria-label="Interview report">
+  <div class="report-toolbar">
+    <div class="report-tabs" role="tablist" aria-label="Report language">
+      <button id={`${id}-en-tab`} type="button" role="tab" aria-selected="true" aria-controls={`${id}-en-panel`} data-report-language="en" lang="en">English</button>
+      <button id={`${id}-ar-tab`} type="button" role="tab" aria-selected="false" aria-controls={`${id}-ar-panel`} tabindex="-1" data-report-language="ar" lang="ar" dir="rtl">العربية</button>
+    </div>
+  </div>
+  <div id={`${id}-en-panel`} class="report-panel" role="tabpanel" aria-labelledby={`${id}-en-tab`} data-report-panel="en" lang="en" dir="ltr" tabindex="0">
+    <h4 class="report-title">The Free Spirit</h4>
+    <p class="report-intro">An interview with Mireille El Gheche about her journey and five years teaching a robot to play table tennis.</p>
+    <div class="report-pages" set:html={englishContent} />
+  </div>
+  <div id={`${id}-ar-panel`} class="report-panel report-arabic" role="tabpanel" aria-labelledby={`${id}-ar-tab`} data-report-panel="ar" lang="ar" dir="rtl" tabindex="0" hidden>
+    <div class="report-copy" set:html={arabicContent} />
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-inline-report]').forEach(root => {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-report-language]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-report-panel]')];
+
+    function selectTab(tab: HTMLButtonElement) {
+      const section = root.closest<HTMLElement>('.page-section');
+      const readerTop = section ? root.getBoundingClientRect().top - section.getBoundingClientRect().top + section.scrollTop : 0;
+      tabs.forEach(button => {
+        const selected = button === tab;
+        button.setAttribute('aria-selected', String(selected));
+        button.tabIndex = selected ? 0 : -1;
+      });
+      panels.forEach(panel => { panel.hidden = panel.dataset.reportPanel !== tab.dataset.reportLanguage; });
+      tab.focus({ preventScroll: true });
+      if (section) section.scrollTop = Math.max(0, readerTop - 12);
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectTab(tab));
+      tab.addEventListener('keydown', event => {
+        const next = {
+          ArrowRight: (index + 1) % tabs.length,
+          ArrowLeft: (index + tabs.length - 1) % tabs.length,
+          Home: 0,
+          End: tabs.length - 1,
+        }[event.key];
+        if (next === undefined) return;
+        event.preventDefault();
+        selectTab(tabs[next]);
+      });
+    });
+  });
+</script>
+
+<style>
+  .inline-report { margin-top: 32px; }
+  .report-toolbar { position: sticky; top: 0; z-index: 3; padding: 12px 0; margin-bottom: 24px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .report-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .report-tabs button { min-height: 44px; padding: 9px 20px; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 24px; cursor: pointer; font-size: 14px; }
+  .report-tabs button:hover, .report-tabs button[aria-selected="true"] { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
+  .report-title { margin-bottom: 12px; font-size: 26px; font-weight: 600; }
+  .report-intro { color: var(--muted); font-size: 16px; line-height: 1.8; margin-bottom: 24px; }
+  .report-pages { display: grid; gap: 28px; }
+  .report-pages :global(figure) { margin: 0; }
+  .report-pages :global(img) { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; }
+  .report-pages :global(figcaption) { margin-top: 10px; color: var(--muted); text-align: center; font-size: 12px; line-height: 1.6; }
+  .report-arabic { text-align: start; }
+  .report-copy :global(p) { margin: 0 0 20px; color: var(--muted); font-size: 17px; line-height: 2; overflow-wrap: anywhere; }
+  .report-copy :global(h4) { margin: 32px 0 16px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--accent); font-size: 21px; }
+  .report-copy :global(.article-title) { color: var(--text); font-size: 25px; font-weight: 600; }
+  .report-copy :global(.article-intro) { color: var(--text); font-weight: 500; }
+</style>
