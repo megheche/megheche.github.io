@@ -7,9 +7,9 @@
   "research": "My work connects optimization, machine learning, and robotics—from the mathematical foundations to physical AI systems that operate in the real world.",
   "links": [
     {
-      "label": "Google Scholar",
-      "href": "https://scholar.google.com/citations?user=yi46_McAAAAJ&hl=fr",
-      "icon": "scholar"
+      "label": "Email",
+      "href": "mailto:mireille.elgheche@gmail.com",
+      "icon": "mail"
     },
     {
       "label": "LinkedIn",
@@ -17,14 +17,14 @@
       "icon": "brand-linkedin"
     },
     {
+      "label": "Google Scholar",
+      "href": "https://scholar.google.com/citations?user=yi46_McAAAAJ&hl=fr",
+      "icon": "scholar"
+    },
+    {
       "label": "YouTube",
       "href": "https://www.youtube.com/@mireilleghe",
       "icon": "brand-youtube"
-    },
-    {
-      "label": "Email",
-      "href": "mailto:mireille.elgheche@gmail.com",
-      "icon": "mail"
     }
   ],
   "languages": [
