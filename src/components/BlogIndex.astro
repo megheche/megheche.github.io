@@ -7,7 +7,7 @@ const items = posts.map(post => ({
   image: post.imageSrc,
   alt: post.imageAlt,
   label: [post.category, post.date].filter(Boolean).join(' · '),
-  category: post.videoId ? 'talk' : post.videos ? 'interview' : post.journalHref ? 'article' : 'note',
+  category: post.category === 'Interview' || post.videos ? 'interview' : post.videoId ? 'talk' : post.journalHref ? 'article' : 'note',
   excerpt: post.excerpt || post.content[0],
   href: `#blog/${post.id}`,
 }));

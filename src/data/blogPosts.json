@@ -13,6 +13,41 @@
     ]
   },
   {
+    "id": "why-zurich-is-built-for-robotics",
+    "category": "AI & Robotics",
+    "date": "November 4, 2026",
+    "readingTime": "2 min read",
+    "title": "Why Zurich is built for robotics",
+    "excerpt": "A panel with Women in Robotics Switzerland on Zurich’s robotics community: what brings us here, and what would make us stay?",
+    "imageSrc": "/articles/zurich-robotics-panel.png",
+    "imageAlt": "Why Zurich is built for robotics panel poster featuring moderator Kateryna Portmann and panelists Yulia Sandamirskaya, Mireille El Gheche, Nicole Zingg, Andie Zhang, and Friederike Hoffmann.",
+    "content": [
+      "I’m part of the panel “Why Zurich is built for robotics,” bringing together perspectives from research, industry, startups, and investment to explore Zurich’s robotics community.",
+      "Moderated by Kateryna Portmann, Senior PM at ANYbotics and a member of Women in Robotics, the panel features Prof. Dr. Yulia Sandamirskaya (Human-centred robotics, ZHAW), myself, Mireille El Gheche (Lead Research Scientist, SoftBank Robotics), Nicole Zingg (Physical AI, AWS Startups), Andie Zhang (Innovation & Technology, ABB Robotics), and Dr. Friederike Hoffmann (Partner, b2venture).",
+      "Alongside the panel, Women in Robotics Switzerland is inviting women living and working in the region to share their experiences. Zurich is one of Europe’s strongest robotics hubs, but the experience of building a life and career here is different for everyone—from those building robots and writing code to those running labs and leading teams.",
+      "What attracts you to Zurich? The research, the companies, the quality of life, the people, or something else entirely?",
+      "What needs to improve? Career growth, childcare, visibility, funding for female founders, networks, workplace culture? Let’s discuss these questions together and make Zurich an even better place for roboticists."
+    ]
+  },
+  {
+    "id": "aljadeed-robotics-interview",
+    "category": "Interview",
+    "date": "October 30, 2026",
+    "readingTime": "10 min watch",
+    "title": "Talking table tennis and robotics on Al Jadeed",
+    "excerpt": "An interview on Lebanon’s Al Jadeed channel about my experience with the robot table tennis project and robotics more broadly.",
+    "href": "https://youtu.be/FW5e-NIchPU?si=URdGxGRF8_GgP_Qh",
+    "videoId": "FW5e-NIchPU",
+    "videoLabel": "Full interview · 10 min watch",
+    "action": "Watch video",
+    "imageSrc": "/articles/aljadeed-interview-broadcast.png",
+    "imageAlt": "Mireille El Gheche appearing on screen during her Al Jadeed interview, with the host seated in the studio and the robot table tennis project shown in the background.",
+    "content": [
+      "On October 30, 2026, I was interviewed on Al Jadeed, a Lebanese television channel, to talk about my experience with the robot table tennis project and robotics more broadly.",
+      "Watch the full interview below or open it on YouTube."
+    ]
+  },
+  {
     "id": "epfl-ai-center-sony-ai-impact-talk",
     "category": "AI & Robotics",
     "date": "October 15, 2026",

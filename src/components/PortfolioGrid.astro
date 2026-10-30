@@ -78,6 +78,8 @@ for (const item of items) {
   .portfolio-image { position: relative; aspect-ratio: 1 / .82; overflow: hidden; background: var(--panel); }
   .portfolio-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
   .portfolio-card:hover .portfolio-image img { transform: scale(1.06); }
+  .portfolio-card[href="#blog/why-zurich-is-built-for-robotics"] .portfolio-image { background: #0d1b2a; }
+  .portfolio-card[href="#blog/why-zurich-is-built-for-robotics"] .portfolio-image img { object-fit: cover; object-position: 50% 48%; transform: scale(1.12); }
   .portfolio-card[href="#blog/robotics-documentary"] .portfolio-image img { transform: scale(1.32); transform-origin: 50% 40%; }
   .portfolio-card[href="#blog/robotics-documentary"]:hover .portfolio-image img { transform: scale(1.38); }
   .portfolio-icon { position: absolute; right: 12px; bottom: 12px; z-index: 1; display: grid; place-items: center; width: 30px; height: 30px; color: var(--text); background: var(--bg); border-radius: 50%; font-size: 16px; }
