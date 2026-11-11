@@ -1,0 +1,107 @@
+---
+import about from "../data/about.json";
+import posts from "../data/blogPosts.json";
+import PageHeader from "../components/PageHeader.astro";
+import VideoEmbed from "../components/VideoEmbed.astro";
+import InlineReport from "../components/InlineReport.astro";
+import FloralTitle from "../components/FloralTitle.astro";
+import PanelGallery from "../components/PanelGallery.astro";
+import { Content as ZurichPanelEnglish } from "../content/zurich-panel.en.md";
+import { Content as ZurichPanelArabic } from "../content/zurich-panel.ar.md";
+import { Content as Systain3rBestMentor } from "../content/systain3r-best-mentor.md";
+import { Content as LebaneseUniversityGraduation } from "../content/lebanese-university-graduation.md";
+import { Content as PhdDefense } from "../content/phd-defense.md";
+import { Content as TeensInAiIwd2024 } from "../content/teens-in-ai-iwd-2024.md";
+const { id } = Astro.props;
+---
+<section class="page-section" id={id}>
+  <div class="section-inner">
+    <PageHeader kicker={about.name} title="Blog" />
+    {posts.map(post => <article class="blog-entry" data-post={post.id} hidden>
+      <a class="back-link" href="#home/blog">← All blog posts</a>
+      {post.imageSrc && <figure class="entry-image"><img src={post.imageSrc} alt={post.imageAlt} loading="lazy" /></figure>}
+      <header class="entry-header">
+        <div class="entry-header-top">
+          <p class="entry-meta">{[post.category, post.readingTime === 'Coming soon' && 'Coming soon', post.date].filter(Boolean).join(' · ')}</p>
+          {(post.slidesHref || post.thesisHref) && <div class="entry-header-resources">
+            {post.slidesHref && <a class="resource-button" href={post.slidesHref} target="_blank" rel="noopener noreferrer">View slides · PDF (no videos)</a>}
+            {post.thesisHref && <a class="resource-button" href={post.thesisHref} target="_blank" rel="noopener noreferrer">Read my PhD thesis · PDF ↗</a>}
+          </div>}
+        </div>
+        <h3><FloralTitle title={post.title} /></h3>
+        {post.readingTime !== 'Coming soon' && <p class="entry-reading-time">{post.readingTime}</p>}
+      </header>
+      <div class="entry-copy">
+        {post.id === 'supelec-masters-graduation' && <img class="entry-school-logo" src="/articles/supelec-graduation/supelec-logo.svg" alt="Supélec" width="120" loading="lazy" />}
+        {post.content.map(paragraph => <p>{paragraph}</p>)}
+        {post.id === 'systain3r-best-mentor' && <Systain3rBestMentor />}
+        {post.id === 'lebanese-university-graduation' && <LebaneseUniversityGraduation />}
+        {post.id === 'phd-defense' && <PhdDefense />}
+        {post.id === 'teens-in-ai-iwd-2024' && <TeensInAiIwd2024 />}
+      </div>
+      {post.id === 'why-zurich-is-built-for-robotics' && <div class="panel-story">
+        <PanelGallery />
+        <InlineReport id={post.id} label="Zurich robotics panel article">
+          <ZurichPanelEnglish slot="english" />
+          <ZurichPanelArabic slot="arabic" />
+        </InlineReport>
+      </div>}
+      {post.eventHref && <a class="resource-button" href={post.eventHref} target="_blank" rel="noopener noreferrer">Event details ↗</a>}
+      {post.photos && <div class="entry-photos" aria-label="Photos from the event">
+        {post.photos.map(photo => <figure>
+          <a href={photo.src} target="_blank" rel="noopener noreferrer" aria-label={`${photo.caption} Open larger photo`}>
+            <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+          </a>
+          <figcaption>{photo.caption}</figcaption>
+        </figure>)}
+      </div>}
+      <div class="entry-resources">
+        {post.journalHref && !post.translationHref && <a class="resource-button" href={post.journalHref}>Read the article in English</a>}
+        {post.translationHref && !post.journalHref && <a class="resource-button" href={post.translationHref} lang="ar" dir="rtl">اقرأ المقال بالعربية · العربية</a>}
+        {post.fullReportHref && <a class="resource-button" href={post.fullReportHref} target="_blank" rel="noopener noreferrer">Full report ↗</a>}
+      </div>
+      {post.journalHref && post.translationHref && <InlineReport id={post.id} englishHref={post.journalHref} arabicHref={post.translationHref} />}
+      {post.videoId && <VideoEmbed id={post.videoId} title={post.title} label={post.videoLabel || `Full talk · ${post.readingTime}`} href={post.href} />}
+      {post.videos?.map(video => <VideoEmbed id={video.id} title={`${post.title} — ${video.label}`} label={video.label} href={video.href} portrait={video.orientation === 'portrait'} />)}
+    </article>)}
+  </div>
+</section>
+<style>
+.blog-entry { max-width: 800px; margin-inline: auto; padding-bottom: 20px; }
+[data-post="why-zurich-is-built-for-robotics"] { max-width: 1050px; }
+[data-post="why-zurich-is-built-for-robotics"] > .entry-image,
+[data-post="why-zurich-is-built-for-robotics"] > .entry-header { max-width: 800px; margin-inline: auto; }
+.panel-story { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); align-items: start; gap: clamp(28px, 4vw, 56px); }
+.panel-story :global(.inline-report) { min-width: 0; margin-top: 0; }
+@media (max-width: 850px) {
+  .panel-story { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .panel-story :global(.panel-gallery) { order: 2; }
+}
+.back-link { display: inline-block; color: var(--accent); margin-bottom: 30px; padding-block: 8px; font-size: 13px; }
+.entry-header { padding-bottom: 24px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+.entry-header-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.entry-header-resources { display: flex; flex-wrap: wrap; gap: 10px; margin-left: auto; }
+.entry-header-resources .resource-button { margin-top: 0; }
+.entry-meta { color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; line-height: 1.8; }
+.entry-header h3 { margin-top: 16px; font-size: clamp(26px, 3vw, 36px); line-height: 1.3; font-weight: 600; letter-spacing: -.025em; }
+.entry-reading-time { margin-top: 12px; font-size: 12px; color: var(--muted); }
+.entry-copy :global(p) { margin-bottom: 16px; color: var(--muted); font-size: 16px; line-height: 1.9; }
+.entry-copy :global(a) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.entry-photos { display: grid; gap: 28px; margin-top: 32px; }
+.entry-photos figure { margin: 0; }
+.entry-photos img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; }
+.entry-photos figcaption { margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.entry-image { margin: 26px 0; }
+.entry-image img { width: 100%; border: 1px solid var(--line); border-radius: 10px; }
+[data-post="phd-defense"] .entry-image { position: relative; aspect-ratio: 1266 / 1168; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; }
+[data-post="phd-defense"] .entry-image img { position: absolute; width: 144%; max-width: none; height: auto; aspect-ratio: 4 / 3; left: -22%; top: -2%; border: 0; border-radius: 0; }
+[data-post="supelec-masters-graduation"] .entry-image { max-width: 440px; margin-inline: auto; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 10px; }
+[data-post="supelec-masters-graduation"] .entry-image img { width: 250%; max-width: none; height: auto; margin-left: -75%; margin-top: -16%; border: 0; border-radius: 0; }
+.entry-school-logo { float: right; width: 120px; height: auto; margin: 0 0 16px 24px; padding: 10px; background: #f7f7f7; border-radius: 8px; }
+[data-post="supelec-masters-graduation"] .entry-copy { display: flow-root; }
+[data-post="robotics-documentary"] .entry-image { aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; }
+[data-post="robotics-documentary"] .entry-image img { width: 100%; height: 100%; object-fit: cover; border: 0; border-radius: 0; transform: scale(1.32); transform-origin: 50% 40%; }
+.entry-resources { display: flex; gap: 10px; flex-wrap: wrap; }
+.resource-button { display: inline-flex; align-items: center; margin-top: 16px; padding: 9px 14px; border: 1px solid var(--line); border-radius: 24px; color: var(--accent); font-size: 12px; line-height: 1.6; }
+.resource-button:hover { background: var(--accent-soft); border-color: var(--accent); }
+</style>

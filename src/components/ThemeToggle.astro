@@ -1,0 +1,36 @@
+---
+import Icon from "./Icon.astro";
+const { variant = "floating" } = Astro.props;
+---
+<button type="button" class:list={["theme-toggle", `theme-toggle--${variant}`]} data-theme-toggle aria-label="Switch color theme">
+  <span class="light-icon"><Icon name="moon" /></span><span class="dark-icon"><Icon name="sun" /></span>
+  <span class="theme-label">Theme</span>
+</button>
+<script>
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')];
+  function updateTheme() {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    buttons.forEach(button => {
+      button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      button.querySelector('.theme-label')!.textContent = dark ? 'Light mode' : 'Dark mode';
+    });
+  }
+  buttons.forEach(button => button.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem('theme', theme); } catch { /* Theme works without persistence. */ }
+    updateTheme();
+  }));
+  updateTheme();
+</script>
+<style>
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 10px 14px; color: var(--accent); background: var(--panel); border: 1px solid var(--line); border-radius: 24px; cursor: pointer; }
+.theme-toggle--header { flex-shrink: 0; }
+.theme-toggle--menu { width: 100%; margin-top: 28px; }
+.theme-toggle:hover { border-color: var(--accent); background: var(--accent-soft); }
+.theme-label { font-size: 12px; }
+.dark-icon { display: none; }
+:global([data-theme="dark"]) .dark-icon { display: inline-flex; }
+:global([data-theme="dark"]) .light-icon { display: none; }
+@media (max-width: 1024px) { .theme-toggle--header { display: none; } }
+</style>

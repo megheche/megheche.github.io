@@ -1,0 +1,22 @@
+---
+import SiteLayout from "../components/SiteLayout.astro";
+import Home from "../sections/Home.astro";
+import Research from "../sections/Research.astro";
+import Courses from "../sections/Courses.astro";
+import Blog from "../sections/Blog.astro";
+import Resume from "../sections/Resume.astro";
+import Contact from "../sections/Contact.astro";
+
+const sections = [
+  { id: "home",     label: "Home",     icon: "home",      component: Home },
+  { id: "research", label: "Research", icon: "book-2",    component: Research },
+  { id: "courses",  label: "Teaching", icon: "school",    component: Courses },
+  { id: "about",    label: "About",    icon: "user",      component: Resume },
+  { id: "contact",  label: "Contact",  icon: "mail",      component: Contact },
+];
+---
+
+<SiteLayout navigation={sections}>
+  {sections.map(({ component: Section, id }) => <Section id={id} />)}
+  <Blog id="blog" />
+</SiteLayout>
