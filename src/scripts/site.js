@@ -1,3 +1,5 @@
+import { updatePostNavigation } from './blog-posts.js';
+
 const sections = [...document.querySelectorAll('.page-section')];
 
 const navigationLinks = [...document.querySelectorAll('[data-section]')];
@@ -48,6 +50,7 @@ function activateSection(id, updateHash = true, postId) {
   const selectedPost = id === 'blog' ? posts.find(post => post.dataset.post === postId) : undefined;
   if (id === 'blog' && !selectedPost) { id = 'home'; postId = 'blog'; }
   posts.forEach(post => { post.hidden = post !== selectedPost; });
+  updatePostNavigation(selectedPost);
   const nextIndex = sectionIds.indexOf(id);
   if (nextIndex === -1) return;
   const sectionChanged = nextIndex !== currentIndex;
@@ -362,7 +365,7 @@ navigationLinks.forEach((link) => {
 });
 
 function activateSectionFromLocation() {
-  const [page, postId] = window.location.hash.slice(1).split('/');
+  const [page, postId] = window.location.hash.slice(1).split('?')[0].split('/');
   const aliases = { publications: 'research', teaching: 'courses', projects: 'blog', talks: 'blog' };
   const id = aliases[page] || page;
   const sectionId = sectionIds.includes(id) ? id : 'home';

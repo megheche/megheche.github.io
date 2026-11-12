@@ -79,19 +79,19 @@ for (const item of items) {
   .portfolio-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
   .portfolio-image img[src="/articles/coming-soon.png"] { object-fit: contain; padding: 12px; }
   .portfolio-card:hover .portfolio-image img { transform: scale(1.06); }
-  .portfolio-card[href="#blog/systain3r-best-mentor"] .portfolio-image img { object-fit: cover; object-position: center 38%; transform: scale(1.08); }
-  .portfolio-card[href="#blog/supelec-masters-graduation"] .portfolio-image img { position: absolute; width: 250%; max-width: none; height: auto; left: -75%; top: -27%; transform: none; }
-  .portfolio-card[href="#blog/phd-defense"] .portfolio-image img { position: absolute; width: 400%; max-width: none; height: auto; aspect-ratio: 4 / 3; left: -160%; top: -177%; transform: none; }
-  .portfolio-card[href="#blog/icip-2022-organizing"] .portfolio-image img { object-fit: cover; object-position: center 65%; transform: scale(1.08); }
-  .portfolio-card[href="#blog/lebanese-university-graduation"] .portfolio-image img { object-position: center 20%; }
-  .portfolio-card[href="#blog/lebanon-tech-talk"] .portfolio-image img { object-fit: cover; object-position: center 30%; transform: none; }
-  .portfolio-card[href="#blog/teens-in-ai-iwd-2024"] .portfolio-image img { object-fit: cover; object-position: center 42%; transform: translateY(-10%) scale(1.25); transform-origin: center 42%; }
-  .portfolio-card[href="#blog/physical-intelligence"] .portfolio-image img { object-position: center top; transform: none; }
-  .portfolio-card[href="#blog/100-women-ai-robotics-switzerland"] .portfolio-image img { object-fit: cover; object-position: center 12%; transform: none; }
-  .portfolio-card[href="#blog/why-zurich-is-built-for-robotics"] .portfolio-image { background: #0d1b2a; }
-  .portfolio-card[href="#blog/why-zurich-is-built-for-robotics"] .portfolio-image img { object-fit: cover; object-position: 50% 48%; transform: scale(1.12); }
-  .portfolio-card[href="#blog/robotics-documentary"] .portfolio-image img { transform: scale(1.32); transform-origin: 50% 40%; }
-  .portfolio-card[href="#blog/robotics-documentary"]:hover .portfolio-image img { transform: scale(1.38); }
+  .portfolio-card[href^="#blog/systain3r-best-mentor"] .portfolio-image img { object-fit: cover; object-position: center 38%; transform: scale(1.08); }
+  .portfolio-card[href^="#blog/supelec-masters-graduation"] .portfolio-image img { position: absolute; width: 250%; max-width: none; height: auto; left: -75%; top: -27%; transform: none; }
+  .portfolio-card[href^="#blog/phd-defense"] .portfolio-image img { position: absolute; width: 400%; max-width: none; height: auto; aspect-ratio: 4 / 3; left: -160%; top: -177%; transform: none; }
+  .portfolio-card[href^="#blog/icip-2022-organizing"] .portfolio-image img { object-fit: cover; object-position: center 65%; transform: scale(1.08); }
+  .portfolio-card[href^="#blog/lebanese-university-graduation"] .portfolio-image img { object-position: center 20%; }
+  .portfolio-card[href^="#blog/lebanon-tech-talk"] .portfolio-image img { object-fit: cover; object-position: center 30%; transform: none; }
+  .portfolio-card[href^="#blog/teens-in-ai-iwd-2024"] .portfolio-image img { object-fit: cover; object-position: center 42%; transform: translateY(-10%) scale(1.25); transform-origin: center 42%; }
+  .portfolio-card[href^="#blog/physical-intelligence"] .portfolio-image img { object-position: center top; transform: none; }
+  .portfolio-card[href^="#blog/100-women-ai-robotics-switzerland"] .portfolio-image img { object-fit: cover; object-position: center 12%; transform: none; }
+  .portfolio-card[href^="#blog/why-zurich-is-built-for-robotics"] .portfolio-image { background: #0d1b2a; }
+  .portfolio-card[href^="#blog/why-zurich-is-built-for-robotics"] .portfolio-image img { object-fit: cover; object-position: 50% 48%; transform: scale(1.12); }
+  .portfolio-card[href^="#blog/robotics-documentary"] .portfolio-image img { transform: scale(1.32); transform-origin: 50% 40%; }
+  .portfolio-card[href^="#blog/robotics-documentary"]:hover .portfolio-image img { transform: scale(1.38); }
   .portfolio-icon { position: absolute; right: 12px; bottom: 12px; z-index: 1; display: grid; place-items: center; width: 30px; height: 30px; color: var(--text); background: var(--bg); border-radius: 50%; font-size: 16px; }
   .portfolio-copy { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0; padding: 15px 16px 16px; }
   .portfolio-card h3 { grid-row: 1; font-size: 18px; font-weight: 500; line-height: 1.6; height: 3.2em; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
@@ -110,6 +110,6 @@ for (const item of items) {
   @media (prefers-reduced-motion: reduce) {
     .portfolio-card, .portfolio-image img { transition: none; }
     .portfolio-card:hover, .portfolio-card:hover .portfolio-image img { transform: none; }
-    .portfolio-card[href="#blog/robotics-documentary"]:hover .portfolio-image img { transform: scale(1.32); }
+    .portfolio-card[href^="#blog/robotics-documentary"]:hover .portfolio-image img { transform: scale(1.32); }
   }
 </style>

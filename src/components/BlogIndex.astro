@@ -2,12 +2,13 @@
 import posts from "../data/blogPosts.json";
 import PortfolioGrid from "./PortfolioGrid.astro";
 import PageHeader from "./PageHeader.astro";
+import { postCategory } from "../scripts/blog-posts.js";
 const items = posts.map(post => ({
   title: post.title,
   image: post.imageSrc,
   alt: post.imageAlt,
   label: [post.category, post.readingTime.startsWith('Coming soon') && post.readingTime, post.date].filter(Boolean).join(' · '),
-  category: post.category === 'Interview' || post.videos ? 'interview' : post.category === 'Talk' || post.videoId ? 'talk' : post.category === 'Article' || post.journalHref ? 'article' : 'note',
+  category: postCategory(post),
   excerpt: post.excerpt || post.content[0],
   href: `#blog/${post.id}`,
 }));
