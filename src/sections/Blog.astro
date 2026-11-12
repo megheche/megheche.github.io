@@ -22,14 +22,14 @@ const { id } = Astro.props;
       {post.imageSrc && <figure class="entry-image"><img src={post.imageSrc} alt={post.imageAlt} loading="lazy" /></figure>}
       <header class="entry-header">
         <div class="entry-header-top">
-          <p class="entry-meta">{[post.category, post.readingTime === 'Coming soon' && 'Coming soon', post.date].filter(Boolean).join(' · ')}</p>
+          <p class="entry-meta">{[post.category, post.readingTime.startsWith('Coming soon') && post.readingTime, post.date].filter(Boolean).join(' · ')}</p>
           {(post.slidesHref || post.thesisHref) && <div class="entry-header-resources">
             {post.slidesHref && <a class="resource-button" href={post.slidesHref} target="_blank" rel="noopener noreferrer">View slides · PDF (no videos)</a>}
             {post.thesisHref && <a class="resource-button" href={post.thesisHref} target="_blank" rel="noopener noreferrer">Read my PhD thesis · PDF ↗</a>}
           </div>}
         </div>
         <h3><FloralTitle title={post.title} /></h3>
-        {post.readingTime !== 'Coming soon' && <p class="entry-reading-time">{post.readingTime}</p>}
+        {!post.readingTime.startsWith('Coming soon') && <p class="entry-reading-time">{post.readingTime}</p>}
       </header>
       <div class="entry-copy">
         {post.id === 'supelec-masters-graduation' && <img class="entry-school-logo" src="/articles/supelec-graduation/supelec-logo.svg" alt="Supélec" width="120" loading="lazy" />}
