@@ -18,18 +18,22 @@ export function updatePostNavigation(article) {
   const labels = { talk: 'talk', interview: 'interview', article: 'article', note: 'note', all: 'post' };
   const sequence = posts.filter(post => filter === 'all' || postCategory(post) === filter);
   const index = sequence.findIndex(post => post.id === article.dataset.post);
-  // Loop to the first entry so readers can keep exploring at the end of a section.
-  const next = index >= 0 && sequence.length > 1 ? sequence[(index + 1) % sequence.length] : undefined;
-  const link = article.querySelector('[data-next-post]');
-  link.hidden = !next;
   const back = article.querySelector('.back-link');
   back.href = `#home/blog${suffix}`;
   back.textContent = filter === 'all' ? '← All blog posts' : `← All ${labels[filter]}s`;
-  if (!next) return;
-  link.href = `#blog/${next.id}${suffix}`;
-  link.querySelector('[data-next-label]').textContent = `Next ${labels[filter]} →`;
-  link.querySelector('[data-next-title]').textContent = next.title;
-  const image = link.querySelector('img');
-  image.hidden = !next.imageSrc;
-  if (next.imageSrc) image.src = next.imageSrc;
+  // Wrap in either direction so readers can keep exploring the selected section.
+  for (const [direction, offset] of [['previous', -1], ['next', 1]]) {
+    const neighbor = index >= 0 && sequence.length > 1
+      ? sequence[(index + offset + sequence.length) % sequence.length] : undefined;
+    const link = article.querySelector(`[data-${direction}-post]`);
+    link.hidden = !neighbor;
+    if (!neighbor) continue;
+    link.href = `#blog/${neighbor.id}${suffix}`;
+    link.querySelector('[data-navigation-label]').textContent = direction === 'previous'
+      ? `← Previous ${labels[filter]}` : `Next ${labels[filter]} →`;
+    link.querySelector('[data-navigation-title]').textContent = neighbor.title;
+    const image = link.querySelector('img');
+    image.hidden = !neighbor.imageSrc;
+    if (neighbor.imageSrc) image.src = neighbor.imageSrc;
+  }
 }

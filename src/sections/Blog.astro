@@ -18,6 +18,15 @@ const { id } = Astro.props;
   <div class="section-inner">
     <PageHeader kicker={about.name} title="Blog" />
     {posts.map(post => <article class="blog-entry" data-post={post.id} hidden>
+      <nav class="entry-navigation entry-navigation-previous" aria-label="Previous post">
+        <a class="next-post" data-previous-post hidden>
+          <img alt="" width="112" height="84" loading="lazy" decoding="async" />
+          <span class="next-post-copy">
+            <span class="next-post-label" data-navigation-label>← Previous post</span>
+            <span class="next-post-title" data-navigation-title></span>
+          </span>
+        </a>
+      </nav>
       <div class="entry-content">
       <a class="back-link" href="#home/blog">← All blog posts</a>
       {post.imageSrc && <figure class="entry-image"><img src={post.imageSrc} alt={post.imageAlt} loading="lazy" /></figure>}
@@ -65,12 +74,12 @@ const { id } = Astro.props;
       {post.videoId && <VideoEmbed id={post.videoId} title={post.title} label={post.videoLabel || `Full talk · ${post.readingTime}`} href={post.href} />}
       {post.videos?.map(video => <VideoEmbed id={video.id} title={`${post.title} — ${video.label}`} label={video.label} href={video.href} portrait={video.orientation === 'portrait'} />)}
       </div>
-      <nav class="entry-navigation" aria-label="Continue reading">
+      <nav class="entry-navigation entry-navigation-next" aria-label="Next post">
         <a class="next-post" data-next-post hidden>
           <img alt="" width="112" height="84" loading="lazy" decoding="async" />
           <span class="next-post-copy">
-            <span class="next-post-label" data-next-label>Next post →</span>
-            <span class="next-post-title" data-next-title></span>
+            <span class="next-post-label" data-navigation-label>Next post →</span>
+            <span class="next-post-title" data-navigation-title></span>
           </span>
         </a>
       </nav>
@@ -79,9 +88,11 @@ const { id } = Astro.props;
 </section>
 <style>
 .section-inner { max-width: 1280px; }
-.blog-entry { display: grid; grid-template-columns: minmax(0, 800px) 180px; align-items: start; gap: 32px; max-width: 1280px; margin-inline: auto; padding-bottom: 20px; }
-.entry-content { min-width: 0; }
-.entry-navigation { position: sticky; top: 24px; margin-top: 70px; }
+.blog-entry { display: grid; grid-template-columns: 180px minmax(0, 800px) 180px; align-items: start; gap: 32px; max-width: 1280px; margin-inline: auto; padding-bottom: 20px; }
+.entry-content { min-width: 0; grid-column: 2; grid-row: 1; }
+.entry-navigation { position: sticky; top: 24px; margin-top: 70px; grid-row: 1; }
+.entry-navigation-previous { grid-column: 1; }
+.entry-navigation-next { grid-column: 3; }
 .next-post { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .next-post[hidden] { display: none; }
 .next-post:hover { border-color: var(--accent); background: var(--accent-soft); }
@@ -91,16 +102,11 @@ const { id } = Astro.props;
 .next-post-label { display: block; margin-bottom: 8px; color: var(--accent); font-size: 12px; }
 .next-post-title { display: block; color: var(--text); font-size: 14px; font-weight: 500; line-height: 1.5; overflow-wrap: anywhere; }
 @media (max-width: 740px) {
-  .blog-entry { grid-template-columns: minmax(0, 1fr) 64px; gap: 16px; }
+  .blog-entry { grid-template-columns: 56px minmax(0, 1fr) 56px; gap: 8px; }
   .entry-navigation { top: 16px; }
   .next-post { gap: 8px; padding: 6px; }
-  .next-post-label { margin-bottom: 0; font-size: 11px; }
+  .next-post-label { margin-bottom: 0; font-size: 10px; overflow-wrap: anywhere; }
   .next-post-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-}
-@media (min-width: 741px) {
-  .blog-entry { grid-template-columns: 180px minmax(0, 800px) 180px; }
-  .entry-content { grid-column: 2; }
-  .entry-navigation { grid-column: 3; }
 }
 @media (min-width: 741px) and (max-width: 1100px) {
   .blog-entry { grid-template-columns: 96px minmax(0, 800px) 96px; gap: 20px; }
