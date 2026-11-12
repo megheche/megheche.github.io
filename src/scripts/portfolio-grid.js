@@ -15,7 +15,8 @@ document.querySelectorAll('[data-portfolio]').forEach((root) => {
     cards.forEach((card) => {
       card.hidden = filter !== 'all' && card.dataset.category !== filter;
       if (root.closest('[data-blog-index]') && card.hash?.startsWith('#blog/')) {
-        card.hash = `${card.hash.split('?')[0]}${filter === 'all' ? '' : `?filter=${filter}`}`;
+        // Keep fragment links relative so the card's photo framing selectors still match.
+        card.setAttribute('href', `${card.hash.split('?')[0]}${filter === 'all' ? '' : `?filter=${filter}`}`);
       }
     });
   }
