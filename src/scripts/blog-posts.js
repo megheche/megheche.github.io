@@ -33,7 +33,7 @@ export function updatePostNavigation(article) {
       ? `← Previous ${labels[filter]}` : `Next ${labels[filter]} →`;
     link.querySelector('[data-navigation-title]').textContent = neighbor.title;
     const image = link.querySelector('img');
-    image.hidden = !neighbor.imageSrc;
+    link.querySelector('.post-thumbnail').hidden = !neighbor.imageSrc;
     if (neighbor.imageSrc) image.src = neighbor.imageSrc;
   }
 }
