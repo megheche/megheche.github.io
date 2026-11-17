@@ -2,6 +2,7 @@
   .post-thumbnail { position: relative; aspect-ratio: 1 / .82; overflow: hidden; background: var(--panel); }
   .post-thumbnail img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
   .post-thumbnail img[src="/articles/coming-soon.png"] { object-fit: contain; padding: 12px; }
+  :is(.portfolio-card, .next-post)[href^="#blog/nature-publication"] .post-thumbnail img { object-fit: cover; object-position: center 15%; }
   .portfolio-card:hover .post-thumbnail img { transform: scale(1.06); }
   :is(.portfolio-card, .next-post)[href^="#blog/systain3r-best-mentor"] .post-thumbnail img { object-fit: cover; object-position: center 38%; transform: scale(1.08); }
   :is(.portfolio-card, .next-post)[href^="#blog/supelec-masters-graduation"] .post-thumbnail img { position: absolute; width: 250%; max-width: none; height: auto; left: -75%; top: -20%; transform: none; }

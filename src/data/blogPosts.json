@@ -135,6 +135,51 @@
     ]
   },
   {
+    "id": "nature-publication",
+    "category": "Article",
+    "date": "April 2026",
+    "readingTime": "1 min read",
+    "title": "Nature publication",
+    "excerpt": "Our work on ACE is published in Nature and featured on the cover. A milestone to celebrate with the whole team.",
+    "imageSrc": "/assets/featured/nature-ace-cover.png",
+    "imageAlt": "Nature cover, 23 April 2026: Match Point, featuring the ACE table tennis robot facing a human player.",
+    "content": [],
+    "photos": [
+      {
+        "src": "/articles/nature-publication/ace-with-trophy.jpg",
+        "alt": "ACE holding a table tennis trophy on its paddle, with Sony AI, Sony, and THK signage behind it.",
+        "caption": "ACE with its trophy."
+      }
+    ]
+  },
+  {
+    "id": "table-tennis-robot-first-win",
+    "category": "Note",
+    "date": "March 2025",
+    "readingTime": "1 min read",
+    "title": "Table tennis robot, our first win",
+    "excerpt": "An 11–9 score, our first win, and a moment to celebrate together with the ACE team.",
+    "imageSrc": "/articles/table-tennis-robot-first-win/first-win.jpg",
+    "imageAlt": "Watching the scoreboard beside ACE after an 11–9 game win.",
+    "content": [
+      "11–9! In March 2025, our table tennis robot ACE gave us a moment we had been working towards: our first win. Seeing that score on the screen was a special milestone for the whole team.",
+      "Behind that moment were five years of research, testing, and learning how to bring perception, decision-making, and movement together at the speed of table tennis. Every rally was a chance to learn, and this win gave us plenty to celebrate.",
+      "These photos capture the excitement around the robot and the people who made it possible. Grateful to my colleagues, collaborators, and the players who challenged ACE. A proud moment to share together!"
+    ],
+    "photos": [
+      {
+        "src": "/articles/table-tennis-robot-first-win/robot-and-me.jpg",
+        "alt": "Two stills of Mireille beside the table tennis robot’s paddle, from an interview after the March 2025 wins.",
+        "caption": "From the interview after our wins in March 2025."
+      },
+      {
+        "src": "/articles/table-tennis-robot-first-win/team-celebration.jpg",
+        "alt": "The ACE team gathered around the robot with a trophy and an 11–9 score on the screen.",
+        "caption": "Celebrating our first wins together with the ACE team. March 2025."
+      }
+    ]
+  },
+  {
     "id": "teens-in-ai-iwd-2024",
     "category": "Note",
     "date": "April 2024",

@@ -14,6 +14,7 @@ import { Content as LebaneseUniversityGraduation } from "../content/lebanese-uni
 import { Content as PhdDefense } from "../content/phd-defense.md";
 import { Content as TeensInAiIwd2024 } from "../content/teens-in-ai-iwd-2024.md";
 import { Content as RoboticsDocumentary } from "../content/robotics-documentary.md";
+import { Content as NaturePublication } from "../content/nature-publication.md";
 const { id } = Astro.props;
 ---
 <section class="page-section" id={id}>
@@ -47,6 +48,7 @@ const { id } = Astro.props;
         {post.id === 'supelec-masters-graduation' && <img class="entry-school-logo" src="/articles/supelec-graduation/supelec-logo.svg" alt="Supélec" width="120" loading="lazy" />}
         {post.content.map(paragraph => <p>{paragraph}</p>)}
         {post.id === 'robotics-documentary' && <RoboticsDocumentary />}
+        {post.id === 'nature-publication' && <NaturePublication />}
         {post.id === 'systain3r-best-mentor' && <Systain3rBestMentor />}
         {post.id === 'lebanese-university-graduation' && <LebaneseUniversityGraduation />}
         {post.id === 'phd-defense' && <PhdDefense />}
@@ -139,6 +141,7 @@ const { id } = Astro.props;
 .entry-photos figcaption { margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.7; }
 .entry-image { margin: 26px 0; }
 .entry-image img { width: 100%; border: 1px solid var(--line); border-radius: 10px; }
+[data-post="nature-publication"] .entry-image { max-width: 440px; margin-inline: auto; }
 [data-post="phd-defense"] .entry-image { position: relative; aspect-ratio: 1266 / 1168; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; }
 [data-post="phd-defense"] .entry-image img { position: absolute; width: 400%; max-width: none; height: auto; aspect-ratio: 4 / 3; left: -160%; top: -156%; border: 0; border-radius: 0; }
 [data-post="supelec-masters-graduation"] .entry-image { max-width: 440px; margin-inline: auto; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 10px; }
