@@ -1,0 +1,29 @@
+---
+/**
+ * Icon component for rendering SVG icons.
+ *
+ * @param {string} name - A Tabler outline name or the local scholar logo.
+ * @param {string} [class] - Optional CSS class to apply to the icon.
+ *
+ * Usage:
+ * <Icon name="school" />
+ * <Icon name="school" class="icon-small" />
+ */
+import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import scholar from "../../public/assets/icons/scholar.svg?raw";
+
+interface Props {
+  /** Tabler outline name, or the local scholar logo. */
+  name: string;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+const require = createRequire(import.meta.url);
+const brands: Record<string, string> = { scholar };
+const svg = brands[name] ?? readFileSync(require.resolve(`@tabler/icons/outline/${name}.svg`), "utf8");
+const content = svg.slice(svg.indexOf(">") + 1, svg.lastIndexOf("</svg>"));
+---
+
+<svg class:list={["icon", className]} viewBox="0 0 24 24" aria-hidden="true" focusable="false" set:html={content} />

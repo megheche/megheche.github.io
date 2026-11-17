@@ -1,0 +1,22 @@
+---
+type Ratio = [number, number];
+
+interface Props {
+  ratio?: Ratio;
+}
+
+const { ratio = [1, 1] } = Astro.props;
+---
+
+<div class="two-column" style={`--left-column: ${ratio[0]}fr; --right-column: ${ratio[1]}fr;`}>
+  <div><slot name="left" /></div>
+  <div><slot name="right" /></div>
+</div>
+
+<style>
+  .two-column { display: grid; grid-template-columns: minmax(0, var(--left-column)) minmax(0, var(--right-column)); gap: clamp(30px, 6vw, 90px); }
+
+  @media (max-width: 740px) {
+    .two-column { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  }
+</style>

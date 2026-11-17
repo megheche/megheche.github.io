@@ -1,0 +1,15 @@
+---
+interface Props { title: string; initials?: number[]; variant?: "default" | "name"; }
+const { title, initials = [0], variant = "default" } = Astro.props;
+const letters = Array.from(title);
+---
+<span class:list={["floral-title", { "is-name": variant === "name" }]}>{letters.map((letter, index) => initials.includes(index) ? <span class="floral-initial">{letter}<svg viewBox="0 0 44 58" aria-hidden="true" focusable="false"><path class="stem" d="M31 54C9 43 5 25 19 5M30 54C19 45 19 36 25 29" /><g class="leaves"><path d="M15 38C2 36 2 28 4 25C12 26 16 31 15 38ZM11 27C1 23 3 15 6 13C12 17 13 22 11 27ZM14 17C8 10 12 4 16 3C20 9 18 14 14 17ZM22 46C11 47 7 42 7 38C14 36 21 40 22 46ZM23 40C20 33 24 28 29 27C32 34 27 39 23 40Z" /></g><g class="flowers"><ellipse cx="18" cy="9" rx="3" ry="5" transform="rotate(30 18 9)" /><ellipse cx="13" cy="17" rx="3" ry="4" transform="rotate(-25 13 17)" /><ellipse cx="19" cy="15" rx="3" ry="4" transform="rotate(35 19 15)" /><ellipse cx="12" cy="24" rx="3" ry="4" transform="rotate(-30 12 24)" /><ellipse cx="18" cy="22" rx="3" ry="4" transform="rotate(35 18 22)" /></g></svg></span> : letter)}</span>
+
+<style>
+  .floral-initial { position: relative; display: inline-block; margin-right: .025em; padding-left: .19em; color: var(--accent); font-family: "Baskerville", "Palatino Linotype", "Book Antiqua", Georgia, serif; font-size: 1.65em; font-weight: 400; font-style: italic; line-height: .95; letter-spacing: -.05em; }
+  .floral-initial svg { position: absolute; left: -.13em; bottom: -.12em; width: .65em; height: .9em; overflow: visible; }
+  .stem { fill: none; stroke: var(--accent); stroke-width: 1; stroke-linecap: round; }
+  .leaves { fill: var(--accent); opacity: .55; }
+  .flowers { fill: var(--accent); opacity: .9; }
+  .is-name .floral-initial { font-size: 1.15em; }
+</style>

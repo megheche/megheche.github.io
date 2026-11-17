@@ -1,0 +1,29 @@
+---
+import about from "../data/about.json";
+import positions from "../data/positions.json";
+import education from "../data/education.json";
+import ContentHeading from "../components/ContentHeading.astro";
+import Timeline from "../components/Timeline.astro";
+import SkillBars from "../components/SkillBars.astro";
+import TwoColumn from "../components/TwoColumn.astro";
+import PageHeader from "../components/PageHeader.astro";
+const { id } = Astro.props;
+const work = positions.map(item => ({ date: item.period, title: item.title, organization: item.place, description: '' }));
+const studies = education.map(item => ({ date: item.period, title: item.title, organization: item.place, description: item.description }));
+---
+<section class="page-section" id={id}>
+  <div class="section-inner">
+    <PageHeader kicker={about.name} title="About" highlight="Me" />
+    <p class="resume-bio">{about.bio}</p>
+    <TwoColumn ratio={[1.75, 1]}>
+      <div slot="left"><ContentHeading title="Background" /><Timeline items={[...work, ...studies]} /></div>
+      <div slot="right">
+        <ContentHeading title="Spoken Languages" />
+        <SkillBars skills={about.languages} />
+      </div>
+    </TwoColumn>
+  </div>
+</section>
+<style>
+  .resume-bio { margin-bottom: 44px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+</style>

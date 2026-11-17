@@ -1,0 +1,18 @@
+---
+type Size = "small" | "medium" | "large";
+
+interface Props {
+  size?: Size;
+}
+
+const { size = "medium" } = Astro.props;
+---
+
+<div class:list={["vertical-spacer", `vertical-spacer--${size}`]} aria-hidden="true"></div>
+
+<style>
+  .vertical-spacer { flex-shrink: 0; }
+  .vertical-spacer--small { height: 16px; }
+  .vertical-spacer--medium { height: 32px; }
+  .vertical-spacer--large { height: 64px; }
+</style>

@@ -1,0 +1,24 @@
+/* Shared framing for home cards and previous/next post previews. */
+  .post-thumbnail { position: relative; aspect-ratio: 1 / .82; overflow: hidden; background: var(--panel); }
+  .post-thumbnail img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+  .post-thumbnail img[src="/articles/coming-soon.png"] { object-fit: contain; padding: 12px; }
+  .portfolio-card:hover .post-thumbnail img { transform: scale(1.06); }
+  :is(.portfolio-card, .next-post)[href^="#blog/systain3r-best-mentor"] .post-thumbnail img { object-fit: cover; object-position: center 38%; transform: scale(1.08); }
+  :is(.portfolio-card, .next-post)[href^="#blog/supelec-masters-graduation"] .post-thumbnail img { position: absolute; width: 250%; max-width: none; height: auto; left: -75%; top: -20%; transform: none; }
+  :is(.portfolio-card, .next-post)[href^="#blog/phd-defense"] .post-thumbnail img { position: absolute; width: 500%; max-width: none; height: auto; aspect-ratio: 4 / 3; left: -212%; top: -230%; transform: none; }
+  :is(.portfolio-card, .next-post)[href^="#blog/icip-2022-organizing"] .post-thumbnail img { object-fit: cover; object-position: center 65%; transform: scale(1.08); }
+  :is(.portfolio-card, .next-post)[href^="#blog/lebanese-university-graduation"] .post-thumbnail img { object-position: center 20%; }
+  :is(.portfolio-card, .next-post)[href^="#blog/lebanon-tech-talk"] .post-thumbnail img { object-fit: cover; object-position: center 20%; transform: none; }
+  :is(.portfolio-card, .next-post)[href^="#blog/teens-in-ai-iwd-2024"] .post-thumbnail img { object-fit: cover; object-position: center 42%; transform: translateY(-10%) scale(1.25); transform-origin: center 42%; }
+  :is(.portfolio-card, .next-post)[href^="#blog/physical-intelligence"] .post-thumbnail img { object-position: center top; transform: none; }
+  :is(.portfolio-card, .next-post)[href^="#blog/100-women-ai-robotics-switzerland"] .post-thumbnail img { object-fit: cover; object-position: center 12%; transform: none; }
+  :is(.portfolio-card, .next-post)[href^="#blog/why-zurich-is-built-for-robotics"] .post-thumbnail { background: #0d1b2a; }
+  :is(.portfolio-card, .next-post)[href^="#blog/why-zurich-is-built-for-robotics"] .post-thumbnail img { object-fit: cover; object-position: 50% 48%; transform: scale(1.12); }
+  :is(.portfolio-card, .next-post)[href^="#blog/robotics-documentary"] .post-thumbnail img { transform: scale(1.32); transform-origin: 50% 40%; }
+  :is(.portfolio-card, .next-post)[href^="#blog/robotics-documentary"]:hover .post-thumbnail img { transform: scale(1.38); }
+
+@media (prefers-reduced-motion: reduce) {
+  .post-thumbnail img { transition: none; }
+  .portfolio-card:hover .post-thumbnail img { transform: none; }
+  .portfolio-card[href^="#blog/robotics-documentary"]:hover .post-thumbnail img { transform: scale(1.32); }
+}

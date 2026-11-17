@@ -1,0 +1,17 @@
+---
+interface Props { id: string; title: string; label: string; href: string; portrait?: boolean; }
+const { id, title, label, href, portrait = false } = Astro.props;
+---
+<section class:list={["video-block", portrait && "video-block--portrait"]}>
+  <div class="video-heading"><h4>{label}</h4><a href={href} target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a></div>
+  <iframe data-src={`https://www.youtube.com/embed/${id}`} title={title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</section>
+<style>
+.video-block { margin-top: 30px; }
+.video-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
+.video-heading h4 { font-size: 15px; font-weight: 600; }
+.video-heading a { color: var(--accent); font-size: 12px; }
+iframe { display: block; width: 100%; aspect-ratio: 16/9; height: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.video-block--portrait { max-width: 300px; margin-inline: auto; }
+.video-block--portrait iframe { aspect-ratio: 9/16; }
+</style>

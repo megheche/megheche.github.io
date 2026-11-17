@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "The idea behind a language model",
+    "summary": [
+      "In this first chapter, we are going to build the central idea behind a language model from the ground up.",
+      "We will begin with a very simple question: given some text, how can a computer predict what is likely to come next?"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "The language-model pipeline",
+    "summary": [
+      "The central message of this lecture is that next-token prediction is the core computational task of a language model, but many other decisions determine its behavior.",
+      "Real applications usually place the model inside a larger system that may include memory, document retrieval, tools, databases, or web services."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "From text to tokens",
+    "summary": [
+      "In this chapter, we focus on the very first part of that pipeline: how text becomes something a language model can process. When we type a sentence into a language model, the model does not directly receive words or characters. The text first has to be converted into numerical representations.",
+      "The first major step in that process is tokenization."
+    ]
+  },
+  {
+    "id": 4,
+    "title": "The decoder-only Transformer",
+    "summary": [
+      "In this chapter, we move to the next part of the pipeline and ask: what does the model actually do with those tokens?",
+      "We will focus on the architecture used by most modern generative language models: the decoder-only Transformer."
+    ]
+  },
+  {
+    "id": 5,
+    "title": "How a model learns",
+    "summary": [
+      "We move to the next question: how does a model actually learn?",
+      "This chapter focuses on pretraining, the stage where a language model develops its broad language capabilities."
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Post-training",
+    "summary": [
+      "In this chapter, we move to the second major training stage: post-training.",
+      "The basic question is: once we have a capable pretrained model, how do we make it behave the way we actually want?"
+    ]
+  }
+]
