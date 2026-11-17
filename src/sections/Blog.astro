@@ -13,6 +13,7 @@ import { Content as Systain3rBestMentor } from "../content/systain3r-best-mentor
 import { Content as LebaneseUniversityGraduation } from "../content/lebanese-university-graduation.md";
 import { Content as PhdDefense } from "../content/phd-defense.md";
 import { Content as TeensInAiIwd2024 } from "../content/teens-in-ai-iwd-2024.md";
+import { Content as RoboticsDocumentary } from "../content/robotics-documentary.md";
 const { id } = Astro.props;
 ---
 <section class="page-section" id={id}>
@@ -45,6 +46,7 @@ const { id } = Astro.props;
       <div class="entry-copy">
         {post.id === 'supelec-masters-graduation' && <img class="entry-school-logo" src="/articles/supelec-graduation/supelec-logo.svg" alt="Supélec" width="120" loading="lazy" />}
         {post.content.map(paragraph => <p>{paragraph}</p>)}
+        {post.id === 'robotics-documentary' && <RoboticsDocumentary />}
         {post.id === 'systain3r-best-mentor' && <Systain3rBestMentor />}
         {post.id === 'lebanese-university-graduation' && <LebaneseUniversityGraduation />}
         {post.id === 'phd-defense' && <PhdDefense />}
@@ -143,8 +145,6 @@ const { id } = Astro.props;
 [data-post="supelec-masters-graduation"] .entry-image img { width: 250%; max-width: none; height: auto; margin-left: -75%; margin-top: -16%; border: 0; border-radius: 0; }
 .entry-school-logo { float: right; width: 120px; height: auto; margin: 0 0 16px 24px; padding: 10px; background: #f7f7f7; border-radius: 8px; }
 [data-post="supelec-masters-graduation"] .entry-copy { display: flow-root; }
-[data-post="robotics-documentary"] .entry-image { aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; }
-[data-post="robotics-documentary"] .entry-image img { width: 100%; height: 100%; object-fit: cover; border: 0; border-radius: 0; transform: scale(1.32); transform-origin: 50% 40%; }
 .entry-resources { display: flex; gap: 10px; flex-wrap: wrap; }
 .resource-button { display: inline-flex; align-items: center; margin-top: 16px; padding: 9px 14px; border: 1px solid var(--line); border-radius: 24px; color: var(--accent); font-size: 12px; line-height: 1.6; }
 .resource-button:hover { background: var(--accent-soft); border-color: var(--accent); }

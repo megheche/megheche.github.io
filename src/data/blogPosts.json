@@ -15,14 +15,11 @@
     "id": "robotics-documentary",
     "category": "Interview",
     "readingTime": "Coming soon",
-    "title": "Zurich Robot Documentary",
-    "excerpt": "A glimpse behind the scenes of the Zurich Robot Documentary. More details coming soon.",
-    "imageSrc": "/articles/robotics-documentary-coming-soon.png",
-    "imageAlt": "Behind the scenes of a robotics documentary shoot, with Mireille El Gheche standing in front of a camera and studio lighting.",
-    "content": [
-      "A glimpse behind the scenes of filming for the Zurich Robot Documentary.",
-      "More details coming soon."
-    ]
+    "title": "Brilliant Minds: Robotics in the Greater Zurich Area",
+    "excerpt": "Featured in a 90-minute documentary showcasing the people and innovations shaping the future of robotics in Switzerland.",
+    "imageSrc": "/articles/robotics-documentary-feature.png",
+    "imageAlt": "Mireille El Gheche speaking during her interview for Brilliant Minds: Robotics in the Greater Zurich Area, with the Greater Zurich Area logo in the upper left.",
+    "content": []
   },
   {
     "id": "why-zurich-is-built-for-robotics",
