@@ -1,17 +1,5 @@
 [
   {
-    "id": "lebanon-tech-talk",
-    "category": "Talk",
-    "readingTime": "Coming soon (Jan 2027)",
-    "title": "Think You’re Good at Ping-Pong? Meet ACE",
-    "excerpt": "A tech talk at the Lebanese University. More details coming soon.",
-    "imageSrc": "/articles/lebanese-university-tech-talk.jpg",
-    "imageAlt": "Poster for Mireille El Gheche’s Tech Talk at the Lebanese University (TBC), January 2027: Think You’re Good at Ping-Pong? Meet ACE.",
-    "content": [
-      "A tech talk at the Lebanese University. More details coming soon."
-    ]
-  },
-  {
     "id": "robotics-documentary",
     "category": "Interview",
     "readingTime": "Coming soon",
