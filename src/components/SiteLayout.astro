@@ -6,6 +6,7 @@ import logo from "../assets/portrait-wreath.png";
 import Icon from "./Icon.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import about from "../data/about.json";
+import PhotoGallery from "./PhotoGallery.astro";
 interface Props {
   navigation: { id: string; label: string; icon: string }[];
 }
@@ -85,6 +86,7 @@ const description = "Mireille El Gheche — AI and robotics researcher. Publicat
       </main>
     </div>
 
+    <PhotoGallery />
     <script>
       import "../scripts/site.js";
     </script>

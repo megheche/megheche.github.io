@@ -12,7 +12,7 @@ const photos = [
   <p class="gallery-label">Moments from the panel <span>{photos.length} photos</span></p>
   <div class="gallery-photos">
     {photos.map((photo, index) => <figure class="gallery-photo">
-      <a href={photo.src || `/articles/zurich-panel/${photo.name}-1200.webp`} target="_blank" rel="noopener noreferrer" aria-label={`${photo.caption} — open larger photo`}>
+      <a href={photo.src || `/articles/zurich-panel/${photo.name}-1200.webp`} data-gallery-photo data-caption={photo.caption} aria-haspopup="dialog" aria-label={`${photo.caption} — open larger photo`}>
         <img src={photo.src || `/articles/zurich-panel/${photo.name}-600.webp`}
           srcset={photo.src ? undefined : `/articles/zurich-panel/${photo.name}-600.webp 600w, /articles/zurich-panel/${photo.name}-1200.webp 1200w`}
           sizes="(max-width: 850px) calc(100vw - 50px), 400px" width={photo.width || 600} height={photo.height || (photo.portrait ? 800 : 450)}

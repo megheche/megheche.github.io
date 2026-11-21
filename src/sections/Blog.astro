@@ -32,7 +32,7 @@ const { id } = Astro.props;
       </nav>
       <div class="entry-content">
       <a class="back-link" href="#home/blog">← All blog posts</a>
-      {post.imageSrc && <figure class="entry-image"><img src={post.imageSrc} alt={post.imageAlt} loading="lazy" /></figure>}
+      {post.imageSrc && <figure class="entry-image"><a href={post.imageSrc} data-gallery-photo data-caption={post.imageAlt} aria-label={`Open larger photo: ${post.imageAlt}`} aria-haspopup="dialog"><img src={post.imageSrc} alt={post.imageAlt} loading="lazy" /></a></figure>}
       <header class="entry-header">
         <div class="entry-header-top">
           <p class="entry-meta">{[post.category, post.readingTime.startsWith('Coming soon') && post.readingTime, post.date].filter(Boolean).join(' · ')}</p>
@@ -64,7 +64,7 @@ const { id } = Astro.props;
       {post.eventHref && <a class="resource-button" href={post.eventHref} target="_blank" rel="noopener noreferrer">Event details ↗</a>}
       {post.photos && <div class="entry-photos" aria-label="Photos from the event">
         {post.photos.map(photo => <figure>
-          <a href={photo.src} target="_blank" rel="noopener noreferrer" aria-label={`${photo.caption} Open larger photo`}>
+          <a href={photo.src} data-gallery-photo data-caption={photo.caption} aria-haspopup="dialog" aria-label={`${photo.caption} Open larger photo`}>
             <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
           </a>
           <figcaption>{photo.caption}</figcaption>
@@ -93,6 +93,7 @@ const { id } = Astro.props;
 </section>
 <style>
 .section-inner { max-width: 1280px; }
+.entry-image a, .entry-photos a { display: block; cursor: zoom-in; }
 .blog-entry { display: grid; grid-template-columns: 180px minmax(0, 800px) 180px; align-items: start; gap: 32px; max-width: 1280px; margin-inline: auto; padding-bottom: 20px; }
 .entry-content { min-width: 0; grid-column: 2; grid-row: 1; }
 .entry-navigation { position: sticky; top: 24px; margin-top: 70px; grid-row: 1; }
