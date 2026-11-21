@@ -32,7 +32,7 @@ const { id } = Astro.props;
       </nav>
       <div class="entry-content">
       <a class="back-link" href="#home/blog">← All blog posts</a>
-      {post.imageSrc && <figure class="entry-image"><a href={post.imageSrc} data-gallery-photo data-caption={post.imageAlt} aria-label={`Open larger photo: ${post.imageAlt}`} aria-haspopup="dialog"><img src={post.imageSrc} alt={post.imageAlt} loading="lazy" /></a></figure>}
+      {post.imageSrc && <figure class="entry-image"><a href={post.imageSrc} data-gallery-photo data-caption={post.title} aria-label={`Open larger photo: ${post.imageAlt}`} aria-haspopup="dialog"><img src={post.imageSrc} alt={post.imageAlt} loading="lazy" /></a></figure>}
       <header class="entry-header">
         <div class="entry-header-top">
           <p class="entry-meta">{[post.category, post.readingTime.startsWith('Coming soon') && post.readingTime, post.date].filter(Boolean).join(' · ')}</p>
